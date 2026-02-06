@@ -29,9 +29,9 @@ class ScanController extends Controller
 
         // 2. Authenticate Device (ตรวจสอบว่าเครื่องนี้มีสิทธิ์ยิง API ไหม)
         $device = Device::where('device_code', $request->device_code)
-                        ->where('api_token', $request->api_token)
-                        ->where('is_active', true)
-                        ->first();
+            ->where('api_token', $request->api_token)
+            ->where('is_active', true)
+            ->first();
 
         if (!$device) {
             return response()->json([
@@ -42,8 +42,8 @@ class ScanController extends Controller
 
         // 3. Find Employee
         $employee = Employee::where('employee_code', $request->employee_code)
-                            ->where('is_active', true)
-                            ->first();
+            ->where('is_active', true)
+            ->first();
 
         if (!$employee) {
             return response()->json([
@@ -55,7 +55,7 @@ class ScanController extends Controller
         // 4. Process Logic (ใช้ DB Transaction เพื่อความชัวร์ของข้อมูล)
         try {
             return DB::transaction(function () use ($request, $device, $employee) {
-                
+
                 $scanTime = $request->timestamp ? Carbon::parse($request->timestamp) : now();
                 $todayDate = $scanTime->format('Y-m-d');
 
@@ -80,8 +80,8 @@ class ScanController extends Controller
                     $scanType = 'in';
 
                     // --- Late Detection Logic ---
-                    $shift = $employee->shift; 
-                    
+                    $shift = $employee->shift;
+
                     // Fallback: If no shift assigned, try to find the "General Shift" or default
                     if (!$shift) {
                         $shift = \App\Models\Shift::where('name', 'General Shift')->first();
@@ -90,7 +90,7 @@ class ScanController extends Controller
                     if ($shift && $shift->start_time) {
                         // Create Carbon instance for Shift Start Time on Today
                         $shiftStart = Carbon::parse($todayDate . ' ' . $shift->start_time->format('H:i:s'));
-                        
+
                         // Add buffer (e.g., 1 minute grace period) if needed, currently strict
                         if ($scanTime->gt($shiftStart)) {
                             $lateMinutes = $scanTime->diffInMinutes($shiftStart);
@@ -100,11 +100,19 @@ class ScanController extends Controller
                     }
                 } else {
                     // ถ้ามีเวลาเข้าแล้ว -> ไม่อนุญาตให้สแกนซ้ำ (ตาม Requirement: เข้าได้แค่ 1 ครั้ง)
+                    $lastLog = AttendanceLog::where('employee_id', $employee->id)
+                        ->whereDate('scan_time', $todayDate)
+                        ->latest()
+                        ->first();
+
                     return response()->json([
                         'success' => true, // Return true so client doesn't show error
                         'message' => 'วันนี้คุณลงเวลาเข้างานเรียบร้อยแล้ว',
                         'data' => [
-                            'employee_name' => $employee->first_name . ' ' . $employee->last_name,
+                            'name' => $employee->first_name . ' ' . $employee->last_name,
+                            'employee_code' => $employee->employee_code,
+                            'photo_url' => $employee->photo_path ? route('storage.file', ['path' => $employee->photo_path]) : null,
+                            'snapshot_url' => ($lastLog && $lastLog->snapshot_path) ? route('storage.file', ['path' => $lastLog->snapshot_path]) : null,
                             'scan_type' => 'เข้างานแล้ว',
                             'time' => $dailyRecord->check_in_at->format('H:i:s'),
                             'status_text' => 'เข้างานแล้ว',
@@ -123,7 +131,7 @@ class ScanController extends Controller
                         $image = str_replace('data:image/jpeg;base64,', '', $image);
                         $image = str_replace(' ', '+', $image);
                         $imageName = 'scan_' . time() . '_' . \Illuminate\Support\Str::random(10) . '.jpg';
-                        
+
                         \Illuminate\Support\Facades\Storage::disk('public')->put('snapshots/' . $imageName, base64_decode($image));
                         $snapshotPath = 'snapshots/' . $imageName;
                     } catch (\Exception $e) {
@@ -132,7 +140,7 @@ class ScanController extends Controller
                 }
 
                 $isLate = ($scanType === 'in' && $dailyRecord->late_minutes > 0);
-                
+
                 // Determine Thai Status Text
                 $statusText = 'เข้างานปกติ';
                 if ($isLate) {
@@ -165,8 +173,11 @@ class ScanController extends Controller
                     'success' => true,
                     'message' => 'Scan recorded successfully',
                     'data' => [
-                        'employee_name' => $employee->first_name . ' ' . $employee->last_name,
-                        'scan_type' => $statusText, // Send Thai Status as Type for Display
+                        'name' => $employee->first_name . ' ' . $employee->last_name,
+                        'employee_code' => $employee->employee_code,
+                        'photo_url' => $employee->photo_path ? route('storage.file', ['path' => $employee->photo_path]) : null,
+                        'snapshot_url' => $snapshotPath ? route('storage.file', ['path' => $snapshotPath]) : null,
+                        'scan_type' => $statusText,
                         'time' => $scanTime->format('H:i:s'),
                         'status_text' => $statusText,
                         'is_late' => $isLate

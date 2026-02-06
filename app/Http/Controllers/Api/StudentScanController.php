@@ -31,9 +31,9 @@ class StudentScanController extends Controller
 
         // 2. Authenticate Device
         $device = Device::where('device_code', $request->device_code)
-                        ->where('api_token', $request->api_token)
-                        ->where('is_active', true)
-                        ->first();
+            ->where('api_token', $request->api_token)
+            ->where('is_active', true)
+            ->first();
 
         if (!$device) {
             return response()->json([
@@ -44,9 +44,9 @@ class StudentScanController extends Controller
 
         // 3. Find Student
         $student = Student::with('course')
-                          ->where('student_code', $request->student_code)
-                          ->where('is_active', true)
-                          ->first();
+            ->where('student_code', $request->student_code)
+            ->where('is_active', true)
+            ->first();
 
         if (!$student) {
             return response()->json([
@@ -69,7 +69,7 @@ class StudentScanController extends Controller
         // 4. Process Logic
         try {
             return DB::transaction(function () use ($request, $device, $student) {
-                
+
                 $scanTime = $request->timestamp ? Carbon::parse($request->timestamp) : now();
                 $todayDate = $scanTime->format('Y-m-d');
                 $currentTime = $scanTime->format('H:i:s');
@@ -78,7 +78,7 @@ class StudentScanController extends Controller
                 $morningStart = '05:30:00';
                 $morningEnd = '08:00:00';
                 $morningLateAfter = '08:00:00';
-                
+
                 $afternoonStart = '12:30:00';
                 $afternoonEnd = '13:00:00';
                 $afternoonLateAfter = '13:00:00';
@@ -115,7 +115,10 @@ class StudentScanController extends Controller
                         'success' => true,
                         'message' => "วันนี้คุณลงเวลา{$periodText}เรียบร้อยแล้ว",
                         'data' => [
-                            'student_name' => $student->first_name . ' ' . $student->last_name,
+                            'name' => $student->first_name . ' ' . $student->last_name,
+                            'student_code' => $student->student_code,
+                            'photo_url' => $student->photo_path ? route('storage.file', ['path' => $student->photo_path]) : null,
+                            'snapshot_url' => $existingLog->snapshot_path ? route('storage.file', ['path' => $existingLog->snapshot_path]) : null,
                             'scan_type' => 'เข้าเรียนแล้ว',
                             'time' => $existingLog->scan_time->format('H:i:s'),
                             'status_text' => $existingLog->is_late ? 'สาย' : 'ตรงเวลา',
@@ -133,7 +136,7 @@ class StudentScanController extends Controller
                         $image = str_replace('data:image/jpeg;base64,', '', $image);
                         $image = str_replace(' ', '+', $image);
                         $imageName = 'student_scan_' . time() . '_' . \Illuminate\Support\Str::random(10) . '.jpg';
-                        
+
                         \Illuminate\Support\Facades\Storage::disk('public')->put('snapshots/' . $imageName, base64_decode($image));
                         $snapshotPath = 'snapshots/' . $imageName;
                     } catch (\Exception $e) {
@@ -159,7 +162,10 @@ class StudentScanController extends Controller
                     'success' => true,
                     'message' => 'Scan recorded successfully',
                     'data' => [
-                        'student_name' => $student->first_name . ' ' . $student->last_name,
+                        'name' => $student->first_name . ' ' . $student->last_name,
+                        'student_code' => $student->student_code,
+                        'photo_url' => $student->photo_path ? route('storage.file', ['path' => $student->photo_path]) : null,
+                        'snapshot_url' => $snapshotPath ? route('storage.file', ['path' => $snapshotPath]) : null,
                         'scan_type' => "เข้าเรียน{$periodText}",
                         'time' => $scanTime->format('H:i:s'),
                         'status_text' => $statusText,
@@ -188,15 +194,15 @@ class StudentScanController extends Controller
         $students = Student::with('course')
             ->where('is_active', true)
             ->whereNotNull('photo_path')
-            ->whereHas('course', function($query) {
+            ->whereHas('course', function ($query) {
                 $query->where('is_active', true)
-                      ->where('end_date', '>=', now()->toDateString());
+                    ->where('end_date', '>=', now()->toDateString());
             })
             ->get();
 
         $data = $students->map(function ($student) {
-            $photoUrl = $student->photo_path 
-                ? route('storage.file', ['path' => $student->photo_path]) 
+            $photoUrl = $student->photo_path
+                ? route('storage.file', ['path' => $student->photo_path])
                 : null;
 
             return [

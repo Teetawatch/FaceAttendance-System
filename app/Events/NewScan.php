@@ -25,7 +25,7 @@ class NewScan implements ShouldBroadcast // ต้อง implement interface น
     {
         // Load employee data to send with event
         $this->log = $log->load(['employee', 'device']);
-        
+
         // Prepare Thai Date
         $scanTime = \Carbon\Carbon::parse($log->scan_time);
         $thaiDate = $scanTime->copy()->addYears(543)->locale('th')->isoFormat('D MMM YYYY เวลา HH:mm');
@@ -33,6 +33,8 @@ class NewScan implements ShouldBroadcast // ต้อง implement interface น
         // Format ข้อมูลให้ Frontend ใช้ง่ายๆ
         $this->employee = [
             'name' => $log->employee->first_name . ' ' . $log->employee->last_name,
+            'employee_code' => $log->employee->employee_code ?? null,
+            'student_code' => $log->student->student_code ?? null,
             'photo_url' => $log->employee->photo_path ? route('storage.file', ['path' => $log->employee->photo_path]) : null,
             'snapshot_url' => $log->snapshot_path ? route('storage.file', ['path' => $log->snapshot_path]) : null,
             'time' => $log->scan_time->format('H:i:s'),
@@ -53,7 +55,7 @@ class NewScan implements ShouldBroadcast // ต้อง implement interface น
             new Channel('scans'),
         ];
     }
-    
+
     /**
      * กำหนดชื่อ Event ที่จะส่งไป (Optional แต่แนะนำ)
      */
