@@ -254,9 +254,14 @@
                         </div>
 
                         <div
-                            class="relative z-10 w-24 h-24 mb-8 rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 shadow-2xl flex items-center justify-center ring-1 ring-white/10 group-hover:scale-110 transition-transform duration-500">
-                            <i
-                                class="fa-solid fa-face-viewfinder text-5xl text-indigo-400 group-hover:text-indigo-300 transition-colors"></i>
+                            class="relative z-10 w-24 h-24 mb-8 rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 shadow-2xl flex items-center justify-center ring-1 ring-white/10 group-hover:scale-110 transition-transform duration-500 overflow-hidden">
+                            <!-- Show last scan photo if available, otherwise show icon -->
+                            <template x-if="lastScan">
+                                <img :src="lastScan.snapshot_url || lastScan.photo_url" class="w-full h-full object-cover">
+                            </template>
+                            <template x-if="!lastScan">
+                                <i class="fa-solid fa-face-viewfinder text-5xl text-indigo-400 group-hover:text-indigo-300 transition-colors"></i>
+                            </template>
                         </div>
 
                         <h2 class="text-3xl font-bold text-white mb-3">พร้อมสแกน</h2>
@@ -741,6 +746,11 @@
                             const typeLabel = isStudent ? 'นักเรียน' : 'บุคลากร';
                             this.statusMessage = `บันทึกสำเร็จ! (${typeLabel})`;
                             this.successAudio.play().catch(e => console.log("Audio play failed:", e));
+
+                            // Immediate feedback: show success data even if Echo is slow
+                            if (response.data.data) {
+                                this.handleNewScan(response.data.data);
+                            }
 
                             setTimeout(() => { this.statusMessage = 'ระบบพร้อมใช้งาน'; }, 2000);
                         }
