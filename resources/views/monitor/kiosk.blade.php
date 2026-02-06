@@ -47,7 +47,7 @@
                     <div>
                         <h1 class="text-3xl font-bold text-white tracking-tight flex items-center gap-3">
                             <span
-                                class="bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-slate-400">ระบบลงเวลาอัจฉริยะ</span>
+                                class="bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-slate-400">ระบบลงเวลาปฏิบัติราชการด้วยใบหน้า</span>
                         </h1>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -64,10 +64,12 @@
                         <div class="flex -space-x-2">
                             <div
                                 class="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-xs">
-                                <i class="fa-solid fa-user-tie"></i></div>
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
                             <div
                                 class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xs">
-                                <i class="fa-solid fa-user-graduate"></i></div>
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
                         </div>
                         <span class="text-slate-300 text-sm font-medium">จุดสแกนรวม</span>
                     </div>
@@ -355,7 +357,7 @@
 
         <!-- Footer -->
         <footer class="relative z-10 py-6 text-center text-slate-500 text-sm">
-            <p>&copy; {{ date('Y') }} Face Attendance System. Powered by AI.</p>
+            <p>&copy; {{ date('Y') }} ลงเวลาปฏิบัติราชการด้วยใบหน้า</p>
         </footer>
 
     </div>
