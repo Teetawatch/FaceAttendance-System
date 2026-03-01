@@ -1,3 +1,130 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        @apply bg-background text-text;
+    }
+
+    ::selection {
+        @apply bg-primary-200 text-primary-900;
+    }
+
+    :focus-visible {
+        @apply outline-2 outline-offset-2 outline-primary-500;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-semibold rounded-xl
+               hover:bg-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2
+               transition-colors duration-150 cursor-pointer;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-primary-700 text-sm font-semibold rounded-xl
+               border border-primary-200 hover:bg-primary-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2
+               transition-colors duration-150 cursor-pointer;
+    }
+
+    .btn-accent {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-accent-500 text-white text-sm font-semibold rounded-xl
+               hover:bg-accent-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2
+               transition-colors duration-150 cursor-pointer;
+    }
+
+    .btn-danger {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-red-600 text-white text-sm font-semibold rounded-xl
+               hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2
+               transition-colors duration-150 cursor-pointer;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-muted text-sm font-medium rounded-xl
+               hover:bg-surface-100 hover:text-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500
+               transition-colors duration-150 cursor-pointer;
+    }
+
+    .card {
+        @apply bg-card rounded-2xl border border-primary-100/60 shadow-card;
+    }
+
+    .card-hover {
+        @apply bg-card rounded-2xl border border-primary-100/60 shadow-card
+               hover:shadow-card-hover hover:border-primary-200 transition-all duration-200 cursor-pointer;
+    }
+
+    .input-field {
+        @apply w-full rounded-xl border-primary-200 bg-white text-text text-sm
+               placeholder:text-muted/60
+               focus:border-primary-400 focus:ring-2 focus:ring-primary-100
+               transition-colors duration-150;
+    }
+
+    .badge {
+        @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold;
+    }
+
+    .badge-success {
+        @apply badge bg-emerald-50 text-emerald-700 border border-emerald-100;
+    }
+
+    .badge-warning {
+        @apply badge bg-amber-50 text-amber-700 border border-amber-100;
+    }
+
+    .badge-danger {
+        @apply badge bg-red-50 text-red-700 border border-red-100;
+    }
+
+    .badge-info {
+        @apply badge bg-primary-50 text-primary-700 border border-primary-100;
+    }
+
+    .badge-neutral {
+        @apply badge bg-gray-100 text-gray-600 border border-gray-200;
+    }
+
+    .table-header {
+        @apply bg-surface-50 text-primary-900/70 text-xs font-semibold uppercase tracking-wider border-b border-primary-100;
+    }
+
+    .table-cell {
+        @apply px-5 py-4 text-sm;
+    }
+
+    .table-row {
+        @apply hover:bg-surface-50/60 transition-colors duration-150;
+    }
+
+    .alert-success {
+        @apply bg-emerald-50 text-emerald-800 px-4 py-3 rounded-xl border border-emerald-200 flex items-center gap-3 text-sm font-medium;
+    }
+
+    .alert-error {
+        @apply bg-red-50 text-red-800 px-4 py-3 rounded-xl border border-red-200 flex items-center gap-3 text-sm font-medium;
+    }
+
+    .section-title {
+        @apply text-2xl font-bold text-text tracking-tight;
+    }
+
+    .section-subtitle {
+        @apply text-sm text-muted mt-0.5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

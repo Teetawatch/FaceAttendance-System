@@ -8,12 +8,12 @@
     <!-- Header -->
     <div class="mb-8">
         <div class="flex items-center gap-4">
-            <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-violet-500/25">
-                
+            <div class="w-12 h-12 bg-primary-600 rounded-2xl flex items-center justify-center">
+                <i data-lucide="scan-face" class="w-5 h-5 text-white"></i>
             </div>
             <div>
-                <h1 class="text-2xl font-bold text-text font-bold font-mono">ลงทะเบียนใบหน้า</h1>
-                <p class="text-indigo-600/70 text-sm">ถ่ายรูปใบหน้าพนักงานจากกล้องโดยตรง เพื่อใช้ในการสแกนลงเวลา</p>
+                <h1 class="section-title">ลงทะเบียนใบหน้า</h1>
+                <p class="section-subtitle">ถ่ายรูปใบหน้าพนักงานจากกล้องโดยตรง เพื่อใช้ในการสแกนลงเวลา</p>
             </div>
         </div>
     </div>
@@ -21,17 +21,17 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         <!-- Left: Camera Section -->
-        <div class="bg-card rounded-3xl shadow-lg border border-slate-200/60 overflow-hidden">
+        <div class="card overflow-hidden">
             
             <!-- Camera Header -->
-            <div class="px-6 py-4 border-b border-slate-200/60 flex items-center justify-between bg-gradient-to-r from-slate-50 to-white">
+            <div class="px-5 py-4 border-b border-primary-100/60 flex items-center justify-between bg-surface-50/40">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center">
-                        
+                    <div class="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center">
+                        <i data-lucide="camera" class="w-4 h-4 text-white"></i>
                     </div>
                     <div>
-                        <h2 class="font-bold text-text font-bold font-mono font-mono">กล้อง</h2>
-                        <p class="text-xs text-primary-400" x-text="cameraStatus"></p>
+                        <h2 class="text-sm font-semibold text-text">กล้อง</h2>
+                        <p class="text-xs text-muted" x-text="cameraStatus"></p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
@@ -123,10 +123,10 @@
         <div class="space-y-6">
             
             <!-- Employee Selector Card -->
-            <div class="bg-card rounded-3xl shadow-lg border border-slate-200/60 overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-200/60 bg-gradient-to-r from-slate-50 to-white">
-                    <h2 class="font-bold text-text font-bold font-mono flex items-center gap-2 font-mono">
-                        
+            <div class="card overflow-hidden">
+                <div class="px-5 py-4 border-b border-primary-100/60 bg-surface-50/40">
+                    <h2 class="text-sm font-semibold text-text flex items-center gap-2">
+                        <i data-lucide="users" class="w-4 h-4 text-muted"></i>
                         เลือกพนักงาน
                     </h2>
                 </div>
@@ -137,7 +137,7 @@
                         <input type="text" x-model="searchQuery" 
                                @input="filterEmployees()"
                                placeholder="ค้นหาพนักงาน..." 
-                               class="w-full bg-slate-50 border-0 text-text rounded-xl pl-11 pr-4 py-3 focus:ring-2 focus:ring-violet-500">
+                               class="input-field pl-11">
                     </div>
 
                     <!-- Employee List -->
@@ -145,8 +145,8 @@
                         <template x-for="emp in filteredEmployees" :key="emp.id">
                             <div @click="selectEmployee(emp)" 
                                  :class="selectedEmployee?.id === emp.id 
-                                     ? 'bg-violet-50 border-violet-300 ring-2 ring-violet-500/20' 
-                                     : 'bg-card border-slate-200 hover:border-violet-200 hover:bg-slate-50'"
+                                     ? 'bg-primary-50 border-primary-300 ring-2 ring-primary-200' 
+                                     : 'bg-white border-primary-100/60 hover:border-primary-200 hover:bg-surface-50'"
                                  class="flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-all">
                                 
                                 <!-- Photo -->
@@ -225,26 +225,26 @@
             </div>
 
             <!-- Instructions -->
-            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/60">
-                <h3 class="font-bold text-text mb-4 flex items-center gap-2 font-mono">
-                    
+            <div class="bg-surface-50 rounded-2xl p-6 border border-primary-100/60">
+                <h3 class="font-semibold text-text mb-4 flex items-center gap-2 text-sm">
+                    <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i>
                     คำแนะนำในการถ่ายรูป
                 </h3>
-                <ul class="space-y-3 text-sm text-text/80">
+                <ul class="space-y-3 text-sm text-muted">
                     <li class="flex items-start gap-3">
-                        <span class="w-6 h-6 bg-violet-100 text-violet-600 rounded-lg flex items-center justify-center text-xs flex-shrink-0 mt-0.5">1</span>
+                        <span class="w-6 h-6 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center text-xs flex-shrink-0 mt-0.5">1</span>
                         <span>เลือกพนักงานจากรายการด้านบน</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="w-6 h-6 bg-violet-100 text-violet-600 rounded-lg flex items-center justify-center text-xs flex-shrink-0 mt-0.5">2</span>
+                        <span class="w-6 h-6 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center text-xs flex-shrink-0 mt-0.5">2</span>
                         <span>วางใบหน้าให้อยู่ตรงกลางกรอบและแสงสว่างเพียงพอ</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="w-6 h-6 bg-violet-100 text-violet-600 rounded-lg flex items-center justify-center text-xs flex-shrink-0 mt-0.5">3</span>
+                        <span class="w-6 h-6 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center text-xs flex-shrink-0 mt-0.5">3</span>
                         <span>กดปุ่ม "ถ่ายรูป" และตรวจสอบรูปก่อนบันทึก</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="w-6 h-6 bg-violet-100 text-violet-600 rounded-lg flex items-center justify-center text-xs flex-shrink-0 mt-0.5">4</span>
+                        <span class="w-6 h-6 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center text-xs flex-shrink-0 mt-0.5">4</span>
                         <span>กดปุ่ม "บันทึก" เพื่อบันทึกรูปลงระบบ</span>
                     </li>
                 </ul>

@@ -81,7 +81,7 @@
                     </div>
                     
                     <!-- Device Config Toggle -->
-                    <div class="flex justify-between items-center text-xs text-indigo-600/70 pt-2">
+                    <div class="flex justify-between items-center text-xs text-muted pt-2">
                         <span>ระบบจดจำใบหน้าอัตโนมัติ</span>
                         <button @click="showConfig = !showConfig" class="hover:text-slate-300 transition-colors flex items-center gap-1">
                              ตั้งค่าอุปกรณ์
@@ -115,10 +115,10 @@
         </div>
 
         <!-- Right: Recent Scans List (Smaller) -->
-        <div class="lg:col-span-1 bg-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 flex flex-col overflow-hidden h-full">
-            <div class="px-6 py-4 border-b border-slate-50 flex justify-between items-center bg-card sticky top-0 z-10">
+        <div class="lg:col-span-1 bg-white rounded-2xl border border-primary-100/60 flex flex-col overflow-hidden h-full">
+            <div class="px-5 py-4 border-b border-primary-100/60 flex justify-between items-center bg-white sticky top-0 z-10">
                 <div>
-                    <h3 class="font-bold text-text font-bold font-mono text-lg font-mono">ประวัติล่าสุด</h3>
+                    <h3 class="text-base font-semibold text-text">ประวัติล่าสุด</h3>
                 </div>
                 <div class="flex items-center gap-2 text-[10px] font-bold text-emerald-600 px-3 py-1 bg-emerald-50 rounded-full border border-emerald-100 shadow-sm">
                     <span class="relative flex h-2 w-2">
@@ -131,11 +131,11 @@
             
             <div class="flex-1 overflow-y-auto p-0 relative custom-scrollbar">
                  <!-- List Items -->
-                 <ul class="divide-y divide-slate-50">
+                 <ul class="divide-y divide-primary-50/60">
                     <template x-for="scan in history" :key="scan.id">
-                        <li class="px-6 py-4 hover:bg-slate-50/80 transition-all duration-300 flex items-center justify-between animate-fade-in-down group cursor-default border-l-4 border-transparent hover:border-slate-200/600">
+                        <li class="px-5 py-3.5 hover:bg-surface-50 transition-colors duration-150 flex items-center justify-between animate-fade-in-down group cursor-default border-l-4 border-transparent hover:border-primary-300">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center overflow-hidden border-2 border-white shadow-sm group-hover:border-slate-200 transition-colors">
+                                <div class="w-10 h-10 rounded-xl bg-surface-50 flex items-center justify-center overflow-hidden border border-primary-100/60 group-hover:border-primary-200 transition-colors duration-150">
                                     <!-- Prefer Snapshot, fallback to Profile Photo -->
                                     <template x-if="scan.snapshot_url || scan.photo_url">
                                         <img :src="scan.snapshot_url || scan.photo_url" class="w-full h-full object-cover">
@@ -159,11 +159,11 @@
                  </ul>
                  
                  <!-- Empty State -->
-                 <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-slate-50/30">
-                     <div class="w-16 h-16 bg-card rounded-full shadow-sm flex items-center justify-center mb-3">
-                        
+                 <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center bg-surface-50/30">
+                     <div class="w-14 h-14 bg-white rounded-2xl border border-primary-100/60 flex items-center justify-center mb-3">
+                        <i data-lucide="scan" class="w-5 h-5 text-muted"></i>
                      </div>
-                     <p class="text-xs text-primary-400">รอรับข้อมูล...</p>
+                     <p class="text-xs text-muted">รอรับข้อมูล...</p>
                  </div>
             </div>
         </div>

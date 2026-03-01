@@ -14,16 +14,16 @@
         <div class="lg:col-span-1 flex flex-col gap-6 h-full">
             
             <!-- Toggle Mode Button -->
-            <div class="bg-card rounded-2xl p-2 shadow-sm border border-slate-200/60 flex justify-between items-center px-4">
-                <span class="text-sm font-medium text-indigo-600/70">โหมดการทำงาน:</span>
-                <div class="flex bg-slate-50 rounded-xl p-1 border border-slate-200/60">
+            <div class="card p-2 flex justify-between items-center px-4">
+                <span class="text-sm font-medium text-muted">โหมดการทำงาน:</span>
+                <div class="flex bg-surface-50 rounded-xl p-1 border border-primary-100/60">
                     <button @click="toggleMode('monitor')" 
-                            :class="mode === 'monitor' ? 'bg-card shadow-sm text-indigo-600' : 'text-primary-400 hover:text-text/80'"
+                            :class="mode === 'monitor' ? 'bg-white shadow-sm text-primary-600' : 'text-muted hover:text-text'
                             class="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2">
                          จอภาพ
                     </button>
                     <button @click="toggleMode('kiosk')" 
-                            :class="mode === 'kiosk' ? 'bg-card shadow-sm text-indigo-600' : 'text-primary-400 hover:text-text/80'"
+                            :class="mode === 'kiosk' ? 'bg-white shadow-sm text-primary-600' : 'text-muted hover:text-text'
                             class="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2">
                          จุดลงเวลา
                     </button>
@@ -31,16 +31,16 @@
             </div>
 
             <!-- Mode 1: MONITOR DISPLAY (Hero Section) -->
-            <div x-show="mode === 'monitor'" class="flex-1 bg-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 p-8 flex flex-col items-center justify-center text-center relative overflow-hidden transition-all">
+            <div x-show="mode === 'monitor'" class="flex-1 bg-white rounded-2xl border border-primary-100/60 p-8 flex flex-col items-center justify-center text-center relative overflow-hidden transition-all">
                 <!-- Pulse Animation Background (Active when scan comes) -->
                 <div x-show="justScanned" x-transition.opacity.duration.1000ms class="absolute inset-0 bg-emerald-50/50 z-0" style="display: none;"></div>
                 
                 <div class="relative z-10 w-full flex flex-col items-center">
-                    <h3 class="text-primary-400 font-medium uppercase tracking-widest text-xs mb-8 bg-slate-50 px-3 py-1 rounded-full border border-slate-200/60 font-mono">รายการล่าสุด</h3>
+                    <h3 class="text-muted font-medium uppercase tracking-widest text-xs mb-8 bg-surface-50 px-3 py-1 rounded-full border border-primary-100/60 font-mono">รายการล่าสุด</h3>
                     
                     <!-- Profile Image -->
                     <div class="relative mb-8 group">
-                        <div class="w-56 h-56 rounded-full border-8 border-white shadow-2xl overflow-hidden bg-slate-50 flex items-center justify-center relative z-10">
+                        <div class="w-56 h-56 rounded-full border-4 border-primary-100 overflow-hidden bg-surface-50 flex items-center justify-center relative z-10">
                             <!-- Prefer Snapshot, fallback to Profile Photo -->
                             <template x-if="latestScan.snapshot_url || latestScan.photo_url">
                                 <img :src="latestScan.snapshot_url || latestScan.photo_url" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
@@ -50,8 +50,8 @@
                             </template>
                         </div>
                         <!-- Decorative Ring -->
-                        <div class="absolute inset-0 rounded-full border border-slate-200/60 scale-110 -z-0"></div>
-                        <div class="absolute inset-0 rounded-full border border-slate-50 scale-125 -z-0"></div>
+                        <div class="absolute inset-0 rounded-full border border-primary-100/60 scale-110 -z-0"></div>
+                        <div class="absolute inset-0 rounded-full border border-primary-50 scale-125 -z-0"></div>
 
                         <!-- Status Badge -->
                         <div class="absolute bottom-4 right-4 px-6 py-2 rounded-2xl text-white font-bold shadow-lg text-xl capitalize z-20 border-4 border-white transform transition-transform group-hover:scale-105"
@@ -62,15 +62,15 @@
 
                     <!-- Info -->
                     <div class="space-y-2 mb-8">
-                        <h2 class="text-3xl font-bold text-text font-bold font-mono font-mono" x-text="latestScan.name || 'รอรับข้อมูล...'"></h2>
-                        <p class="text-indigo-600/70 text-lg flex items-center justify-center gap-2">
+                        <h2 class="text-3xl font-bold text-text" x-text="latestScan.name || 'รอรับข้อมูล...'"></h2>
+                        <p class="text-muted text-lg flex items-center justify-center gap-2">
                             
                             <span x-text="latestScan.device || 'ระบบพร้อมใช้งาน'"></span>
                         </p>
                     </div>
 
                     <!-- Time -->
-                    <div class="text-6xl font-mono font-bold text-text tracking-tight bg-slate-50 px-8 py-4 rounded-2xl border border-slate-200/60 shadow-inner" x-text="latestScan.time || '--:--:--'"></div>
+                    <div class="text-6xl font-mono font-bold text-text tracking-tight bg-surface-50 px-8 py-4 rounded-2xl border border-primary-100/60" x-text="latestScan.time || '--:--:--'"></div>
                 </div>
             </div>
 
@@ -129,7 +129,7 @@
                     </div>
                     
                     <!-- Device Config Toggle -->
-                    <div class="flex justify-between items-center text-xs text-indigo-600/70 pt-2">
+                    <div class="flex justify-between items-center text-xs text-muted pt-2">
                         <span>ระบบจดจำใบหน้าอัตโนมัติ</span>
                         <button @click="showConfig = !showConfig" class="hover:text-slate-300 transition-colors flex items-center gap-1">
                              ตั้งค่าอุปกรณ์
@@ -163,11 +163,11 @@
         </div>
 
         <!-- Right: Recent Scans List -->
-        <div class="lg:col-span-2 bg-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 flex flex-col overflow-hidden h-full">
-            <div class="px-8 py-6 border-b border-slate-50 flex justify-between items-center bg-card sticky top-0 z-10">
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-primary-100/60 flex flex-col overflow-hidden h-full">
+            <div class="px-6 py-5 border-b border-primary-100/60 flex justify-between items-center bg-white sticky top-0 z-10">
                 <div>
-                    <h3 class="font-bold text-text font-bold font-mono text-xl font-mono">ประวัติการเข้างานล่าสุด</h3>
-                    <p class="text-primary-400 text-sm mt-1">ข้อมูล Real-time จากทุกจุดลงเวลา</p>
+                    <h3 class="text-lg font-semibold text-text">ประวัติการเข้างานล่าสุด</h3>
+                    <p class="text-muted text-sm mt-0.5">ข้อมูล Real-time จากทุกจุดลงเวลา</p>
                 </div>
                 <div class="flex items-center gap-2 text-xs font-bold text-emerald-600 px-4 py-2 bg-emerald-50 rounded-full border border-emerald-100 shadow-sm">
                     <span class="relative flex h-2.5 w-2.5">
@@ -180,11 +180,11 @@
             
             <div class="flex-1 overflow-y-auto p-0 relative custom-scrollbar">
                  <!-- List Items -->
-                 <ul class="divide-y divide-slate-50">
+                 <ul class="divide-y divide-primary-50/60">
                     <template x-for="scan in history" :key="scan.id">
-                        <li class="px-8 py-5 hover:bg-slate-50/80 transition-all duration-300 flex items-center justify-between animate-fade-in-down group cursor-default border-l-4 border-transparent hover:border-slate-200/600">
-                            <div class="flex items-center gap-5">
-                                <div class="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center overflow-hidden border-2 border-white shadow-sm group-hover:border-slate-200 transition-colors">
+                        <li class="px-6 py-4 hover:bg-surface-50 transition-colors duration-150 flex items-center justify-between animate-fade-in-down group cursor-default border-l-4 border-transparent hover:border-primary-300">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-surface-50 flex items-center justify-center overflow-hidden border border-primary-100/60 group-hover:border-primary-200 transition-colors duration-150">
                                     <!-- Prefer Snapshot, fallback to Profile Photo -->
                                     <template x-if="scan.snapshot_url || scan.photo_url">
                                         <img :src="scan.snapshot_url || scan.photo_url" class="w-full h-full object-cover">
@@ -194,9 +194,9 @@
                                     </template>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-text text-lg group-hover:text-primary-700 transition-colors" x-text="scan.name"></p>
+                                    <p class="font-semibold text-text text-sm group-hover:text-primary-700 transition-colors duration-150" x-text="scan.name"></p>
                                     <div class="flex items-center gap-2 mt-1">
-                                        <span class="text-xs text-primary-400 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 flex items-center gap-1">
+                                        <span class="text-xs text-muted bg-surface-50 px-2 py-0.5 rounded-lg border border-primary-100/60 flex items-center gap-1">
                                             
                                             <span x-text="scan.device"></span>
                                         </span>
@@ -207,7 +207,7 @@
                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-1 shadow-sm"
                                       :class="scan.type === 'IN' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'"
                                       x-text="scan.type"></span>
-                                <p class="text-sm font-medium text-indigo-600/70" 
+                                <p class="text-xs font-medium text-muted" 
                                    :class="scan.status_color"
                                    x-text="scan.datetime_th || scan.time"></p>
                             </div>
@@ -216,12 +216,12 @@
                  </ul>
                  
                  <!-- Empty State -->
-                 <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-slate-50/30">
-                     <div class="w-24 h-24 bg-card rounded-full shadow-sm flex items-center justify-center mb-4">
+                 <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center bg-surface-50/30">
+                     <div class="w-16 h-16 bg-white rounded-2xl border border-primary-100/60 flex items-center justify-center mb-4">
                         
                      </div>
-                     <p class="font-medium text-primary-400">กำลังรอรับข้อมูล...</p>
-                     <p class="text-sm text-slate-300 mt-1">ข้อมูลการสแกนจะปรากฏที่นี่ทันที</p>
+                     <p class="font-medium text-muted text-sm">กำลังรอรับข้อมูล...</p>
+                     <p class="text-xs text-muted mt-1">ข้อมูลการสแกนจะปรากฏที่นี่ทันที</p>
                  </div>
             </div>
         </div>

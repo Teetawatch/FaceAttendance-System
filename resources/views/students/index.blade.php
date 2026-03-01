@@ -7,30 +7,28 @@
     <!-- Header & Action -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-            <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">รายชื่อนักเรียน</h2>
-            <p class="text-indigo-600/70 text-sm">จัดการข้อมูลนักเรียนทั้งหมดในระบบ</p>
+            <h2 class="section-title">รายชื่อนักเรียน</h2>
+            <p class="section-subtitle">จัดการข้อมูลนักเรียนทั้งหมดในระบบ</p>
         </div>
         <div class="flex items-center gap-3">
-            <!-- Import Excel Button -->
-            <button @click="showImportModal = true" type="button" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                 Import Excel
+            <button @click="showImportModal = true" type="button" class="btn-accent">
+                <i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Import Excel
             </button>
-
-            <a href="{{ route('students.create') }}" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                 เพิ่มนักเรียน
+            <a href="{{ route('students.create') }}" class="btn-primary">
+                <i data-lucide="plus" class="w-4 h-4"></i> เพิ่มนักเรียน
             </a>
         </div>
     </div>
 
     <!-- Filters -->
-    <div class="bg-card rounded-xl shadow-sm border border-slate-200/60 p-4">
+    <div class="card p-4">
         <form action="{{ route('students.index') }}" method="GET" class="flex flex-col md:flex-row gap-3">
             <div class="relative flex-1">
-                
+                <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted"></i>
                 <input type="text" name="search" placeholder="ค้นหาชื่อหรือรหัสนักเรียน..." value="{{ request('search') }}" 
-                       class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                       class="w-full pl-9 pr-4 py-2.5 bg-white border border-primary-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-primary-400 transition-colors duration-150">
             </div>
-            <select name="course_id" class="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary-500">
+            <select name="course_id" class="px-4 py-2.5 bg-white border border-primary-200 rounded-xl text-sm focus:ring-2 focus:ring-primary-100 focus:border-primary-400 transition-colors duration-150">
                 <option value="">-- ทุกหลักสูตร --</option>
                 @foreach($courses as $course)
                     <option value="{{ $course->id }}" {{ request('course_id') == $course->id ? 'selected' : '' }}>
@@ -38,98 +36,88 @@
                     </option>
                 @endforeach
             </select>
-            <button type="submit" class="px-4 py-2.5 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800 transition-colors">
-                 ค้นหา
+            <button type="submit" class="btn-primary">
+                <i data-lucide="search" class="w-4 h-4"></i> ค้นหา
             </button>
             @if(request('search') || request('course_id'))
-                <a href="{{ route('students.index') }}" class="px-4 py-2.5 border border-slate-200 text-text/80 rounded-lg text-sm hover:bg-slate-50 transition-colors">
+                <a href="{{ route('students.index') }}" class="btn-ghost">
                     ล้างตัวกรอง
                 </a>
             @endif
         </form>
     </div>
 
-    <!-- Alert Success -->
     @if(session('success'))
-        <div class="bg-emerald-50 text-emerald-700 px-4 py-3 rounded-xl border border-emerald-100 flex items-center gap-3 shadow-sm">
-            
-            <span class="font-medium">{{ session('success') }}</span>
+        <div class="alert-success">
+            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0"></i>
+            <span>{{ session('success') }}</span>
         </div>
     @endif
 
-    <!-- Alert Error -->
     @if(session('error'))
-        <div class="bg-rose-50 text-rose-700 px-4 py-3 rounded-xl border border-rose-100 flex items-center gap-3 shadow-sm">
-            
-            <span class="font-medium">{{ session('error') }}</span>
+        <div class="alert-error">
+            <i data-lucide="alert-triangle" class="w-4 h-4 flex-shrink-0"></i>
+            <span>{{ session('error') }}</span>
         </div>
     @endif
 
     <!-- Data Table -->
-    <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden">
+    <div class="card overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm text-text/80">
-                <thead class="bg-slate-50/50 text-indigo-600/70 font-semibold border-b border-slate-200/60">
+            <table class="w-full text-left">
+                <thead class="table-header">
                     <tr>
-                        <th class="px-6 py-4">นักเรียน</th>
-                        <th class="px-6 py-4">รหัส</th>
-                        <th class="px-6 py-4">หลักสูตร</th>
-                        <th class="px-6 py-4 text-center">สถานะ</th>
-                        <th class="px-6 py-4 text-right">จัดการ</th>
+                        <th class="table-cell">นักเรียน</th>
+                        <th class="table-cell">รหัส</th>
+                        <th class="table-cell">หลักสูตร</th>
+                        <th class="table-cell text-center">สถานะ</th>
+                        <th class="table-cell text-right">จัดการ</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-50">
+                <tbody class="divide-y divide-primary-50/60">
                     @forelse($students as $student)
-                    <tr class="hover:bg-slate-50/80 transition-colors group">
-                        <td class="px-6 py-4">
+                    <tr class="table-row group">
+                        <td class="table-cell">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200 group-hover:border-primary-200 transition-colors">
+                                <div class="w-9 h-9 rounded-xl bg-surface-50 overflow-hidden flex-shrink-0 border border-primary-100/60 group-hover:border-primary-200 transition-colors duration-150">
                                     @if($student->photo_path)
-                                        <img src="{{ route('storage.file', ['path' => $student->photo_path]) }}" class="w-full h-full object-cover">
+                                        <img src="{{ route('storage.file', ['path' => $student->photo_path]) }}" class="w-full h-full object-cover" alt="{{ $student->first_name }}">
                                     @else
-                                        <div class="w-full h-full flex items-center justify-center text-slate-300">
-                                            
+                                        <div class="w-full h-full flex items-center justify-center text-muted">
+                                            <i data-lucide="user" class="w-4 h-4"></i>
                                         </div>
                                     @endif
                                 </div>
-                                <div>
-                                    <p class="font-bold text-text group-hover:text-primary-700 transition-colors">{{ $student->first_name }} {{ $student->last_name }}</p>
-                                </div>
+                                <p class="font-semibold text-text text-sm group-hover:text-primary-700 transition-colors duration-150">{{ $student->first_name }} {{ $student->last_name }}</p>
                             </div>
                         </td>
-                        <td class="px-6 py-4">
-                            <span class="font-mono text-indigo-600/70 bg-slate-50 px-2 py-1 rounded text-xs border border-slate-200/60">{{ $student->student_code }}</span>
+                        <td class="table-cell">
+                            <span class="font-mono text-primary-600 bg-primary-50 px-2 py-1 rounded-lg text-xs">{{ $student->student_code }}</span>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="table-cell">
                             @if($student->course)
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
-                                    {{ $student->course->name }}
-                                </span>
+                                <span class="badge-info">{{ $student->course->name }}</span>
                             @else
-                                <span class="text-primary-400">-</span>
+                                <span class="text-muted">-</span>
                             @endif
                         </td>
-                        <td class="px-6 py-4 text-center">
+                        <td class="table-cell text-center">
                             @if($student->is_active)
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-bold border border-emerald-100">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> ปกติ
-                                </span>
+                                <span class="badge-success"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> ปกติ</span>
                             @else
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 text-text/80 rounded-full text-xs font-bold border border-slate-200">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> ระงับ
-                                </span>
+                                <span class="badge-neutral"><span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span> ระงับ</span>
                             @endif
                         </td>
-                        <td class="px-6 py-4 text-right">
-                            <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <a href="{{ route('students.edit', $student) }}" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all" title="แก้ไข">
-                                    
+                        <td class="table-cell text-right">
+                            <div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                                <a href="{{ route('students.edit', $student) }}" class="w-8 h-8 flex items-center justify-center rounded-lg text-muted hover:text-primary-600 hover:bg-primary-50 transition-colors duration-150 cursor-pointer" title="แก้ไข">
+                                    <i data-lucide="pencil" class="w-4 h-4"></i>
                                 </a>
                                 <form action="{{ route('students.destroy', $student) }}" method="POST" onsubmit="return confirm('ยืนยันการลบข้อมูลนักเรียน?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-rose-600 hover:bg-rose-50 transition-all" title="ลบ">
-                                        
+                                    <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg text-muted hover:text-red-600 hover:bg-red-50 transition-colors duration-150 cursor-pointer" title="ลบ">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
                                     </button>
                                 </form>
                             </div>
@@ -137,67 +125,60 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-16 text-center text-primary-400">
-                            <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                
+                        <td colspan="5" class="px-5 py-16 text-center">
+                            <div class="w-14 h-14 bg-surface-50 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="graduation-cap" class="w-6 h-6 text-muted"></i>
                             </div>
-                            <p class="font-medium">ไม่พบข้อมูลนักเรียน</p>
-                            <p class="text-sm mt-1 text-primary-400">ลองเพิ่มนักเรียนใหม่ หรือค้นหาด้วยคำอื่น</p>
+                            <p class="font-medium text-text text-sm">ไม่พบข้อมูลนักเรียน</p>
+                            <p class="text-xs mt-1 text-muted">ลองเพิ่มนักเรียนใหม่ หรือค้นหาด้วยคำอื่น</p>
                         </td>
                     </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
-        
-        <!-- Pagination -->
-        <div class="px-6 py-4 border-t border-slate-200/60 bg-slate-50/50">
+        <div class="px-5 py-4 border-t border-primary-100/60 bg-surface-50/40">
             {{ $students->appends(request()->query())->links() }}
         </div>
     </div>
 
     <!-- Import Excel Modal -->
     <div x-show="showImportModal" 
-         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter="transition ease-out duration-200"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave="transition ease-in duration-150"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary-950/30 backdrop-blur-sm"
          @click.self="showImportModal = false"
          style="display: none;">
         
         <div x-show="showImportModal"
-             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter="transition ease-out duration-200"
              x-transition:enter-start="opacity-0 scale-95"
              x-transition:enter-end="opacity-100 scale-100"
-             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave="transition ease-in duration-150"
              x-transition:leave-start="opacity-100 scale-100"
              x-transition:leave-end="opacity-0 scale-95"
-             class="bg-card rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+             class="bg-white rounded-2xl shadow-lg border border-primary-100/60 w-full max-w-md overflow-hidden">
             
-            <!-- Modal Header -->
-            <div class="bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-4">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2 font-mono">
-                        
-                        Import ข้อมูลนักเรียนจาก Excel
-                    </h3>
-                    <button @click="showImportModal = false" class="text-white/80 hover:text-white transition-colors">
-                        
-                    </button>
-                </div>
+            <div class="px-6 py-4 border-b border-primary-100/60 flex items-center justify-between">
+                <h3 class="text-base font-semibold text-text flex items-center gap-2">
+                    <i data-lucide="file-spreadsheet" class="w-5 h-5 text-accent-500"></i>
+                    Import ข้อมูลนักเรียนจาก Excel
+                </h3>
+                <button @click="showImportModal = false" class="text-muted hover:text-text transition-colors duration-150 cursor-pointer p-1 rounded-lg hover:bg-surface-50">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
             </div>
             
-            <!-- Modal Body -->
             <form action="{{ route('students.import') }}" method="POST" enctype="multipart/form-data" class="p-6 space-y-5">
                 @csrf
                 
-                <!-- Course Selection (Optional) -->
                 <div>
                     <label class="block text-sm font-medium text-text mb-2">หลักสูตร (สำหรับข้อมูลที่ไม่ระบุหลักสูตรในไฟล์)</label>
-                    <select name="course_id" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500">
+                    <select name="course_id" class="w-full px-4 py-2.5 rounded-xl border border-primary-200 focus:ring-2 focus:ring-primary-100 focus:border-primary-400 text-sm transition-colors duration-150">
                         <option value="">-- ไม่ระบุ --</option>
                         @foreach($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -205,59 +186,44 @@
                     </select>
                 </div>
                 
-                <!-- File Upload -->
                 <div>
                     <label class="block text-sm font-medium text-text mb-2">เลือกไฟล์ Excel</label>
-                    <div class="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:border-emerald-400 transition-colors">
+                    <div class="border-2 border-dashed border-primary-200 rounded-xl p-6 text-center hover:border-primary-400 transition-colors duration-150">
                         <input type="file" name="file" accept=".xlsx,.xls,.csv" required
-                               class="block w-full text-sm text-indigo-600/70
-                                      file:mr-4 file:py-2 file:px-4
-                                      file:rounded-full file:border-0
-                                      file:text-sm file:font-semibold
-                                      file:bg-emerald-50 file:text-emerald-700
-                                      hover:file:bg-emerald-100
-                                      cursor-pointer">
-                        <p class="text-xs text-primary-400 mt-2">รองรับไฟล์ .xlsx, .xls, .csv (ไม่เกิน 2MB)</p>
+                               class="block w-full text-sm text-muted file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100 cursor-pointer">
+                        <p class="text-xs text-muted mt-2">รองรับไฟล์ .xlsx, .xls, .csv (ไม่เกิน 2MB)</p>
                     </div>
                     @error('file')
-                        <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
                 
-                <!-- Format Info -->
-                <div class="bg-slate-50 rounded-xl p-4 text-sm">
-                    <h4 class="font-semibold text-text mb-2 flex items-center gap-2">
-                        
+                <div class="bg-surface-50 rounded-xl p-4">
+                    <h4 class="font-semibold text-text mb-2 flex items-center gap-2 text-xs">
+                        <i data-lucide="info" class="w-4 h-4 text-primary-400"></i>
                         รูปแบบไฟล์ที่รองรับ
                     </h4>
-                    <ul class="text-text/80 space-y-1 text-xs">
-                        <li><strong>คอลัมน์ A:</strong> รหัสนักเรียน (จำเป็น)</li>
-                        <li><strong>คอลัมน์ B:</strong> ชื่อ (จำเป็น)</li>
-                        <li><strong>คอลัมน์ C:</strong> นามสกุล (จำเป็น)</li>
-                        <li><strong>คอลัมน์ D:</strong> ชื่อหลักสูตร (ถ้าไม่ระบุจะใช้หลักสูตรที่เลือกด้านบน)</li>
+                    <ul class="text-muted space-y-1 text-xs">
+                        <li><strong class="text-text">คอลัมน์ A:</strong> รหัสนักเรียน (จำเป็น)</li>
+                        <li><strong class="text-text">คอลัมน์ B:</strong> ชื่อ (จำเป็น)</li>
+                        <li><strong class="text-text">คอลัมน์ C:</strong> นามสกุล (จำเป็น)</li>
+                        <li><strong class="text-text">คอลัมน์ D:</strong> ชื่อหลักสูตร (ถ้าไม่ระบุจะใช้หลักสูตรที่เลือกด้านบน)</li>
                     </ul>
-                    <p class="text-xs text-amber-600 mt-2">
-                        
+                    <p class="text-xs text-amber-600 mt-2 flex items-start gap-1">
+                        <i data-lucide="alert-triangle" class="w-3 h-3 mt-0.5 flex-shrink-0"></i>
                         หากรหัสนักเรียนซ้ำ ระบบจะอัพเดตข้อมูลนักเรียนคนนั้นอัตโนมัติ
                     </p>
                 </div>
                 
-                <!-- Download Template -->
-                <a href="{{ route('students.template') }}" class="flex items-center justify-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 font-medium">
-                    
+                <a href="{{ route('students.template') }}" class="flex items-center justify-center gap-2 text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors duration-150 cursor-pointer">
+                    <i data-lucide="download" class="w-4 h-4"></i>
                     ดาวน์โหลด Template ตัวอย่าง
                 </a>
                 
-                <!-- Actions -->
                 <div class="flex gap-3 pt-2">
-                    <button type="button" @click="showImportModal = false" 
-                            class="flex-1 px-4 py-2.5 border border-slate-200 text-text/80 rounded-xl hover:bg-slate-50 transition-colors font-medium">
-                        ยกเลิก
-                    </button>
-                    <button type="submit" 
-                            class="flex-1 px-4 py-2.5 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-medium flex items-center justify-center gap-2">
-                        
-                        นำเข้าข้อมูล
+                    <button type="button" @click="showImportModal = false" class="btn-secondary flex-1">ยกเลิก</button>
+                    <button type="submit" class="btn-primary flex-1">
+                        <i data-lucide="upload" class="w-4 h-4"></i> นำเข้าข้อมูล
                     </button>
                 </div>
             </form>

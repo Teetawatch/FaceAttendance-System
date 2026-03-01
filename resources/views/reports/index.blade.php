@@ -7,8 +7,8 @@
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-            <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">รายงานการลงเวลา</h2>
-            <p class="text-indigo-600/70 text-sm">ดูข้อมูลสรุปและส่งออกรายงานเป็นไฟล์ Excel</p>
+            <h2 class="section-title">รายงานการลงเวลา</h2>
+            <p class="section-subtitle">ดูข้อมูลสรุปและส่งออกรายงานเป็นไฟล์ Excel</p>
         </div>
         <div class="flex gap-2">
             <!-- PDF Export Form -->
@@ -17,25 +17,12 @@
                 <input type="hidden" name="end_date" value="{{ request('end_date') }}">
                 <input type="hidden" name="employee_id" value="{{ request('employee_id') }}">
                 <input type="hidden" name="department" value="{{ request('department') }}">
-                
-                <!-- Signers (Dynamic from selection below) -->
                 <input type="hidden" name="verifier_id" x-model="verifier">
                 <input type="hidden" name="approver_id" x-model="approver">
                 
-                <div class="flex gap-2">
-                    <!-- Helpers to select signer (Hidden visually, triggered by button or simplified UI) -->
-                    <!-- For simplicity, we might add a 'Settings' modal later. For now, let's just create a small dropdown or assume defaults? 
-                         Actually, let's keep it simple: Add a 'Configure Signers' button or just separate inputs visible?
-                         Let's put the signer selection directly in the filter area or a separate modal. 
-                         
-                         Let's REVISE: Just put specific inputs in the filter area and copy them? 
-                         OR better: Add a 'Print Options' button that opens a modal with signer selection + Export button.
-                    -->
-                    <button type="button" onclick="document.getElementById('exportModal').classList.remove('hidden')" 
-                            class="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                         Export PDF
-                    </button>
-                </div>
+                <button type="button" onclick="document.getElementById('exportModal').classList.remove('hidden')" class="btn-danger">
+                    <i data-lucide="file-text" class="w-4 h-4"></i> Export PDF
+                </button>
             </form>
 
             <!-- Excel Export Form -->
@@ -45,40 +32,37 @@
                 <input type="hidden" name="employee_id" value="{{ request('employee_id') }}">
                 <input type="hidden" name="department" value="{{ request('department') }}">
                 
-                <button type="submit" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                     Export Excel
+                <button type="submit" class="btn-accent">
+                    <i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Export Excel
                 </button>
             </form>
         </div>
     </div>
 
     <!-- Filters -->
-    <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 p-6">
+    <div class="card p-5">
         <form action="{{ route('reports.index') }}" method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
             
-            <!-- Date Range -->
             <div>
-                <label class="block text-xs font-medium text-text mb-1">ตั้งแต่วันที่</label>
+                <label class="block text-xs font-medium text-text mb-1.5">ตั้งแต่วันที่</label>
                 <input type="date" name="start_date" value="{{ request('start_date', \Carbon\Carbon::now()->format('Y-m-d')) }}" 
-                       class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-slate-200/600">
+                       class="w-full bg-white border border-primary-200 rounded-xl text-sm px-3 py-2.5 focus:ring-2 focus:ring-primary-100 focus:border-primary-400 transition-colors duration-150">
             </div>
             <div>
-                <label class="block text-xs font-medium text-text mb-1">ถึงวันที่</label>
+                <label class="block text-xs font-medium text-text mb-1.5">ถึงวันที่</label>
                 <input type="date" name="end_date" value="{{ request('end_date', \Carbon\Carbon::now()->format('Y-m-d')) }}" 
-                       class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-slate-200/600">
+                       class="w-full bg-white border border-primary-200 rounded-xl text-sm px-3 py-2.5 focus:ring-2 focus:ring-primary-100 focus:border-primary-400 transition-colors duration-150">
             </div>
 
-            <!-- Search -->
             <div>
-                <label class="block text-xs font-medium text-text mb-1">ค้นหา</label>
+                <label class="block text-xs font-medium text-text mb-1.5">ค้นหา</label>
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="ชื่อ หรือ รหัสพนักงาน..."
-                       class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-slate-200/600">
+                       class="w-full bg-white border border-primary-200 rounded-xl text-sm px-3 py-2.5 focus:ring-2 focus:ring-primary-100 focus:border-primary-400 transition-colors duration-150">
             </div>
 
-            <!-- Employee -->
             <div>
-                <label class="block text-xs font-medium text-text mb-1">พนักงาน</label>
-                <select name="employee_id" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-slate-200/600">
+                <label class="block text-xs font-medium text-text mb-1.5">พนักงาน</label>
+                <select name="employee_id" class="w-full bg-white border border-primary-200 rounded-xl text-sm px-3 py-2.5 focus:ring-2 focus:ring-primary-100 focus:border-primary-400 transition-colors duration-150">
                     <option value="">ทั้งหมด</option>
                     @foreach($employees as $emp)
                         <option value="{{ $emp->id }}" {{ request('employee_id') == $emp->id ? 'selected' : '' }}>
@@ -88,10 +72,9 @@
                 </select>
             </div>
 
-            <!-- Department -->
             <div>
-                <label class="block text-xs font-medium text-text mb-1">แผนก</label>
-                <select name="department" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-slate-200/600">
+                <label class="block text-xs font-medium text-text mb-1.5">แผนก</label>
+                <select name="department" class="w-full bg-white border border-primary-200 rounded-xl text-sm px-3 py-2.5 focus:ring-2 focus:ring-primary-100 focus:border-primary-400 transition-colors duration-150">
                     <option value="">ทั้งหมด</option>
                     @foreach($departments as $dept)
                         <option value="{{ $dept }}" {{ request('department') == $dept ? 'selected' : '' }}>
@@ -101,89 +84,96 @@
                 </select>
             </div>
 
-            <!-- Submit -->
-            <div class="md:col-span-4 flex justify-end mt-2">
-                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors">
-                     กรองข้อมูล
+            <div class="md:col-span-4 flex justify-end mt-1">
+                <button type="submit" class="btn-primary">
+                    <i data-lucide="filter" class="w-4 h-4"></i> กรองข้อมูล
                 </button>
             </div>
         </form>
     </div>
 
     <!-- Data Table -->
-    <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden">
+    <div class="card overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm text-text/80">
-                <thead class="bg-slate-50/50 text-indigo-600/70 font-semibold border-b border-slate-200/60">
+            <table class="w-full text-left">
+                <thead class="table-header">
                     <tr>
-                        <th class="px-6 py-4">วันที่</th>
-                        <th class="px-6 py-4">พนักงาน</th>
-                        <th class="px-6 py-4">เข้างาน</th>
-                        <th class="px-6 py-4">ออกงาน</th>
-                        <th class="px-6 py-4">รวมเวลา</th>
-                        <th class="px-6 py-4 text-center">สถานะ</th>
+                        <th class="table-cell">วันที่</th>
+                        <th class="table-cell">พนักงาน</th>
+                        <th class="table-cell">เข้างาน</th>
+                        <th class="table-cell">ออกงาน</th>
+                        <th class="table-cell">รวมเวลา</th>
+                        <th class="table-cell text-center">สถานะ</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-50">
+                <tbody class="divide-y divide-primary-50/60">
                     @forelse($attendances as $row)
-                    <tr class="hover:bg-slate-50/80 transition-colors">
-                        <td class="px-6 py-4 font-mono text-indigo-600/70">
+                    <tr class="table-row group">
+                        <td class="table-cell font-mono text-xs text-muted">
                             {{ \Carbon\Carbon::parse($row->date)->locale('th')->isoFormat('D MMM YY') }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="table-cell">
                             <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200">
+                                <div class="w-8 h-8 rounded-xl bg-surface-50 overflow-hidden flex-shrink-0 border border-primary-100/60">
                                     @if($row->employee->photo_path)
-                                        <img src="{{ route('storage.file', ['path' => $row->employee->photo_path]) }}" class="w-full h-full object-cover">
+                                        <img src="{{ route('storage.file', ['path' => $row->employee->photo_path]) }}" class="w-full h-full object-cover" alt="{{ $row->employee->first_name }}">
                                     @else
-                                        <div class="w-full h-full flex items-center justify-center text-slate-300">
-                                            
+                                        <div class="w-full h-full flex items-center justify-center text-muted">
+                                            <i data-lucide="user" class="w-3.5 h-3.5"></i>
                                         </div>
                                     @endif
                                 </div>
                                 <div>
-                                    <p class="font-bold text-text">{{ $row->employee->first_name }} {{ $row->employee->last_name }}</p>
-                                    <p class="text-xs text-primary-400">{{ $row->employee->employee_code }}</p>
+                                    <p class="font-semibold text-text text-sm group-hover:text-primary-700 transition-colors duration-150">{{ $row->employee->first_name }} {{ $row->employee->last_name }}</p>
+                                    <p class="text-xs text-muted font-mono">{{ $row->employee->employee_code }}</p>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4 font-mono text-green-600 font-medium">
-                            {{ $row->check_in_at ? $row->check_in_at->format('H:i') : '-' }}
-                        </td>
-                        <td class="px-6 py-4 font-mono text-orange-500 font-medium">
-                            {{ $row->check_out_at ? $row->check_out_at->format('H:i') : '-' }}
-                        </td>
-                        <td class="px-6 py-4 font-mono text-indigo-600/70">
-                            {{ $row->total_work_minutes ? floor($row->total_work_minutes / 60) . ' ชม. ' . ($row->total_work_minutes % 60) . ' นาที' : '-' }}
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            @if($row->status == 'present')
-                                <span class="inline-flex items-center px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-bold border border-emerald-100">ปกติ</span>
-                            @elseif($row->status == 'late')
-                                <span class="inline-flex items-center px-2.5 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-bold border border-amber-100">สาย ({{ $row->late_minutes }} น.)</span>
-                            @elseif($row->status == 'absent')
-                                <span class="inline-flex items-center px-2.5 py-1 bg-rose-50 text-rose-700 rounded-full text-xs font-bold border border-rose-100">ขาดงาน</span>
-                            @elseif($row->status == 'leave')
-                                <span class="inline-flex items-center px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold border border-blue-100">ลางาน</span>
+                        <td class="table-cell">
+                            @if($row->check_in_at)
+                                <span class="badge-success font-mono text-xs">{{ $row->check_in_at->format('H:i') }}</span>
                             @else
-                                <span class="inline-flex items-center px-2.5 py-1 bg-slate-100 text-text/80 rounded-full text-xs font-bold border border-slate-200">-</span>
+                                <span class="text-muted/40">-</span>
                             @endif
                         </td>
-                        <td class="px-6 py-4 text-right">
+                        <td class="table-cell">
+                            @if($row->check_out_at)
+                                <span class="badge-warning font-mono text-xs">{{ $row->check_out_at->format('H:i') }}</span>
+                            @else
+                                <span class="text-muted/40">-</span>
+                            @endif
+                        </td>
+                        <td class="table-cell font-mono text-xs text-muted">
+                            {{ $row->total_work_minutes ? floor($row->total_work_minutes / 60) . ' ชม. ' . ($row->total_work_minutes % 60) . ' นาที' : '-' }}
+                        </td>
+                        <td class="table-cell text-center">
+                            @if($row->status == 'present')
+                                <span class="badge-success">ปกติ</span>
+                            @elseif($row->status == 'late')
+                                <span class="badge-warning">สาย ({{ $row->late_minutes }} น.)</span>
+                            @elseif($row->status == 'absent')
+                                <span class="badge-danger">ขาดงาน</span>
+                            @elseif($row->status == 'leave')
+                                <span class="badge-info">ลางาน</span>
+                            @else
+                                <span class="badge-neutral">-</span>
+                            @endif
+                        </td>
+                        <td class="table-cell text-right">
                            <button onclick='openEditModal(@json($row))' 
-                                   class="text-primary-400 hover:text-blue-600 transition-colors p-2 rounded-full hover:bg-blue-50">
-                               
+                                   class="w-8 h-8 flex items-center justify-center rounded-lg text-muted hover:text-primary-600 hover:bg-primary-50 transition-colors duration-150 cursor-pointer">
+                               <i data-lucide="pencil" class="w-4 h-4"></i>
                            </button>
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="px-6 py-16 text-center text-primary-400">
-                            <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                
+                        <td colspan="7" class="px-5 py-16 text-center">
+                            <div class="w-14 h-14 bg-surface-50 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="bar-chart-3" class="w-6 h-6 text-muted"></i>
                             </div>
-                            <p class="font-medium">ไม่พบข้อมูลการลงเวลา</p>
-                            <p class="text-sm mt-1 text-primary-400">ลองปรับเปลี่ยนเงื่อนไขการค้นหา</p>
+                            <p class="font-medium text-text text-sm">ไม่พบข้อมูลการลงเวลา</p>
+                            <p class="text-xs mt-1 text-muted">ลองปรับเปลี่ยนเงื่อนไขการค้นหา</p>
                         </td>
                     </tr>
                     @endforelse
@@ -191,8 +181,7 @@
             </table>
         </div>
         
-        <!-- Pagination -->
-        <div class="px-6 py-4 border-t border-slate-200/60 bg-slate-50/50">
+        <div class="px-5 py-4 border-t border-primary-100/60 bg-surface-50/40">
             {{ $attendances->links() }}
         </div>
     </div>
@@ -200,45 +189,43 @@
 
 <!-- Edit Modal -->
 <div id="editModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity" onclick="closeEditModal()"></div>
+    <div class="fixed inset-0 bg-primary-950/30 backdrop-blur-sm transition-opacity" onclick="closeEditModal()"></div>
 
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
       <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-        <div class="relative transform overflow-hidden rounded-2xl bg-card text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="relative transform overflow-hidden rounded-2xl bg-white border border-primary-100/60 text-left shadow-lg transition-all sm:my-8 sm:w-full sm:max-w-lg">
           
           <!-- Header -->
-          <div class="bg-slate-50 px-4 py-3 sm:px-6 border-b border-slate-200/60 flex justify-between items-center">
-            <h3 class="text-base font-semibold leading-6 text-slate-900 font-mono" id="modal-title">แก้ไขข้อมูลการลงเวลา</h3>
-            <button type="button" onclick="closeEditModal()" class="text-primary-400 hover:text-indigo-600/70 transition-colors">
-                
+          <div class="px-5 py-4 border-b border-primary-100/60 flex justify-between items-center">
+            <h3 class="text-base font-semibold text-text" id="modal-title">แก้ไขข้อมูลการลงเวลา</h3>
+            <button type="button" onclick="closeEditModal()" class="text-muted hover:text-text transition-colors duration-150 cursor-pointer p-1 rounded-lg hover:bg-surface-50">
+                <i data-lucide="x" class="w-5 h-5"></i>
             </button>
           </div>
 
           <!-- Form -->
           <form id="editForm" method="POST">
               @csrf
-              <!-- Method spoofing for PATCH will be added/removed via JS -->
               <input type="hidden" name="_method" id="formMethod" value="PATCH">
-              
               <input type="hidden" name="employee_id" id="editEmployeeId">
               <input type="hidden" name="date" id="editDate">
 
-              <div class="px-4 py-5 sm:p-6 space-y-4">
+              <div class="p-5 space-y-4">
                   <!-- Employee Info -->
-                  <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200/60">
-                      <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-primary-400">
-                          
+                  <div class="flex items-center gap-3 p-3 bg-surface-50 rounded-xl border border-primary-100/60">
+                      <div class="w-10 h-10 rounded-xl bg-primary-100 flex items-center justify-center text-primary-600">
+                          <i data-lucide="user" class="w-5 h-5"></i>
                       </div>
                       <div>
-                          <p class="font-bold text-text" id="modalEmployeeName">Loading...</p>
-                          <p class="text-xs text-indigo-600/70" id="modalDateDisplay">Loading...</p>
+                          <p class="font-semibold text-text" id="modalEmployeeName">Loading...</p>
+                          <p class="text-xs text-muted" id="modalDateDisplay">Loading...</p>
                       </div>
                   </div>
 
                   <!-- Status -->
                   <div>
-                      <label for="status" class="block text-sm font-medium leading-6 text-slate-900">สถานะ</label>
-                      <select id="status" name="status" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-slate-900 ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-blue-600 sm:text-sm sm:leading-6">
+                      <label for="status" class="block text-sm font-medium text-text mb-1.5">สถานะ</label>
+                      <select id="status" name="status" class="w-full rounded-xl border-primary-200 text-sm py-2.5 focus:ring-2 focus:ring-primary-100 focus:border-primary-400 transition-colors duration-150">
                         <option value="present">ปกติ (Present)</option>
                         <option value="late">สาย (Late)</option>
                         <option value="absent">ขาดงาน (Absent)</option>
@@ -249,17 +236,15 @@
 
                   <!-- Remarks -->
                   <div>
-                      <label for="remarks" class="block text-sm font-medium leading-6 text-slate-900">หมายเหตุ</label>
-                      <div class="mt-2">
-                        <textarea id="remarks" name="remarks" rows="3" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-primary-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" placeholder="ระบุสาเหตุการลาป่วย, ลากิจ หรือเหตุผลอื่นๆ..."></textarea>
-                      </div>
+                      <label for="remarks" class="block text-sm font-medium text-text mb-1.5">หมายเหตุ</label>
+                      <textarea id="remarks" name="remarks" rows="3" class="w-full rounded-xl border-primary-200 text-sm py-2.5 focus:ring-2 focus:ring-primary-100 focus:border-primary-400 placeholder:text-muted/50 transition-colors duration-150" placeholder="ระบุสาเหตุการลาป่วย, ลากิจ หรือเหตุผลอื่นๆ..."></textarea>
                   </div>
               </div>
 
               <!-- Footer -->
-              <div class="bg-slate-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 gap-2">
-                <button type="submit" class="inline-flex w-full justify-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto transition-all">บันทึกข้อมูล</button>
-                <button type="button" onclick="closeEditModal()" class="mt-3 inline-flex w-full justify-center rounded-lg bg-card px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50 sm:mt-0 sm:w-auto transition-all">ยกเลิก</button>
+              <div class="px-5 py-4 border-t border-primary-50 flex flex-row-reverse gap-2">
+                <button type="submit" class="btn-primary">บันทึกข้อมูล</button>
+                <button type="button" onclick="closeEditModal()" class="btn-secondary">ยกเลิก</button>
               </div>
           </form>
         </div>
@@ -273,30 +258,24 @@
         const form = document.getElementById('editForm');
         const methodInput = document.getElementById('formMethod');
         
-        // Populate Data
         document.getElementById('editEmployeeId').value = data.employee.id;
         document.getElementById('editDate').value = data.date;
         document.getElementById('modalEmployeeName').innerText = data.employee.first_name + ' ' + data.employee.last_name;
         
-        // Format Date
         const dateObj = new Date(data.date);
         document.getElementById('modalDateDisplay').innerText = dateObj.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
 
         document.getElementById('status').value = data.status;
         document.getElementById('remarks').value = data.remarks || '';
 
-        // Determine Action (Update vs Create)
         if (data.id) {
-            // Update Existing Record
             form.action = `/attendance/${data.id}`;
-            methodInput.disabled = false; // Enable _method=PATCH
+            methodInput.disabled = false;
         } else {
-            // Create Prior Record
             form.action = `/attendance`;
-            methodInput.disabled = true; // Disable _method to force POST
+            methodInput.disabled = true;
         }
 
-        // Show Modal
         modal.classList.remove('hidden');
     }
 
@@ -304,7 +283,6 @@
         const modal = document.getElementById('editModal');
         modal.classList.add('hidden');
     }
-</script>
 </script>
 @include('reports.partials.export-modal')
 @endsection

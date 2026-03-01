@@ -4,77 +4,64 @@
 
 @section('content')
 <div class="max-w-2xl mx-auto space-y-6">
-    <!-- Header -->
     <div class="flex items-center gap-4">
-        <a href="{{ route('courses.index') }}" class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 text-text/80 transition-colors">
-            
+        <a href="{{ route('courses.index') }}" class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-50 hover:bg-primary-50 text-muted hover:text-primary-600 transition-colors duration-150 cursor-pointer border border-primary-100/60">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
         </a>
         <div>
-            <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">✏️ แก้ไขหลักสูตร</h2>
-            <p class="text-indigo-600/70 text-sm">{{ $course->name }}</p>
+            <h2 class="section-title">แก้ไขหลักสูตร</h2>
+            <p class="section-subtitle">{{ $course->name }}</p>
         </div>
     </div>
 
-    <!-- Form Card -->
-    <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 p-6">
+    <div class="card p-6">
         <form action="{{ route('courses.update', $course) }}" method="POST" class="space-y-5">
             @csrf
             @method('PUT')
 
-            <!-- Name -->
             <div>
-                <label class="block text-sm font-medium text-text mb-2">ชื่อหลักสูตร <span class="text-rose-500">*</span></label>
+                <label class="block text-sm font-medium text-text mb-1.5">ชื่อหลักสูตร <span class="text-red-500">*</span></label>
                 <input type="text" name="name" value="{{ old('name', $course->name) }}" required
-                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-slate-200/600 transition-all @error('name') border-rose-300 @enderror">
+                       class="input-field @error('name') border-red-300 @enderror">
                 @error('name')
-                    <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                 @enderror
             </div>
 
-            <!-- Description -->
             <div>
-                <label class="block text-sm font-medium text-text mb-2">รายละเอียด</label>
-                <textarea name="description" rows="3"
-                          class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-slate-200/600 transition-all">{{ old('description', $course->description) }}</textarea>
+                <label class="block text-sm font-medium text-text mb-1.5">รายละเอียด</label>
+                <textarea name="description" rows="3" class="input-field">{{ old('description', $course->description) }}</textarea>
             </div>
 
-            <!-- Dates -->
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-text mb-2">วันเริ่มหลักสูตร <span class="text-rose-500">*</span></label>
+                    <label class="block text-sm font-medium text-text mb-1.5">วันเริ่มหลักสูตร <span class="text-red-500">*</span></label>
                     <input type="date" name="start_date" value="{{ old('start_date', $course->start_date->format('Y-m-d')) }}" required
-                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-slate-200/600 transition-all @error('start_date') border-rose-300 @enderror">
+                           class="input-field @error('start_date') border-red-300 @enderror">
                     @error('start_date')
-                        <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-text mb-2">วันสิ้นสุดหลักสูตร <span class="text-rose-500">*</span></label>
+                    <label class="block text-sm font-medium text-text mb-1.5">วันสิ้นสุดหลักสูตร <span class="text-red-500">*</span></label>
                     <input type="date" name="end_date" value="{{ old('end_date', $course->end_date->format('Y-m-d')) }}" required
-                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary-500 focus:border-slate-200/600 transition-all @error('end_date') border-rose-300 @enderror">
+                           class="input-field @error('end_date') border-red-300 @enderror">
                     @error('end_date')
-                        <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
 
-            <!-- Active Status -->
             <div class="flex items-center gap-3">
                 <input type="checkbox" name="is_active" id="is_active" value="1" {{ $course->is_active ? 'checked' : '' }}
-                       class="w-5 h-5 rounded border-slate-300 text-indigo-600 focus:ring-primary-500">
-                <label for="is_active" class="text-sm text-text">เปิดใช้งานหลักสูตร</label>
+                       class="w-5 h-5 rounded-lg border-primary-300 text-primary-600 focus:ring-primary-200 cursor-pointer">
+                <label for="is_active" class="text-sm text-text cursor-pointer">เปิดใช้งานหลักสูตร</label>
             </div>
 
-            <!-- Actions -->
-            <div class="flex gap-3 pt-4 border-t border-slate-200/60">
-                <a href="{{ route('courses.index') }}" 
-                   class="flex-1 px-4 py-3 text-center border border-slate-200 text-text/80 rounded-xl hover:bg-slate-50 transition-colors font-medium">
-                    ยกเลิก
-                </a>
-                <button type="submit" 
-                        class="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium flex items-center justify-center gap-2">
-                    
-                    บันทึกการเปลี่ยนแปลง
+            <div class="flex gap-3 pt-4 border-t border-primary-100/60">
+                <a href="{{ route('courses.index') }}" class="btn-secondary flex-1 justify-center">ยกเลิก</a>
+                <button type="submit" class="btn-primary flex-1 justify-center">
+                    <i data-lucide="save" class="w-4 h-4"></i> บันทึกการเปลี่ยนแปลง
                 </button>
             </div>
         </form>
