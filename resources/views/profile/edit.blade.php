@@ -25,20 +25,20 @@
             <!-- Left Column: Quick Profile & Navigation (Optional future expansion) or just Signature -->
             <div class="space-y-6">
                 <!-- User Card -->
-                <div class="bg-card rounded-2xl shadow-sm border border-primary-50 p-6 text-center">
+                <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 p-6 text-center">
                     <div class="w-24 h-24 bg-slate-100 rounded-full mx-auto flex items-center justify-center text-4xl font-bold text-text/80 mb-4 border-4 border-white shadow-sm">
                         {{ substr(Auth::user()->name, 0, 1) }}
                     </div>
                     <h3 class="text-xl font-bold text-text font-bold font-mono font-mono">{{ Auth::user()->name }}</h3>
-                    <p class="text-sm text-primary-600/70 uppercase tracking-wider font-semibold mt-1">{{ Auth::user()->role }}</p>
+                    <p class="text-sm text-indigo-600/70 uppercase tracking-wider font-semibold mt-1">{{ Auth::user()->role }}</p>
                     <p class="text-primary-400 text-sm mt-1">{{ Auth::user()->email }}</p>
                 </div>
 
                 <!-- Signature Section (Moved to side for better visibility) -->
-                <div class="bg-card rounded-2xl shadow-sm border border-primary-50 p-6">
+                <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 p-6">
                     <div class="flex items-center gap-3 mb-4 text-text font-bold font-mono font-semibold border-b border-slate-50 pb-3">
                         <div class="w-8 h-8 rounded-lg bg-rose-50 flex items-center justify-center text-rose-600">
-                            <i class="fa-solid fa-file-signature"></i>
+                            <x-heroicon-o-star class="w-5"/>
                         </div>
                         ลายเซ็นดิจิทัล
                     </div>
@@ -50,10 +50,10 @@
             <div class="lg:col-span-2 space-y-6">
                 
                 <!-- Profile Information -->
-                <div class="bg-card rounded-2xl shadow-sm border border-primary-50 p-8">
+                <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 p-8">
                     <div class="flex items-center gap-3 mb-6 text-text font-bold font-mono font-semibold border-b border-slate-50 pb-4">
                         <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
-                            <i class="fa-regular fa-id-card"></i>
+                            <x-heroicon-o-identification class="w-5"/>
                         </div>
                         แก้ไขข้อมูลพื้นฐาน
                     </div>
@@ -61,10 +61,10 @@
                 </div>
 
                 <!-- Password -->
-                <div class="bg-card rounded-2xl shadow-sm border border-primary-50 p-8">
+                <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 p-8">
                     <div class="flex items-center gap-3 mb-6 text-text font-bold font-mono font-semibold border-b border-slate-50 pb-4">
                         <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
-                            <i class="fa-solid fa-key"></i>
+                            <x-heroicon-o-star class="w-5"/>
                         </div>
                         เปลี่ยนรหัสผ่าน
                     </div>
@@ -74,12 +74,12 @@
                 <!-- Delete Account -->
                 <div class="bg-card rounded-2xl shadow-sm border border-red-100 p-8 relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10">
-                        <i class="fa-solid fa-triangle-exclamation text-8xl text-red-600 transform rotate-12"></i>
+                        <x-heroicon-o-star class="text-8xl text-red-600 transform rotate-12 w-5"/>
                     </div>
                     <div class="relative z-10">
                         <div class="flex items-center gap-3 mb-6 text-red-700 font-semibold border-b border-red-50 pb-4">
                             <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
-                                <i class="fa-solid fa-user-xmark"></i>
+                                <x-heroicon-o-x-circle class="w-5"/>
                             </div>
                             ลบบัญชีผู้ใช้
                         </div>

@@ -35,7 +35,7 @@
             </svg>
             พิมพ์รายงาน
         </button>
-        <button onclick="window.close()" class="bg-card text-text/80 px-5 py-2.5 rounded-full shadow-lg hover:bg-background font-semibold transition-all">
+        <button onclick="window.close()" class="bg-card text-text/80 px-5 py-2.5 rounded-full shadow-lg hover:bg-slate-50 font-semibold transition-all">
             ปิด
         </button>
     </div>
@@ -88,16 +88,16 @@
             $late = collect($attendances)->where('status', 'late')->count();
             $absent = collect($attendances)->whereIn('status', ['absent', 'missing'])->count();
         @endphp
-        <div class="grid grid-cols-4 border-b border-primary-100 bg-background print:bg-background">
-            <div class="p-4 text-center border-r border-primary-100">
-                <div class="text-xs text-primary-600/70 uppercase font-bold tracking-wider">รายการทั้งหมด</div>
+        <div class="grid grid-cols-4 border-b border-slate-200 bg-slate-50 print:bg-slate-50">
+            <div class="p-4 text-center border-r border-slate-200">
+                <div class="text-xs text-indigo-600/70 uppercase font-bold tracking-wider">รายการทั้งหมด</div>
                 <div class="text-2xl font-bold text-text mt-1">{{ $total }}</div>
             </div>
-            <div class="p-4 text-center border-r border-primary-100">
+            <div class="p-4 text-center border-r border-slate-200">
                 <div class="text-xs text-emerald-600 uppercase font-bold tracking-wider">ปกติ</div>
                 <div class="text-2xl font-bold text-emerald-600 mt-1">{{ $present }}</div>
             </div>
-            <div class="p-4 text-center border-r border-primary-100">
+            <div class="p-4 text-center border-r border-slate-200">
                 <div class="text-xs text-amber-600 uppercase font-bold tracking-wider">มาสาย</div>
                 <div class="text-2xl font-bold text-amber-600 mt-1">{{ $late }}</div>
             </div>
@@ -111,7 +111,7 @@
         <div class="p-0">
             <table class="w-full text-sm text-left">
                 <thead>
-                    <tr class="bg-card border-b-2 border-primary-50 text-primary-600/70 font-semibold uppercase text-xs tracking-wider">
+                    <tr class="bg-card border-b-2 border-slate-200/60 text-indigo-600/70 font-semibold uppercase text-xs tracking-wider">
                         <th class="px-2 py-4 w-8 text-center">ลำดับ</th>
                         <th class="px-2 py-4 w-20">วันที่</th>
                         <th class="px-2 py-4 w-32">ยศ ชื่อ - นามสกุล</th>
@@ -124,7 +124,7 @@
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @forelse($attendances as $index => $row)
-                    <tr class="page-break {{ $index % 2 == 0 ? 'bg-card' : 'bg-background/50' }}">
+                    <tr class="page-break {{ $index % 2 == 0 ? 'bg-card' : 'bg-slate-50/50' }}">
                         <td class="px-3 py-3 text-center text-primary-400 font-mono text-xs">{{ $index + 1 }}</td>
                         <td class="px-3 py-3 font-medium text-text">
                             {{ \Carbon\Carbon::parse($row->date)->locale('th')->isoFormat('D MMM YY') }}
@@ -134,15 +134,15 @@
                             <div class="text-xs text-primary-400 font-mono mt-0.5">{{ $row->employee->employee_code }}</div>
                         </td>
                         <td class="px-3 py-3 text-text/80 text-xs">
-                            <span class="bg-slate-100 px-2 py-1 rounded text-primary-600/70 border border-primary-100">
+                            <span class="bg-slate-100 px-2 py-1 rounded text-indigo-600/70 border border-slate-200">
                                 {{ $row->employee->department ?? '-' }}
                             </span>
                         </td>
                         <td class="px-3 py-3 text-center">
                             @if($row->snapshot_path)
-                                <img src="{{ route('storage.file', ['path' => $row->snapshot_path]) }}" class="w-24 h-24 object-cover rounded-lg border border-primary-100 mx-auto">
+                                <img src="{{ route('storage.file', ['path' => $row->snapshot_path]) }}" class="w-24 h-24 object-cover rounded-lg border border-slate-200 mx-auto">
                             @else
-                                <div class="w-24 h-24 bg-slate-100 rounded-lg border border-primary-100 mx-auto flex items-center justify-center text-slate-300">
+                                <div class="w-24 h-24 bg-slate-100 rounded-lg border border-slate-200 mx-auto flex items-center justify-center text-slate-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
@@ -166,7 +166,7 @@
                                     ขาดงาน
                                 </span>
                             @elseif($row->status == 'missing')
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-primary-600/70 border border-primary-100">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-indigo-600/70 border border-slate-200">
                                     ไม่มาลงชื่อ
                                 </span>
                             @else
@@ -249,7 +249,7 @@
         </table>
 
         <!-- Footer -->
-        <div class="bg-background border-t border-primary-100 p-6 text-center text-xs text-primary-400 print:bg-card">
+        <div class="bg-slate-50 border-t border-slate-200 p-6 text-center text-xs text-primary-400 print:bg-card">
             <p>&copy; {{ date('Y') }} ระบบสแกนหน้าเข้างาน. All rights reserved.</p>
         </div>
     </div>

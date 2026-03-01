@@ -8,29 +8,29 @@
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">รายชื่อนักเรียน</h2>
-            <p class="text-primary-600/70 text-sm">จัดการข้อมูลนักเรียนทั้งหมดในระบบ</p>
+            <p class="text-indigo-600/70 text-sm">จัดการข้อมูลนักเรียนทั้งหมดในระบบ</p>
         </div>
         <div class="flex items-center gap-3">
             <!-- Import Excel Button -->
             <button @click="showImportModal = true" type="button" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                <i class="fa-solid fa-file-import"></i> Import Excel
+                <x-heroicon-o-document-arrow-up class="w-5"/> Import Excel
             </button>
 
-            <a href="{{ route('students.create') }}" class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                <i class="fa-solid fa-plus"></i> เพิ่มนักเรียน
+            <a href="{{ route('students.create') }}" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
+                <x-heroicon-o-plus class="w-5"/> เพิ่มนักเรียน
             </a>
         </div>
     </div>
 
     <!-- Filters -->
-    <div class="bg-card rounded-xl shadow-sm border border-primary-50 p-4">
+    <div class="bg-card rounded-xl shadow-sm border border-slate-200/60 p-4">
         <form action="{{ route('students.index') }}" method="GET" class="flex flex-col md:flex-row gap-3">
             <div class="relative flex-1">
-                <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm"></i>
+                <x-heroicon-o-magnifying-glass class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm w-5"/>
                 <input type="text" name="search" placeholder="ค้นหาชื่อหรือรหัสนักเรียน..." value="{{ request('search') }}" 
-                       class="w-full pl-9 pr-4 py-2.5 bg-background border border-primary-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                       class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
             </div>
-            <select name="course_id" class="px-4 py-2.5 bg-background border border-primary-100 rounded-lg text-sm focus:ring-2 focus:ring-primary-500">
+            <select name="course_id" class="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary-500">
                 <option value="">-- ทุกหลักสูตร --</option>
                 @foreach($courses as $course)
                     <option value="{{ $course->id }}" {{ request('course_id') == $course->id ? 'selected' : '' }}>
@@ -39,10 +39,10 @@
                 @endforeach
             </select>
             <button type="submit" class="px-4 py-2.5 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800 transition-colors">
-                <i class="fa-solid fa-filter mr-1"></i> ค้นหา
+                <x-heroicon-o-funnel class="mr-1 w-5"/> ค้นหา
             </button>
             @if(request('search') || request('course_id'))
-                <a href="{{ route('students.index') }}" class="px-4 py-2.5 border border-primary-100 text-text/80 rounded-lg text-sm hover:bg-background transition-colors">
+                <a href="{{ route('students.index') }}" class="px-4 py-2.5 border border-slate-200 text-text/80 rounded-lg text-sm hover:bg-slate-50 transition-colors">
                     ล้างตัวกรอง
                 </a>
             @endif
@@ -52,7 +52,7 @@
     <!-- Alert Success -->
     @if(session('success'))
         <div class="bg-emerald-50 text-emerald-700 px-4 py-3 rounded-xl border border-emerald-100 flex items-center gap-3 shadow-sm">
-            <i class="fa-solid fa-circle-check text-lg"></i>
+            <x-heroicon-o-check-circle class="text-lg w-5"/>
             <span class="font-medium">{{ session('success') }}</span>
         </div>
     @endif
@@ -60,16 +60,16 @@
     <!-- Alert Error -->
     @if(session('error'))
         <div class="bg-rose-50 text-rose-700 px-4 py-3 rounded-xl border border-rose-100 flex items-center gap-3 shadow-sm">
-            <i class="fa-solid fa-circle-xmark text-lg"></i>
+            <x-heroicon-o-x-circle class="text-lg w-5"/>
             <span class="font-medium">{{ session('error') }}</span>
         </div>
     @endif
 
     <!-- Data Table -->
-    <div class="bg-card rounded-2xl shadow-sm border border-primary-50 overflow-hidden">
+    <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-text/80">
-                <thead class="bg-background/50 text-primary-600/70 font-semibold border-b border-primary-50">
+                <thead class="bg-slate-50/50 text-indigo-600/70 font-semibold border-b border-slate-200/60">
                     <tr>
                         <th class="px-6 py-4">นักเรียน</th>
                         <th class="px-6 py-4">รหัส</th>
@@ -80,15 +80,15 @@
                 </thead>
                 <tbody class="divide-y divide-slate-50">
                     @forelse($students as $student)
-                    <tr class="hover:bg-background/80 transition-colors group">
+                    <tr class="hover:bg-slate-50/80 transition-colors group">
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-primary-100 group-hover:border-primary-200 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200 group-hover:border-primary-200 transition-colors">
                                     @if($student->photo_path)
                                         <img src="{{ route('storage.file', ['path' => $student->photo_path]) }}" class="w-full h-full object-cover">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center text-slate-300">
-                                            <i class="fa-solid fa-user"></i>
+                                            <x-heroicon-o-user class="w-5"/>
                                         </div>
                                     @endif
                                 </div>
@@ -98,7 +98,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="font-mono text-primary-600/70 bg-background px-2 py-1 rounded text-xs border border-primary-50">{{ $student->student_code }}</span>
+                            <span class="font-mono text-indigo-600/70 bg-slate-50 px-2 py-1 rounded text-xs border border-slate-200/60">{{ $student->student_code }}</span>
                         </td>
                         <td class="px-6 py-4">
                             @if($student->course)
@@ -115,21 +115,21 @@
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> ปกติ
                                 </span>
                             @else
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 text-text/80 rounded-full text-xs font-bold border border-primary-100">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 text-text/80 rounded-full text-xs font-bold border border-slate-200">
                                     <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> ระงับ
                                 </span>
                             @endif
                         </td>
                         <td class="px-6 py-4 text-right">
                             <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <a href="{{ route('students.edit', $student) }}" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-primary-600 hover:bg-primary-50 transition-all" title="แก้ไข">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <a href="{{ route('students.edit', $student) }}" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all" title="แก้ไข">
+                                    <x-heroicon-o-pencil-square class="w-5"/>
                                 </a>
                                 <form action="{{ route('students.destroy', $student) }}" method="POST" onsubmit="return confirm('ยืนยันการลบข้อมูลนักเรียน?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-rose-600 hover:bg-rose-50 transition-all" title="ลบ">
-                                        <i class="fa-solid fa-trash"></i>
+                                        <x-heroicon-o-trash class="w-5"/>
                                     </button>
                                 </form>
                             </div>
@@ -138,8 +138,8 @@
                     @empty
                     <tr>
                         <td colspan="5" class="px-6 py-16 text-center text-primary-400">
-                            <div class="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fa-solid fa-user-graduate text-2xl text-slate-300"></i>
+                            <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <x-heroicon-o-academic-cap class="text-2xl text-slate-300 w-5"/>
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลนักเรียน</p>
                             <p class="text-sm mt-1 text-primary-400">ลองเพิ่มนักเรียนใหม่ หรือค้นหาด้วยคำอื่น</p>
@@ -151,7 +151,7 @@
         </div>
         
         <!-- Pagination -->
-        <div class="px-6 py-4 border-t border-primary-50 bg-background/50">
+        <div class="px-6 py-4 border-t border-slate-200/60 bg-slate-50/50">
             {{ $students->appends(request()->query())->links() }}
         </div>
     </div>
@@ -181,11 +181,11 @@
             <div class="bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-4">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-bold text-white flex items-center gap-2 font-mono">
-                        <i class="fa-solid fa-file-import"></i>
+                        <x-heroicon-o-document-arrow-up class="w-5"/>
                         Import ข้อมูลนักเรียนจาก Excel
                     </h3>
                     <button @click="showImportModal = false" class="text-white/80 hover:text-white transition-colors">
-                        <i class="fa-solid fa-xmark text-xl"></i>
+                        <x-heroicon-o-x-mark class="text-xl w-5"/>
                     </button>
                 </div>
             </div>
@@ -197,7 +197,7 @@
                 <!-- Course Selection (Optional) -->
                 <div>
                     <label class="block text-sm font-medium text-text mb-2">หลักสูตร (สำหรับข้อมูลที่ไม่ระบุหลักสูตรในไฟล์)</label>
-                    <select name="course_id" class="w-full px-4 py-3 rounded-xl border border-primary-100 focus:ring-2 focus:ring-emerald-500">
+                    <select name="course_id" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500">
                         <option value="">-- ไม่ระบุ --</option>
                         @foreach($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -208,9 +208,9 @@
                 <!-- File Upload -->
                 <div>
                     <label class="block text-sm font-medium text-text mb-2">เลือกไฟล์ Excel</label>
-                    <div class="border-2 border-dashed border-primary-100 rounded-xl p-6 text-center hover:border-emerald-400 transition-colors">
+                    <div class="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:border-emerald-400 transition-colors">
                         <input type="file" name="file" accept=".xlsx,.xls,.csv" required
-                               class="block w-full text-sm text-primary-600/70
+                               class="block w-full text-sm text-indigo-600/70
                                       file:mr-4 file:py-2 file:px-4
                                       file:rounded-full file:border-0
                                       file:text-sm file:font-semibold
@@ -225,9 +225,9 @@
                 </div>
                 
                 <!-- Format Info -->
-                <div class="bg-background rounded-xl p-4 text-sm">
+                <div class="bg-slate-50 rounded-xl p-4 text-sm">
                     <h4 class="font-semibold text-text mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-info-circle text-blue-500"></i>
+                        <x-heroicon-o-information-circle class="text-blue-500 w-5"/>
                         รูปแบบไฟล์ที่รองรับ
                     </h4>
                     <ul class="text-text/80 space-y-1 text-xs">
@@ -237,26 +237,26 @@
                         <li><strong>คอลัมน์ D:</strong> ชื่อหลักสูตร (ถ้าไม่ระบุจะใช้หลักสูตรที่เลือกด้านบน)</li>
                     </ul>
                     <p class="text-xs text-amber-600 mt-2">
-                        <i class="fa-solid fa-exclamation-triangle mr-1"></i>
+                        <x-heroicon-o-exclamation-triangle class="mr-1 w-5"/>
                         หากรหัสนักเรียนซ้ำ ระบบจะอัพเดตข้อมูลนักเรียนคนนั้นอัตโนมัติ
                     </p>
                 </div>
                 
                 <!-- Download Template -->
                 <a href="{{ route('students.template') }}" class="flex items-center justify-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 font-medium">
-                    <i class="fa-solid fa-download"></i>
+                    <x-heroicon-o-arrow-down-tray class="w-5"/>
                     ดาวน์โหลด Template ตัวอย่าง
                 </a>
                 
                 <!-- Actions -->
                 <div class="flex gap-3 pt-2">
                     <button type="button" @click="showImportModal = false" 
-                            class="flex-1 px-4 py-2.5 border border-primary-100 text-text/80 rounded-xl hover:bg-background transition-colors font-medium">
+                            class="flex-1 px-4 py-2.5 border border-slate-200 text-text/80 rounded-xl hover:bg-slate-50 transition-colors font-medium">
                         ยกเลิก
                     </button>
                     <button type="submit" 
                             class="flex-1 px-4 py-2.5 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-medium flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-upload"></i>
+                        <x-heroicon-o-arrow-up-tray class="w-5"/>
                         นำเข้าข้อมูล
                     </button>
                 </div>

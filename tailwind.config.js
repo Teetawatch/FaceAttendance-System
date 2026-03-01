@@ -17,17 +17,23 @@ export default {
                 mono: ['Kanit', ...defaultTheme.fontFamily.mono],
             },
             colors: {
-                primary: colors.pink,
-                accent: colors.yellow,
-                background: '#FDF2F8',
+                primary: colors.indigo,
+                accent: colors.sky,
+                background: '#F8FAFC', // slate-50
                 card: '#FFFFFF',
-                text: '#831843'
+                text: '#0F172A', // slate-900
             },
             boxShadow: {
-                'sm': '0 1px 2px rgba(0,0,0,0.05)',
-                'md': '0 4px 6px rgba(0,0,0,0.1)',
-                'lg': '0 10px 15px rgba(0,0,0,0.1)',
-                'xl': '0 20px 25px rgba(0,0,0,0.15)',
+                'sm': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+                'md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+                'lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+                'xl': '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+                '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+                'inner': 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
+                'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+            },
+            backgroundImage: {
+                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             }
         },
     },

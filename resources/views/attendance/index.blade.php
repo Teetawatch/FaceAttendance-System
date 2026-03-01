@@ -8,27 +8,27 @@
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">ประวัติการเข้างาน</h2>
-            <p class="text-primary-600/70 text-sm">ตรวจสอบข้อมูลการลงเวลาของพนักงานรายวัน</p>
+            <p class="text-indigo-600/70 text-sm">ตรวจสอบข้อมูลการลงเวลาของพนักงานรายวัน</p>
         </div>
         
         <form method="GET" class="flex flex-col sm:flex-row gap-3">
             <!-- Search -->
             <div class="relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm"></i>
+                <x-heroicon-o-star class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm w-5"/>
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาชื่อ หรือ รหัสพนักงาน..." 
-                       class="pl-9 w-full sm:w-64 rounded-xl border-primary-100 focus:ring-primary-500 focus:border-primary-500 text-sm shadow-sm">
+                       class="pl-9 w-full sm:w-64 rounded-xl border-slate-200 focus:ring-primary-500 focus:border-slate-200/600 text-sm shadow-sm">
             </div>
             
             <!-- Date Picker -->
             <input type="date" name="date" value="{{ request('date', date('Y-m-d')) }}" 
-                   class="rounded-xl border-primary-100 focus:ring-primary-500 focus:border-primary-500 text-sm text-text/80 shadow-sm">
+                   class="rounded-xl border-slate-200 focus:ring-primary-500 focus:border-slate-200/600 text-sm text-text/80 shadow-sm">
             
-            <button type="submit" class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                <i class="fa-solid fa-filter mr-1"></i> กรองข้อมูล
+            <button type="submit" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
+                <x-heroicon-o-funnel class="mr-1 w-5"/> กรองข้อมูล
             </button>
             
             @if(request()->has('date') || request()->has('search'))
-                <a href="{{ route('attendance.index') }}" class="flex items-center justify-center px-4 py-2 border border-primary-100 rounded-xl text-primary-600/70 hover:bg-background hover:text-text text-sm transition-colors">
+                <a href="{{ route('attendance.index') }}" class="flex items-center justify-center px-4 py-2 border border-slate-200 rounded-xl text-indigo-600/70 hover:bg-slate-50 hover:text-text text-sm transition-colors">
                     ล้างค่า
                 </a>
             @endif
@@ -36,10 +36,10 @@
     </div>
 
     <!-- Data Table -->
-    <div class="bg-card rounded-2xl shadow-sm border border-primary-50 overflow-hidden">
+    <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-text/80">
-                <thead class="bg-background/50 text-primary-600/70 font-semibold border-b border-primary-50">
+                <thead class="bg-slate-50/50 text-indigo-600/70 font-semibold border-b border-slate-200/60">
                     <tr>
                         <th class="px-6 py-4">พนักงาน</th>
                         <th class="px-6 py-4">วันที่</th>
@@ -51,15 +51,15 @@
                 </thead>
                 <tbody class="divide-y divide-slate-50">
                     @forelse($attendances as $row)
-                    <tr class="hover:bg-background/80 transition-colors group">
+                    <tr class="hover:bg-slate-50/80 transition-colors group">
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-primary-100 group-hover:border-primary-200 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200 group-hover:border-primary-200 transition-colors">
                                     @if($row->employee->photo_path)
                                         <img src="{{ route('storage.file', ['path' => $row->employee->photo_path]) }}" class="w-full h-full object-cover">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center text-slate-300">
-                                            <i class="fa-solid fa-user"></i>
+                                            <x-heroicon-o-user class="w-5"/>
                                         </div>
                                     @endif
                                 </div>
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4 font-mono text-primary-600/70">
+                        <td class="px-6 py-4 font-mono text-indigo-600/70">
                             {{ \Carbon\Carbon::parse($row->date)->locale('th')->isoFormat('D MMM YY') }}
                         </td>
                         <td class="px-6 py-4">
@@ -90,7 +90,7 @@
                                 <span class="text-slate-300">-</span>
                             @endif
                         </td>
-                        <td class="px-6 py-4 font-mono text-primary-600/70">
+                        <td class="px-6 py-4 font-mono text-indigo-600/70">
                             @if($row->total_work_minutes > 0)
                                 {{ floor($row->total_work_minutes / 60) }} ชม. {{ $row->total_work_minutes % 60 }} น.
                             @else
@@ -104,7 +104,7 @@
                                     'late' => ['label' => 'สาย', 'class' => 'bg-amber-50 text-amber-700 border-amber-100'],
                                     'absent' => ['label' => 'ขาดงาน', 'class' => 'bg-rose-50 text-rose-700 border-rose-100'],
                                     'leave' => ['label' => 'ลา', 'class' => 'bg-blue-50 text-blue-700 border-blue-100'],
-                                    default => ['label' => '-', 'class' => 'bg-background text-primary-600/70 border-primary-50']
+                                    default => ['label' => '-', 'class' => 'bg-slate-50 text-indigo-600/70 border-slate-200/60']
                                 };
                             @endphp
                             <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold border {{ $statusConfig['class'] }}">
@@ -115,8 +115,8 @@
                     @empty
                     <tr>
                         <td colspan="6" class="px-6 py-16 text-center text-primary-400">
-                            <div class="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fa-solid fa-clipboard-list text-2xl text-slate-300"></i>
+                            <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <x-heroicon-o-clipboard-document-list class="text-2xl text-slate-300 w-5"/>
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลการลงเวลา</p>
                             <p class="text-sm mt-1 text-primary-400">ลองเปลี่ยนวันที่ หรือคำค้นหา</p>
@@ -128,7 +128,7 @@
         </div>
         
         <!-- Pagination -->
-        <div class="px-6 py-4 border-t border-primary-50 bg-background/50">
+        <div class="px-6 py-4 border-t border-slate-200/60 bg-slate-50/50">
             {{ $attendances->links() }}
         </div>
     </div>

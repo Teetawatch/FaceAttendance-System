@@ -14,43 +14,43 @@
         <div class="lg:col-span-1 flex flex-col gap-6 h-full">
             
             <!-- Toggle Mode Button -->
-            <div class="bg-card rounded-2xl p-2 shadow-sm border border-primary-50 flex justify-between items-center px-4">
-                <span class="text-sm font-medium text-primary-600/70">โหมดการทำงาน:</span>
-                <div class="flex bg-background rounded-xl p-1 border border-primary-50">
+            <div class="bg-card rounded-2xl p-2 shadow-sm border border-slate-200/60 flex justify-between items-center px-4">
+                <span class="text-sm font-medium text-indigo-600/70">โหมดการทำงาน:</span>
+                <div class="flex bg-slate-50 rounded-xl p-1 border border-slate-200/60">
                     <button @click="toggleMode('monitor')" 
-                            :class="mode === 'monitor' ? 'bg-card shadow-sm text-primary-600' : 'text-primary-400 hover:text-text/80'"
+                            :class="mode === 'monitor' ? 'bg-card shadow-sm text-indigo-600' : 'text-primary-400 hover:text-text/80'"
                             class="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-desktop"></i> จอภาพ
+                        <x-heroicon-o-computer-desktop class="w-5"/> จอภาพ
                     </button>
                     <button @click="toggleMode('kiosk')" 
-                            :class="mode === 'kiosk' ? 'bg-card shadow-sm text-primary-600' : 'text-primary-400 hover:text-text/80'"
+                            :class="mode === 'kiosk' ? 'bg-card shadow-sm text-indigo-600' : 'text-primary-400 hover:text-text/80'"
                             class="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-camera"></i> จุดลงเวลา
+                        <x-heroicon-o-camera class="w-5"/> จุดลงเวลา
                     </button>
                 </div>
             </div>
 
             <!-- Mode 1: MONITOR DISPLAY (Hero Section) -->
-            <div x-show="mode === 'monitor'" class="flex-1 bg-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-primary-50 p-8 flex flex-col items-center justify-center text-center relative overflow-hidden transition-all">
+            <div x-show="mode === 'monitor'" class="flex-1 bg-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 p-8 flex flex-col items-center justify-center text-center relative overflow-hidden transition-all">
                 <!-- Pulse Animation Background (Active when scan comes) -->
                 <div x-show="justScanned" x-transition.opacity.duration.1000ms class="absolute inset-0 bg-emerald-50/50 z-0" style="display: none;"></div>
                 
                 <div class="relative z-10 w-full flex flex-col items-center">
-                    <h3 class="text-primary-400 font-medium uppercase tracking-widest text-xs mb-8 bg-background px-3 py-1 rounded-full border border-primary-50 font-mono">รายการล่าสุด</h3>
+                    <h3 class="text-primary-400 font-medium uppercase tracking-widest text-xs mb-8 bg-slate-50 px-3 py-1 rounded-full border border-slate-200/60 font-mono">รายการล่าสุด</h3>
                     
                     <!-- Profile Image -->
                     <div class="relative mb-8 group">
-                        <div class="w-56 h-56 rounded-full border-8 border-white shadow-2xl overflow-hidden bg-background flex items-center justify-center relative z-10">
+                        <div class="w-56 h-56 rounded-full border-8 border-white shadow-2xl overflow-hidden bg-slate-50 flex items-center justify-center relative z-10">
                             <!-- Prefer Snapshot, fallback to Profile Photo -->
                             <template x-if="latestScan.snapshot_url || latestScan.photo_url">
                                 <img :src="latestScan.snapshot_url || latestScan.photo_url" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             </template>
                             <template x-if="!latestScan.snapshot_url && !latestScan.photo_url">
-                                <i class="fa-solid fa-user text-7xl text-slate-200"></i>
+                                <x-heroicon-o-user class="text-7xl text-slate-200 w-5"/>
                             </template>
                         </div>
                         <!-- Decorative Ring -->
-                        <div class="absolute inset-0 rounded-full border border-primary-50 scale-110 -z-0"></div>
+                        <div class="absolute inset-0 rounded-full border border-slate-200/60 scale-110 -z-0"></div>
                         <div class="absolute inset-0 rounded-full border border-slate-50 scale-125 -z-0"></div>
 
                         <!-- Status Badge -->
@@ -63,14 +63,14 @@
                     <!-- Info -->
                     <div class="space-y-2 mb-8">
                         <h2 class="text-3xl font-bold text-text font-bold font-mono font-mono" x-text="latestScan.name || 'รอรับข้อมูล...'"></h2>
-                        <p class="text-primary-600/70 text-lg flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-location-dot text-slate-300"></i>
+                        <p class="text-indigo-600/70 text-lg flex items-center justify-center gap-2">
+                            <x-heroicon-o-map-pin class="text-slate-300 w-5"/>
                             <span x-text="latestScan.device || 'ระบบพร้อมใช้งาน'"></span>
                         </p>
                     </div>
 
                     <!-- Time -->
-                    <div class="text-6xl font-mono font-bold text-text tracking-tight bg-background px-8 py-4 rounded-2xl border border-primary-50 shadow-inner" x-text="latestScan.time || '--:--:--'"></div>
+                    <div class="text-6xl font-mono font-bold text-text tracking-tight bg-slate-50 px-8 py-4 rounded-2xl border border-slate-200/60 shadow-inner" x-text="latestScan.time || '--:--:--'"></div>
                 </div>
             </div>
 
@@ -99,7 +99,7 @@
                          x-transition:enter-end="opacity-100 scale-100"
                          class="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none">
                         <div class="bg-black/70 backdrop-blur-md text-white px-8 py-6 rounded-3xl border border-white/20 shadow-2xl flex flex-col items-center animate-pulse">
-                            <i class="fa-regular fa-eye text-5xl mb-4 text-emerald-400"></i>
+                            <x-heroicon-o-eye class="text-5xl mb-4 text-emerald-400 w-5"/>
                             <h3 class="text-2xl font-bold font-mono">กรุณากระพริบตา</h3>
                             <p class="text-slate-300 text-sm mt-2">เพื่อยืนยันตัวตน</p>
                         </div>
@@ -107,7 +107,7 @@
 
                     <!-- Loading Models Indicator -->
                     <div x-show="isModelsLoading" class="absolute inset-0 bg-black/80 flex flex-col items-center justify-center z-20 text-white">
-                        <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-3 text-primary-500"></i>
+                        <x-heroicon-o-arrow-path class="text-4xl mb-3 text-primary-500 w-5"/>
                         <p>กำลังโหลดโมเดล AI...</p>
                     </div>
                 </div>
@@ -118,21 +118,21 @@
                         <input type="text" x-model="kiosk.employee_code" 
                                @keyup.enter="submitScan()"
                                placeholder="กรอกรหัสพนักงาน..." 
-                               class="flex-1 bg-slate-900/80 border-slate-600 text-white placeholder-slate-500 rounded-xl focus:ring-primary-500 focus:border-primary-500 text-sm px-4 py-3">
+                               class="flex-1 bg-slate-900/80 border-slate-600 text-white placeholder-slate-500 rounded-xl focus:ring-primary-500 focus:border-slate-200/600 text-sm px-4 py-3">
                         
                         <button @click="submitScan()" 
                                 :disabled="isLoading || !kiosk.employee_code"
-                                class="bg-primary-600 hover:bg-primary-500 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-lg shadow-primary-900/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none">
-                            <span x-show="!isLoading"><i class="fa-solid fa-camera mr-2"></i>สแกน</span>
-                            <span x-show="isLoading"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                                class="bg-primary-600 hover:bg-indigo-50/500 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-lg shadow-primary-900/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none">
+                            <span x-show="!isLoading"><x-heroicon-o-camera class="mr-2 w-5"/>สแกน</span>
+                            <span x-show="isLoading"><x-heroicon-o-star class="w-5"/></span>
                         </button>
                     </div>
                     
                     <!-- Device Config Toggle -->
-                    <div class="flex justify-between items-center text-xs text-primary-600/70 pt-2">
+                    <div class="flex justify-between items-center text-xs text-indigo-600/70 pt-2">
                         <span>ระบบจดจำใบหน้าอัตโนมัติ</span>
                         <button @click="showConfig = !showConfig" class="hover:text-slate-300 transition-colors flex items-center gap-1">
-                            <i class="fa-solid fa-gear"></i> ตั้งค่าอุปกรณ์
+                            <x-heroicon-o-cog-6-tooth class="w-5"/> ตั้งค่าอุปกรณ์
                         </button>
                     </div>
 
@@ -141,7 +141,7 @@
                         <!-- Camera Selector -->
                         <div x-show="cameras.length > 0">
                             <label class="text-xs text-primary-400 block mb-1.5">เลือกกล้อง</label>
-                            <select x-model="selectedCamera" @change="startCamera()" class="w-full bg-slate-900 border-slate-600 text-white text-xs rounded-lg px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
+                            <select x-model="selectedCamera" @change="startCamera()" class="w-full bg-slate-900 border-slate-600 text-white text-xs rounded-lg px-3 py-2 focus:ring-primary-500 focus:border-slate-200/600">
                                 <template x-for="camera in cameras" :key="camera.deviceId">
                                     <option :value="camera.deviceId" x-text="camera.label || 'Camera ' + ($index + 1)"></option>
                                 </template>
@@ -149,8 +149,8 @@
                         </div>
 
                         <div class="grid grid-cols-2 gap-3">
-                            <input type="text" x-model="kiosk.device_code" placeholder="รหัสอุปกรณ์ (เช่น DEV-001)" class="bg-slate-900 border-slate-600 text-white text-xs rounded-lg px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
-                            <input type="password" x-model="kiosk.api_token" placeholder="API Token" class="bg-slate-900 border-slate-600 text-white text-xs rounded-lg px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
+                            <input type="text" x-model="kiosk.device_code" placeholder="รหัสอุปกรณ์ (เช่น DEV-001)" class="bg-slate-900 border-slate-600 text-white text-xs rounded-lg px-3 py-2 focus:ring-primary-500 focus:border-slate-200/600">
+                            <input type="password" x-model="kiosk.api_token" placeholder="API Token" class="bg-slate-900 border-slate-600 text-white text-xs rounded-lg px-3 py-2 focus:ring-primary-500 focus:border-slate-200/600">
                         </div>
                         <button @click="saveConfig()" class="w-full bg-slate-700 hover:bg-slate-600 text-white text-xs py-2.5 rounded-lg font-medium transition-colors">บันทึกการตั้งค่า</button>
                     </div>
@@ -163,7 +163,7 @@
         </div>
 
         <!-- Right: Recent Scans List -->
-        <div class="lg:col-span-2 bg-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-primary-50 flex flex-col overflow-hidden h-full">
+        <div class="lg:col-span-2 bg-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 flex flex-col overflow-hidden h-full">
             <div class="px-8 py-6 border-b border-slate-50 flex justify-between items-center bg-card sticky top-0 z-10">
                 <div>
                     <h3 class="font-bold text-text font-bold font-mono text-xl font-mono">ประวัติการเข้างานล่าสุด</h3>
@@ -182,22 +182,22 @@
                  <!-- List Items -->
                  <ul class="divide-y divide-slate-50">
                     <template x-for="scan in history" :key="scan.id">
-                        <li class="px-8 py-5 hover:bg-background/80 transition-all duration-300 flex items-center justify-between animate-fade-in-down group cursor-default border-l-4 border-transparent hover:border-primary-500">
+                        <li class="px-8 py-5 hover:bg-slate-50/80 transition-all duration-300 flex items-center justify-between animate-fade-in-down group cursor-default border-l-4 border-transparent hover:border-slate-200/600">
                             <div class="flex items-center gap-5">
-                                <div class="w-14 h-14 rounded-full bg-background flex items-center justify-center overflow-hidden border-2 border-white shadow-sm group-hover:border-primary-100 transition-colors">
+                                <div class="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center overflow-hidden border-2 border-white shadow-sm group-hover:border-slate-200 transition-colors">
                                     <!-- Prefer Snapshot, fallback to Profile Photo -->
                                     <template x-if="scan.snapshot_url || scan.photo_url">
                                         <img :src="scan.snapshot_url || scan.photo_url" class="w-full h-full object-cover">
                                     </template>
                                     <template x-if="!scan.snapshot_url && !scan.photo_url">
-                                        <i class="fa-solid fa-user text-slate-300 text-xl"></i>
+                                        <x-heroicon-o-user class="text-slate-300 text-xl w-5"/>
                                     </template>
                                 </div>
                                 <div>
                                     <p class="font-bold text-text text-lg group-hover:text-primary-700 transition-colors" x-text="scan.name"></p>
                                     <div class="flex items-center gap-2 mt-1">
-                                        <span class="text-xs text-primary-400 bg-slate-100 px-2 py-0.5 rounded border border-primary-100 flex items-center gap-1">
-                                            <i class="fa-solid fa-location-dot text-[10px]"></i>
+                                        <span class="text-xs text-primary-400 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 flex items-center gap-1">
+                                            <x-heroicon-o-map-pin class="text-[10px] w-5"/>
                                             <span x-text="scan.device"></span>
                                         </span>
                                     </div>
@@ -207,7 +207,7 @@
                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-1 shadow-sm"
                                       :class="scan.type === 'IN' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'"
                                       x-text="scan.type"></span>
-                                <p class="text-sm font-medium text-primary-600/70" 
+                                <p class="text-sm font-medium text-indigo-600/70" 
                                    :class="scan.status_color"
                                    x-text="scan.datetime_th || scan.time"></p>
                             </div>
@@ -216,9 +216,9 @@
                  </ul>
                  
                  <!-- Empty State -->
-                 <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-background/30">
+                 <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-slate-50/30">
                      <div class="w-24 h-24 bg-card rounded-full shadow-sm flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-satellite-dish text-4xl text-slate-200"></i>
+                        <x-heroicon-o-star class="text-4xl text-slate-200 w-5"/>
                      </div>
                      <p class="font-medium text-primary-400">กำลังรอรับข้อมูล...</p>
                      <p class="text-sm text-slate-300 mt-1">ข้อมูลการสแกนจะปรากฏที่นี่ทันที</p>

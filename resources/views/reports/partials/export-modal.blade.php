@@ -9,12 +9,12 @@
                 <div class="bg-card px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                     <div class="sm:flex sm:items-start">
                         <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-rose-100 sm:mx-0 sm:h-10 sm:w-10">
-                            <i class="fa-solid fa-file-signature text-rose-600"></i>
+                            <x-heroicon-o-star class="text-rose-600 w-5"/>
                         </div>
                         <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
                             <h3 class="text-base font-semibold leading-6 text-slate-900 font-mono" id="modal-title">ตัวเลือกการพิมพ์รายงาน</h3>
                             <div class="mt-2">
-                                <p class="text-sm text-primary-600/70 mb-4">เลือกผู้ลงนามท้ายรายงาน (หากไม่เลือก จะเว้นว่างไว้)</p>
+                                <p class="text-sm text-indigo-600/70 mb-4">เลือกผู้ลงนามท้ายรายงาน (หากไม่เลือก จะเว้นว่างไว้)</p>
                                 
                                 <form action="{{ route('reports.pdf') }}" method="GET" target="_blank" class="space-y-4">
                                     <!-- Hidden Filters -->
@@ -46,9 +46,9 @@
                                     </div>
                                     
                                     <div class="mt-6 flex justify-end gap-3">
-                                        <button type="button" onclick="document.getElementById('exportModal').classList.add('hidden')" class="inline-flex justify-center rounded-lg bg-card px-3 py-2 text-sm font-semibold text-slate-900 ring-1 ring-inset ring-slate-300 hover:bg-background shadow-sm transition-all">ยกเลิก</button>
+                                        <button type="button" onclick="document.getElementById('exportModal').classList.add('hidden')" class="inline-flex justify-center rounded-lg bg-card px-3 py-2 text-sm font-semibold text-slate-900 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 shadow-sm transition-all">ยกเลิก</button>
                                         <button type="submit" onclick="document.getElementById('exportModal').classList.add('hidden')" class="inline-flex justify-center rounded-lg bg-rose-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-rose-500 transition-all">
-                                            <i class="fa-solid fa-print mr-2"></i> พิมพ์รายงาน
+                                            <x-heroicon-o-printer class="mr-2 w-5"/> พิมพ์รายงาน
                                         </button>
                                     </div>
                                 </form>

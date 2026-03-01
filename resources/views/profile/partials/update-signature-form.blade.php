@@ -13,7 +13,7 @@
                 </div>
             @endif
 
-            <input id="signature" name="signature" type="file" accept="image/png, image/jpeg" class="mt-1 block w-full text-sm text-primary-600/70
+            <input id="signature" name="signature" type="file" accept="image/png, image/jpeg" class="mt-1 block w-full text-sm text-indigo-600/70
                 file:mr-4 file:py-2 file:px-4
                 file:rounded-full file:border-0
                 file:text-sm file:font-semibold
