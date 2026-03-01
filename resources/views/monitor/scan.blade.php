@@ -39,7 +39,7 @@
                          class="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none">
                         <div class="bg-black/70 backdrop-blur-md text-white px-8 py-6 rounded-3xl border border-amber-500/50 shadow-2xl flex flex-col items-center">
                             <i class="fa-solid fa-eye text-5xl mb-4 text-amber-400 animate-pulse"></i>
-                            <h3 class="text-2xl font-bold">กรุณากระพริบตา</h3>
+                            <h3 class="text-2xl font-bold font-mono">กรุณากระพริบตา</h3>
                             <p class="text-slate-300 text-sm mt-2">เพื่อยืนยันว่าคุณเป็นคนจริง</p>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                          class="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none">
                         <div class="bg-black/70 backdrop-blur-md text-white px-8 py-6 rounded-3xl border border-emerald-500/50 shadow-2xl flex flex-col items-center">
                             <i class="fa-solid fa-circle-check text-5xl mb-4 text-emerald-400"></i>
-                            <h3 class="text-2xl font-bold">ยืนยันตัวตนสำเร็จ!</h3>
+                            <h3 class="text-2xl font-bold font-mono">ยืนยันตัวตนสำเร็จ!</h3>
                             <p class="text-slate-300 text-sm mt-2">กำลังบันทึก...</p>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                     </div>
                     
                     <!-- Device Config Toggle -->
-                    <div class="flex justify-between items-center text-xs text-slate-500 pt-2">
+                    <div class="flex justify-between items-center text-xs text-primary-600/70 pt-2">
                         <span>ระบบจดจำใบหน้าอัตโนมัติ</span>
                         <button @click="showConfig = !showConfig" class="hover:text-slate-300 transition-colors flex items-center gap-1">
                             <i class="fa-solid fa-gear"></i> ตั้งค่าอุปกรณ์
@@ -92,7 +92,7 @@
                     <div x-show="showConfig" class="pt-4 border-t border-slate-700 mt-2 space-y-3" x-transition>
                         <!-- Camera Selector -->
                         <div x-show="cameras.length > 0">
-                            <label class="text-xs text-slate-400 block mb-1.5">เลือกกล้อง</label>
+                            <label class="text-xs text-primary-400 block mb-1.5">เลือกกล้อง</label>
                             <select x-model="selectedCamera" @change="startCamera()" class="w-full bg-slate-900 border-slate-600 text-white text-xs rounded-lg px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
                                 <template x-for="camera in cameras" :key="camera.deviceId">
                                     <option :value="camera.deviceId" x-text="camera.label || 'Camera ' + ($index + 1)"></option>
@@ -115,10 +115,10 @@
         </div>
 
         <!-- Right: Recent Scans List (Smaller) -->
-        <div class="lg:col-span-1 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col overflow-hidden h-full">
-            <div class="px-6 py-4 border-b border-slate-50 flex justify-between items-center bg-white sticky top-0 z-10">
+        <div class="lg:col-span-1 bg-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-primary-50 flex flex-col overflow-hidden h-full">
+            <div class="px-6 py-4 border-b border-slate-50 flex justify-between items-center bg-card sticky top-0 z-10">
                 <div>
-                    <h3 class="font-bold text-slate-800 text-lg">ประวัติล่าสุด</h3>
+                    <h3 class="font-bold text-text font-bold font-mono text-lg font-mono">ประวัติล่าสุด</h3>
                 </div>
                 <div class="flex items-center gap-2 text-[10px] font-bold text-emerald-600 px-3 py-1 bg-emerald-50 rounded-full border border-emerald-100 shadow-sm">
                     <span class="relative flex h-2 w-2">
@@ -133,9 +133,9 @@
                  <!-- List Items -->
                  <ul class="divide-y divide-slate-50">
                     <template x-for="scan in history" :key="scan.id">
-                        <li class="px-6 py-4 hover:bg-slate-50/80 transition-all duration-300 flex items-center justify-between animate-fade-in-down group cursor-default border-l-4 border-transparent hover:border-primary-500">
+                        <li class="px-6 py-4 hover:bg-background/80 transition-all duration-300 flex items-center justify-between animate-fade-in-down group cursor-default border-l-4 border-transparent hover:border-primary-500">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center overflow-hidden border-2 border-white shadow-sm group-hover:border-primary-100 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-background flex items-center justify-center overflow-hidden border-2 border-white shadow-sm group-hover:border-primary-100 transition-colors">
                                     <!-- Prefer Snapshot, fallback to Profile Photo -->
                                     <template x-if="scan.snapshot_url || scan.photo_url">
                                         <img :src="scan.snapshot_url || scan.photo_url" class="w-full h-full object-cover">
@@ -145,8 +145,8 @@
                                     </template>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-slate-700 text-sm group-hover:text-primary-700 transition-colors" x-text="scan.name"></p>
-                                    <p class="text-xs text-slate-400" x-text="scan.time"></p>
+                                    <p class="font-bold text-text text-sm group-hover:text-primary-700 transition-colors" x-text="scan.name"></p>
+                                    <p class="text-xs text-primary-400" x-text="scan.time"></p>
                                 </div>
                             </div>
                             <div class="text-right">
@@ -159,11 +159,11 @@
                  </ul>
                  
                  <!-- Empty State -->
-                 <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-slate-50/30">
-                     <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-3">
+                 <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-background/30">
+                     <div class="w-16 h-16 bg-card rounded-full shadow-sm flex items-center justify-center mb-3">
                         <i class="fa-solid fa-satellite-dish text-2xl text-slate-200"></i>
                      </div>
-                     <p class="text-xs text-slate-400">รอรับข้อมูล...</p>
+                     <p class="text-xs text-primary-400">รอรับข้อมูล...</p>
                  </div>
             </div>
         </div>

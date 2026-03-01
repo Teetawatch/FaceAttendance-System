@@ -9,11 +9,11 @@
             <div class="absolute inset-0 bg-grid-white/[0.2] [mask-image:linear-gradient(0deg,white,transparent)]"></div>
             <div class="relative z-10 flex items-center justify-between">
                 <div>
-                    <h2 class="text-3xl font-bold text-white tracking-tight text-shadow-sm">ข้อมูลส่วนตัว</h2>
+                    <h2 class="text-3xl font-bold text-white tracking-tight text-shadow-sm font-mono">ข้อมูลส่วนตัว</h2>
                     <p class="text-blue-50 mt-2 font-medium">จัดการข้อมูลบัญชี รหัสผ่าน และลายเซ็นดิจิทัลของคุณ</p>
                 </div>
                 <!-- Avatar Circle -->
-                <div class="hidden sm:flex h-20 w-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/30 items-center justify-center text-3xl font-bold text-white shadow-2xl">
+                <div class="hidden sm:flex h-20 w-20 rounded-full bg-card/20 backdrop-blur-md border-2 border-white/30 items-center justify-center text-3xl font-bold text-white shadow-2xl">
                     {{ substr(Auth::user()->name, 0, 1) }}
                 </div>
             </div>
@@ -25,18 +25,18 @@
             <!-- Left Column: Quick Profile & Navigation (Optional future expansion) or just Signature -->
             <div class="space-y-6">
                 <!-- User Card -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
-                    <div class="w-24 h-24 bg-slate-100 rounded-full mx-auto flex items-center justify-center text-4xl font-bold text-slate-600 mb-4 border-4 border-white shadow-sm">
+                <div class="bg-card rounded-2xl shadow-sm border border-primary-50 p-6 text-center">
+                    <div class="w-24 h-24 bg-slate-100 rounded-full mx-auto flex items-center justify-center text-4xl font-bold text-text/80 mb-4 border-4 border-white shadow-sm">
                         {{ substr(Auth::user()->name, 0, 1) }}
                     </div>
-                    <h3 class="text-xl font-bold text-slate-800">{{ Auth::user()->name }}</h3>
-                    <p class="text-sm text-slate-500 uppercase tracking-wider font-semibold mt-1">{{ Auth::user()->role }}</p>
-                    <p class="text-slate-400 text-sm mt-1">{{ Auth::user()->email }}</p>
+                    <h3 class="text-xl font-bold text-text font-bold font-mono font-mono">{{ Auth::user()->name }}</h3>
+                    <p class="text-sm text-primary-600/70 uppercase tracking-wider font-semibold mt-1">{{ Auth::user()->role }}</p>
+                    <p class="text-primary-400 text-sm mt-1">{{ Auth::user()->email }}</p>
                 </div>
 
                 <!-- Signature Section (Moved to side for better visibility) -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                    <div class="flex items-center gap-3 mb-4 text-slate-800 font-semibold border-b border-slate-50 pb-3">
+                <div class="bg-card rounded-2xl shadow-sm border border-primary-50 p-6">
+                    <div class="flex items-center gap-3 mb-4 text-text font-bold font-mono font-semibold border-b border-slate-50 pb-3">
                         <div class="w-8 h-8 rounded-lg bg-rose-50 flex items-center justify-center text-rose-600">
                             <i class="fa-solid fa-file-signature"></i>
                         </div>
@@ -50,8 +50,8 @@
             <div class="lg:col-span-2 space-y-6">
                 
                 <!-- Profile Information -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
-                    <div class="flex items-center gap-3 mb-6 text-slate-800 font-semibold border-b border-slate-50 pb-4">
+                <div class="bg-card rounded-2xl shadow-sm border border-primary-50 p-8">
+                    <div class="flex items-center gap-3 mb-6 text-text font-bold font-mono font-semibold border-b border-slate-50 pb-4">
                         <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
                             <i class="fa-regular fa-id-card"></i>
                         </div>
@@ -61,8 +61,8 @@
                 </div>
 
                 <!-- Password -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
-                    <div class="flex items-center gap-3 mb-6 text-slate-800 font-semibold border-b border-slate-50 pb-4">
+                <div class="bg-card rounded-2xl shadow-sm border border-primary-50 p-8">
+                    <div class="flex items-center gap-3 mb-6 text-text font-bold font-mono font-semibold border-b border-slate-50 pb-4">
                         <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
                             <i class="fa-solid fa-key"></i>
                         </div>
@@ -72,7 +72,7 @@
                 </div>
 
                 <!-- Delete Account -->
-                <div class="bg-white rounded-2xl shadow-sm border border-red-100 p-8 relative overflow-hidden">
+                <div class="bg-card rounded-2xl shadow-sm border border-red-100 p-8 relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10">
                         <i class="fa-solid fa-triangle-exclamation text-8xl text-red-600 transform rotate-12"></i>
                     </div>

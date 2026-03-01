@@ -25,7 +25,7 @@
         }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen p-8 text-slate-800">
+<body class="bg-slate-100 min-h-screen p-8 text-text font-bold font-mono">
 
     <!-- Print Controls -->
     <div class="no-print fixed top-6 right-6 flex gap-3 z-50">
@@ -35,13 +35,13 @@
             </svg>
             พิมพ์รายงาน
         </button>
-        <button onclick="window.close()" class="bg-white text-slate-600 px-5 py-2.5 rounded-full shadow-lg hover:bg-slate-50 font-semibold transition-all">
+        <button onclick="window.close()" class="bg-card text-text/80 px-5 py-2.5 rounded-full shadow-lg hover:bg-background font-semibold transition-all">
             ปิด
         </button>
     </div>
 
     <!-- Report Container -->
-    <div class="max-w-[297mm] mx-auto bg-white shadow-xl rounded-none md:rounded-lg overflow-hidden print:shadow-none print:w-full print:max-w-none">
+    <div class="max-w-[297mm] mx-auto bg-card shadow-xl rounded-none md:rounded-lg overflow-hidden print:shadow-none print:w-full print:max-w-none">
         
         <!-- Header -->
         <div class="bg-slate-800 text-white p-8 print:bg-slate-800 print:text-white">
@@ -52,14 +52,14 @@
                 </div>
                 <div class="text-right">
                     <div class="text-3xl font-bold text-blue-400">REPORT</div>
-                    <p class="text-xs text-slate-400 mt-1">พิมพ์เมื่อ: {{ \Carbon\Carbon::now()->locale('th')->isoFormat('D MMMM YYYY HH:mm') }}</p>
+                    <p class="text-xs text-primary-400 mt-1">พิมพ์เมื่อ: {{ \Carbon\Carbon::now()->locale('th')->isoFormat('D MMMM YYYY HH:mm') }}</p>
                 </div>
             </div>
             
             <!-- Report Info -->
             <div class="mt-6 flex flex-wrap gap-6 text-sm border-t border-slate-700 pt-6">
                 <div>
-                    <span class="text-slate-400 block text-xs uppercase tracking-wider mb-1">ช่วงวันที่</span>
+                    <span class="text-primary-400 block text-xs uppercase tracking-wider mb-1">ช่วงวันที่</span>
                     <span class="font-medium">
                         {{ request('start_date') ? \Carbon\Carbon::parse(request('start_date'))->locale('th')->isoFormat('D MMM YY') : 'ต้นเดือน' }} 
                         - 
@@ -68,13 +68,13 @@
                 </div>
                 @if(request('department'))
                 <div>
-                    <span class="text-slate-400 block text-xs uppercase tracking-wider mb-1">แผนก</span>
+                    <span class="text-primary-400 block text-xs uppercase tracking-wider mb-1">แผนก</span>
                     <span class="font-medium">{{ request('department') }}</span>
                 </div>
                 @endif
                 @if(request('employee_id'))
                 <div>
-                    <span class="text-slate-400 block text-xs uppercase tracking-wider mb-1">ยศ ชื่อ - นามสกุล</span>
+                    <span class="text-primary-400 block text-xs uppercase tracking-wider mb-1">ยศ ชื่อ - นามสกุล</span>
                     <span class="font-medium">ระบุรายบุคคล</span>
                 </div>
                 @endif
@@ -88,16 +88,16 @@
             $late = collect($attendances)->where('status', 'late')->count();
             $absent = collect($attendances)->whereIn('status', ['absent', 'missing'])->count();
         @endphp
-        <div class="grid grid-cols-4 border-b border-slate-200 bg-slate-50 print:bg-slate-50">
-            <div class="p-4 text-center border-r border-slate-200">
-                <div class="text-xs text-slate-500 uppercase font-bold tracking-wider">รายการทั้งหมด</div>
-                <div class="text-2xl font-bold text-slate-700 mt-1">{{ $total }}</div>
+        <div class="grid grid-cols-4 border-b border-primary-100 bg-background print:bg-background">
+            <div class="p-4 text-center border-r border-primary-100">
+                <div class="text-xs text-primary-600/70 uppercase font-bold tracking-wider">รายการทั้งหมด</div>
+                <div class="text-2xl font-bold text-text mt-1">{{ $total }}</div>
             </div>
-            <div class="p-4 text-center border-r border-slate-200">
+            <div class="p-4 text-center border-r border-primary-100">
                 <div class="text-xs text-emerald-600 uppercase font-bold tracking-wider">ปกติ</div>
                 <div class="text-2xl font-bold text-emerald-600 mt-1">{{ $present }}</div>
             </div>
-            <div class="p-4 text-center border-r border-slate-200">
+            <div class="p-4 text-center border-r border-primary-100">
                 <div class="text-xs text-amber-600 uppercase font-bold tracking-wider">มาสาย</div>
                 <div class="text-2xl font-bold text-amber-600 mt-1">{{ $late }}</div>
             </div>
@@ -111,7 +111,7 @@
         <div class="p-0">
             <table class="w-full text-sm text-left">
                 <thead>
-                    <tr class="bg-white border-b-2 border-slate-100 text-slate-500 font-semibold uppercase text-xs tracking-wider">
+                    <tr class="bg-card border-b-2 border-primary-50 text-primary-600/70 font-semibold uppercase text-xs tracking-wider">
                         <th class="px-2 py-4 w-8 text-center">ลำดับ</th>
                         <th class="px-2 py-4 w-20">วันที่</th>
                         <th class="px-2 py-4 w-32">ยศ ชื่อ - นามสกุล</th>
@@ -124,32 +124,32 @@
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @forelse($attendances as $index => $row)
-                    <tr class="page-break {{ $index % 2 == 0 ? 'bg-white' : 'bg-slate-50/50' }}">
-                        <td class="px-3 py-3 text-center text-slate-400 font-mono text-xs">{{ $index + 1 }}</td>
-                        <td class="px-3 py-3 font-medium text-slate-700">
+                    <tr class="page-break {{ $index % 2 == 0 ? 'bg-card' : 'bg-background/50' }}">
+                        <td class="px-3 py-3 text-center text-primary-400 font-mono text-xs">{{ $index + 1 }}</td>
+                        <td class="px-3 py-3 font-medium text-text">
                             {{ \Carbon\Carbon::parse($row->date)->locale('th')->isoFormat('D MMM YY') }}
                         </td>
                         <td class="px-3 py-3">
-                            <div class="font-bold text-slate-800">{{ $row->employee->first_name }} {{ $row->employee->last_name }}</div>
-                            <div class="text-xs text-slate-400 font-mono mt-0.5">{{ $row->employee->employee_code }}</div>
+                            <div class="font-bold text-text font-bold font-mono">{{ $row->employee->first_name }} {{ $row->employee->last_name }}</div>
+                            <div class="text-xs text-primary-400 font-mono mt-0.5">{{ $row->employee->employee_code }}</div>
                         </td>
-                        <td class="px-3 py-3 text-slate-600 text-xs">
-                            <span class="bg-slate-100 px-2 py-1 rounded text-slate-500 border border-slate-200">
+                        <td class="px-3 py-3 text-text/80 text-xs">
+                            <span class="bg-slate-100 px-2 py-1 rounded text-primary-600/70 border border-primary-100">
                                 {{ $row->employee->department ?? '-' }}
                             </span>
                         </td>
                         <td class="px-3 py-3 text-center">
                             @if($row->snapshot_path)
-                                <img src="{{ route('storage.file', ['path' => $row->snapshot_path]) }}" class="w-24 h-24 object-cover rounded-lg border border-slate-200 mx-auto">
+                                <img src="{{ route('storage.file', ['path' => $row->snapshot_path]) }}" class="w-24 h-24 object-cover rounded-lg border border-primary-100 mx-auto">
                             @else
-                                <div class="w-24 h-24 bg-slate-100 rounded-lg border border-slate-200 mx-auto flex items-center justify-center text-slate-300">
+                                <div class="w-24 h-24 bg-slate-100 rounded-lg border border-primary-100 mx-auto flex items-center justify-center text-slate-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
                                 </div>
                             @endif
                         </td>
-                        <td class="px-3 py-3 text-center font-mono font-medium text-slate-700">
+                        <td class="px-3 py-3 text-center font-mono font-medium text-text">
                             {{ $row->check_in_at ? $row->check_in_at->format('H:i') : '-' }}
                         </td>
                         <td class="px-3 py-3 text-center">
@@ -166,20 +166,20 @@
                                     ขาดงาน
                                 </span>
                             @elseif($row->status == 'missing')
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-500 border border-slate-200">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-primary-600/70 border border-primary-100">
                                     ไม่มาลงชื่อ
                                 </span>
                             @else
                                 -
                             @endif
                         </td>
-                        <td class="px-3 py-3 text-xs text-slate-600">
+                        <td class="px-3 py-3 text-xs text-text/80">
                             {{ $row->remarks }}
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="8" class="px-6 py-12 text-center text-slate-400 italic">
+                        <td colspan="8" class="px-6 py-12 text-center text-primary-400 italic">
                             ไม่พบข้อมูลในช่วงเวลานี้
                         </td>
                     </tr>
@@ -249,7 +249,7 @@
         </table>
 
         <!-- Footer -->
-        <div class="bg-slate-50 border-t border-slate-200 p-6 text-center text-xs text-slate-400 print:bg-white">
+        <div class="bg-background border-t border-primary-100 p-6 text-center text-xs text-primary-400 print:bg-card">
             <p>&copy; {{ date('Y') }} ระบบสแกนหน้าเข้างาน. All rights reserved.</p>
         </div>
     </div>

@@ -1,8 +1,8 @@
 @extends('layouts.guest')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-slate-50">
-    <div class="flex w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden m-4">
+<div class="min-h-screen flex items-center justify-center bg-background">
+    <div class="flex w-full max-w-5xl bg-card rounded-3xl shadow-2xl overflow-hidden m-4">
         
         <!-- Left Side: Branding & Abstract Art -->
         <div class="hidden lg:flex w-1/2 bg-gradient-to-br from-blue-50 to-indigo-50 relative items-center justify-center p-12">
@@ -14,11 +14,11 @@
             </div>
 
             <div class="relative z-10 text-center">
-                <div class="w-28 h-28 bg-white rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-xl shadow-blue-100 transform rotate-3 hover:rotate-6 transition-all duration-500">
+                <div class="w-28 h-28 bg-card rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-xl shadow-blue-100 transform rotate-3 hover:rotate-6 transition-all duration-500">
                     <i class="fa-solid fa-face-smile-wink text-6xl text-indigo-600"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-slate-800 mb-4 tracking-tight">ระบบบันทึกเวลาด้วยใบหน้า</h2>
-                <p class="text-slate-500 text-lg leading-relaxed font-light">
+                <h2 class="text-3xl font-bold text-text font-bold font-mono mb-4 tracking-tight font-mono">ระบบบันทึกเวลาด้วยใบหน้า</h2>
+                <p class="text-primary-600/70 text-lg leading-relaxed font-light">
                     สะดวก รวดเร็ว และแม่นยำ<br>
                     ยกระดับการจัดการองค์กรของคุณ
                 </p>
@@ -26,19 +26,19 @@
         </div>
 
         <!-- Right Side: Login Form -->
-        <div class="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 bg-white flex flex-col justify-center">
+        <div class="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 bg-card flex flex-col justify-center">
             
             <!-- Mobile Header -->
             <div class="lg:hidden text-center mb-8">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-indigo-50 text-indigo-600 mb-4">
                     <i class="fa-solid fa-face-smile-wink text-3xl"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-slate-800">Face Attendance</h2>
+                <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">Face Attendance</h2>
             </div>
 
             <div class="mb-10">
-                <h3 class="text-2xl font-bold text-slate-800 mb-2">ยินดีต้อนรับกลับ! 👋</h3>
-                <p class="text-slate-500 font-light">กรุณาเข้าสู่ระบบเพื่อเริ่มต้นใช้งาน</p>
+                <h3 class="text-2xl font-bold text-text font-bold font-mono mb-2 font-mono">ยินดีต้อนรับกลับ! 👋</h3>
+                <p class="text-primary-600/70 font-light">กรุณาเข้าสู่ระบบเพื่อเริ่มต้นใช้งาน</p>
             </div>
 
             <!-- Session Status -->
@@ -54,13 +54,13 @@
 
                 <!-- Email Address -->
                 <div class="space-y-2">
-                    <label for="email" class="text-sm font-medium text-slate-700">อีเมล</label>
+                    <label for="email" class="text-sm font-medium text-text">อีเมล</label>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fa-solid fa-envelope text-slate-400 group-focus-within:text-indigo-500 transition-colors"></i>
+                            <i class="fa-solid fa-envelope text-primary-400 group-focus-within:text-indigo-500 transition-colors"></i>
                         </div>
                         <input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username"
-                            class="pl-11 block w-full rounded-xl border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 focus:ring-indigo-500 py-3 transition-all text-sm placeholder:text-slate-400" 
+                            class="pl-11 block w-full rounded-xl border-primary-100 bg-background focus:bg-card focus:border-indigo-500 focus:ring-indigo-500 py-3 transition-all text-sm placeholder:text-primary-400" 
                             placeholder="name@company.com">
                     </div>
                     @error('email')
@@ -71,14 +71,14 @@
                 <!-- Password -->
                 <div class="space-y-2">
                     <div class="flex items-center justify-between">
-                        <label for="password" class="text-sm font-medium text-slate-700">รหัสผ่าน</label>
+                        <label for="password" class="text-sm font-medium text-text">รหัสผ่าน</label>
                     </div>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fa-solid fa-lock text-slate-400 group-focus-within:text-indigo-500 transition-colors"></i>
+                            <i class="fa-solid fa-lock text-primary-400 group-focus-within:text-indigo-500 transition-colors"></i>
                         </div>
                         <input id="password" type="password" name="password" required autocomplete="current-password"
-                            class="pl-11 block w-full rounded-xl border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 focus:ring-indigo-500 py-3 transition-all text-sm placeholder:text-slate-400"
+                            class="pl-11 block w-full rounded-xl border-primary-100 bg-background focus:bg-card focus:border-indigo-500 focus:ring-indigo-500 py-3 transition-all text-sm placeholder:text-primary-400"
                             placeholder="••••••••">
                     </div>
                     @error('password')
@@ -90,7 +90,7 @@
                 <div class="flex items-center justify-between pt-2">
                     <label for="remember_me" class="inline-flex items-center cursor-pointer">
                         <input id="remember_me" type="checkbox" class="rounded border-slate-300 text-indigo-600 shadow-sm focus:ring-indigo-500 cursor-pointer" name="remember">
-                        <span class="ml-2 text-sm text-slate-600 hover:text-slate-800 transition-colors">จดจำฉันไว้</span>
+                        <span class="ml-2 text-sm text-text/80 hover:text-text font-bold font-mono transition-colors">จดจำฉันไว้</span>
                     </label>
                     
                     @if (Route::has('password.request'))
@@ -101,7 +101,7 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                <button type="submit" class="w-full py-3.5 px-4 bg-primary-600 hover:bg-primary-700 text-white shadow-md shadow-primary-500/20 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
                     <span>เข้าสู่ระบบ</span>
                     <i class="fa-solid fa-arrow-right-long"></i>
                 </button>
@@ -109,7 +109,7 @@
 
             <!-- Footer -->
             <div class="mt-8 text-center">
-                <p class="text-xs text-slate-400 font-light">
+                <p class="text-xs text-primary-400 font-light">
                     &copy; {{ date('Y') }} Face Attendance System.
                 </p>
             </div>

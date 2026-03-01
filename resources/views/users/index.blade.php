@@ -5,10 +5,10 @@
 @section('content')
 <div class="space-y-6">
     <!-- Header -->
-    <div class="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+    <div class="flex justify-between items-center bg-card p-6 rounded-2xl shadow-sm border border-primary-50">
         <div>
-            <h2 class="text-xl font-bold text-slate-800">รายชื่อผู้ใช้งานระบบ</h2>
-            <p class="text-slate-500 text-sm mt-1">จัดการบัญชีผู้ดูแลระบบ (Admin) และเจ้าหน้าที่ (HR/Verifier/Approver)</p>
+            <h2 class="text-xl font-bold text-text font-bold font-mono font-mono">รายชื่อผู้ใช้งานระบบ</h2>
+            <p class="text-primary-600/70 text-sm mt-1">จัดการบัญชีผู้ดูแลระบบ (Admin) และเจ้าหน้าที่ (HR/Verifier/Approver)</p>
         </div>
         <a href="{{ route('users.create') }}" class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md font-medium">
             <i class="fa-solid fa-user-plus"></i> เพิ่มผู้ใช้งาน
@@ -27,11 +27,11 @@
     @endif
 
     <!-- Users Table -->
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+    <div class="bg-card rounded-2xl shadow-sm border border-primary-50 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left">
                 <thead>
-                    <tr class="bg-slate-50 border-b border-slate-100 text-slate-500 text-sm uppercase tracking-wider">
+                    <tr class="bg-background border-b border-primary-50 text-primary-600/70 text-sm uppercase tracking-wider">
                         <th class="px-6 py-4 font-semibold">ชื่อ-นามสกุล</th>
                         <th class="px-6 py-4 font-semibold">อีเมล</th>
                         <th class="px-6 py-4 font-semibold">บทบาท (Role)</th>
@@ -41,16 +41,16 @@
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @foreach($users as $user)
-                    <tr class="hover:bg-slate-50 transition-colors">
+                    <tr class="hover:bg-background transition-colors">
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold border border-slate-200">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-text/80 font-bold border border-primary-100">
                                     {{ substr($user->name, 0, 1) }}
                                 </div>
-                                <span class="font-medium text-slate-800">{{ $user->name }}</span>
+                                <span class="font-medium text-text font-bold font-mono">{{ $user->name }}</span>
                             </div>
                         </td>
-                        <td class="px-6 py-4 text-slate-600">{{ $user->email }}</td>
+                        <td class="px-6 py-4 text-text/80">{{ $user->email }}</td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 capitalize">
                                 {{ $user->role }}
@@ -60,19 +60,19 @@
                             @if($user->signature_path)
                                 <span class="text-green-600 text-sm flex items-center gap-1"><i class="fa-solid fa-check"></i> มีแล้ว</span>
                             @else
-                                <span class="text-slate-400 text-sm">ยังไม่มี</span>
+                                <span class="text-primary-400 text-sm">ยังไม่มี</span>
                             @endif
                         </td>
                         <td class="px-6 py-4 text-right">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('users.edit', $user) }}" class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-50 rounded-lg transition-colors" title="แก้ไข">
+                                <a href="{{ route('users.edit', $user) }}" class="p-2 text-primary-400 hover:text-amber-500 hover:bg-amber-50 rounded-lg transition-colors" title="แก้ไข">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 @if(auth()->id() !== $user->id)
                                 <form action="{{ route('users.destroy', $user) }}" method="POST" onsubmit="return confirm('ยืนยันการลบผู้ใช้งานนี้?');" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors" title="ลบ">
+                                    <button type="submit" class="p-2 text-primary-400 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-colors" title="ลบ">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                 </form>
@@ -84,7 +84,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="p-4 border-t border-slate-100">
+        <div class="p-4 border-t border-primary-50">
             {{ $users->links() }}
         </div>
     </div>

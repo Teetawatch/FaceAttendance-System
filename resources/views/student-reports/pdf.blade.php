@@ -28,7 +28,7 @@
         }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen p-8 text-slate-800">
+<body class="bg-slate-100 min-h-screen p-8 text-text font-bold font-mono">
 
     <!-- Print Controls -->
     <div class="no-print fixed top-6 right-6 flex gap-3 z-50">
@@ -36,17 +36,17 @@
             <i class="fa-solid fa-print"></i>
             พิมพ์รายงาน
         </button>
-        <button onclick="window.close()" class="bg-white text-slate-600 px-5 py-2.5 rounded-full shadow-lg hover:bg-slate-50 font-semibold transition-all">
+        <button onclick="window.close()" class="bg-card text-text/80 px-5 py-2.5 rounded-full shadow-lg hover:bg-background font-semibold transition-all">
             ปิด
         </button>
     </div>
 
     <!-- Filter Controls -->
-    <div class="no-print max-w-[1200px] mx-auto mb-6 bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+    <div class="no-print max-w-[1200px] mx-auto mb-6 bg-card rounded-xl shadow-sm border border-primary-100 p-4">
         <form action="{{ route('student-reports.pdf') }}" method="GET" class="flex flex-col md:flex-row gap-4 items-end">
             <div class="flex-1">
-                <label class="text-xs text-slate-500 block mb-1">หลักสูตร</label>
-                <select name="course_id" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
+                <label class="text-xs text-primary-600/70 block mb-1">หลักสูตร</label>
+                <select name="course_id" class="w-full px-4 py-2.5 bg-background border border-primary-100 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
                     <option value="">-- ทุกหลักสูตร --</option>
                     @foreach($courses as $course)
                         <option value="{{ $course->id }}" {{ $courseId == $course->id ? 'selected' : '' }}>
@@ -56,9 +56,9 @@
                 </select>
             </div>
             <div>
-                <label class="text-xs text-slate-500 block mb-1">วันที่</label>
+                <label class="text-xs text-primary-600/70 block mb-1">วันที่</label>
                 <input type="date" name="date" value="{{ $date }}" 
-                       class="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
+                       class="px-4 py-2.5 bg-background border border-primary-100 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
             </div>
             <button type="submit" class="px-6 py-2.5 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800 transition-colors">
                 <i class="fa-solid fa-search mr-1"></i> แสดงรายงาน
@@ -67,7 +67,7 @@
     </div>
 
     <!-- Report Container -->
-    <div class="max-w-[1200px] mx-auto bg-white shadow-xl rounded-lg overflow-hidden print:shadow-none print:w-full print:max-w-none print:rounded-none">
+    <div class="max-w-[1200px] mx-auto bg-card shadow-xl rounded-lg overflow-hidden print:shadow-none print:w-full print:max-w-none print:rounded-none">
         
         <!-- Header -->
         <div class="bg-gradient-to-r from-slate-800 to-slate-700 text-white p-8 print:bg-slate-800">
@@ -78,38 +78,38 @@
                 </div>
                 <div class="text-right">
                     <div class="text-3xl font-bold text-blue-400">REPORT</div>
-                    <p class="text-xs text-slate-400 mt-1">พิมพ์เมื่อ: {{ \Carbon\Carbon::now()->locale('th')->isoFormat('D MMMM YYYY HH:mm') }}</p>
+                    <p class="text-xs text-primary-400 mt-1">พิมพ์เมื่อ: {{ \Carbon\Carbon::now()->locale('th')->isoFormat('D MMMM YYYY HH:mm') }}</p>
                 </div>
             </div>
             
             <!-- Report Info -->
             <div class="mt-6 flex flex-wrap gap-6 text-sm border-t border-slate-600 pt-6">
                 <div>
-                    <span class="text-slate-400 block text-xs uppercase tracking-wider mb-1">หลักสูตร</span>
+                    <span class="text-primary-400 block text-xs uppercase tracking-wider mb-1">หลักสูตร</span>
                     <span class="font-medium">{{ $courseName }}</span>
                 </div>
                 <div>
-                    <span class="text-slate-400 block text-xs uppercase tracking-wider mb-1">วันที่</span>
+                    <span class="text-primary-400 block text-xs uppercase tracking-wider mb-1">วันที่</span>
                     <span class="font-medium">{{ \Carbon\Carbon::parse($date)->locale('th')->isoFormat('D MMMM YYYY') }}</span>
                 </div>
                 <div>
-                    <span class="text-slate-400 block text-xs uppercase tracking-wider mb-1">จำนวนนักเรียน</span>
+                    <span class="text-primary-400 block text-xs uppercase tracking-wider mb-1">จำนวนนักเรียน</span>
                     <span class="font-medium">{{ count($studentLogs) }} คน</span>
                 </div>
             </div>
         </div>
 
         <!-- Summary Stats -->
-        <div class="grid grid-cols-4 border-b border-slate-200 bg-slate-50 print:bg-slate-50">
-            <div class="p-4 text-center border-r border-slate-200">
+        <div class="grid grid-cols-4 border-b border-primary-100 bg-background print:bg-background">
+            <div class="p-4 text-center border-r border-primary-100">
                 <div class="text-xs text-blue-600 uppercase font-bold tracking-wider">นักเรียนทั้งหมด</div>
                 <div class="text-2xl font-bold text-blue-600 mt-1">{{ $totalStudents }}</div>
             </div>
-            <div class="p-4 text-center border-r border-slate-200">
+            <div class="p-4 text-center border-r border-primary-100">
                 <div class="text-xs text-emerald-600 uppercase font-bold tracking-wider">ปกติ</div>
                 <div class="text-2xl font-bold text-emerald-600 mt-1">{{ $presentCount }}</div>
             </div>
-            <div class="p-4 text-center border-r border-slate-200">
+            <div class="p-4 text-center border-r border-primary-100">
                 <div class="text-xs text-amber-600 uppercase font-bold tracking-wider">มาสาย</div>
                 <div class="text-2xl font-bold text-amber-600 mt-1">{{ $lateCount }}</div>
             </div>
@@ -123,11 +123,11 @@
         <div class="p-0">
             <table class="w-full text-sm text-left">
                 <thead>
-                    <tr class="bg-white border-b-2 border-slate-100 text-slate-500 font-semibold uppercase text-xs tracking-wider">
+                    <tr class="bg-card border-b-2 border-primary-50 text-primary-600/70 font-semibold uppercase text-xs tracking-wider">
                         <th class="px-3 py-4 w-12 text-center">ลำดับ</th>
                         <th class="px-3 py-4 w-48">ชื่อ-นามสกุล</th>
-                        <th class="px-3 py-4 w-24 text-center">เวลาเช้า<br><span class="text-[10px] font-normal text-slate-400">(05:30-08:00)</span></th>
-                        <th class="px-3 py-4 w-24 text-center">เวลาบ่าย<br><span class="text-[10px] font-normal text-slate-400">(12:30-13:00)</span></th>
+                        <th class="px-3 py-4 w-24 text-center">เวลาเช้า<br><span class="text-[10px] font-normal text-primary-400">(05:30-08:00)</span></th>
+                        <th class="px-3 py-4 w-24 text-center">เวลาบ่าย<br><span class="text-[10px] font-normal text-primary-400">(12:30-13:00)</span></th>
                         <th class="px-3 py-4 w-32 text-center">รูปสแกนเช้า</th>
                         <th class="px-3 py-4 w-32 text-center">รูปสแกนบ่าย</th>
                         <th class="px-3 py-4 w-24 text-center">สถานะ</th>
@@ -135,15 +135,15 @@
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @forelse($studentLogs as $index => $row)
-                    <tr class="page-break {{ $index % 2 == 0 ? 'bg-white' : 'bg-slate-50/50' }}">
-                        <td class="px-3 py-3 text-center text-slate-400 font-mono text-xs">{{ $index + 1 }}</td>
+                    <tr class="page-break {{ $index % 2 == 0 ? 'bg-card' : 'bg-background/50' }}">
+                        <td class="px-3 py-3 text-center text-primary-400 font-mono text-xs">{{ $index + 1 }}</td>
                         <td class="px-3 py-3">
-                            <div class="font-bold text-slate-800">{{ $row['student']->first_name }} {{ $row['student']->last_name }}</div>
-                            <div class="text-xs text-slate-400 font-mono mt-0.5">{{ $row['student']->student_code }}</div>
+                            <div class="font-bold text-text font-bold font-mono">{{ $row['student']->first_name }} {{ $row['student']->last_name }}</div>
+                            <div class="text-xs text-primary-400 font-mono mt-0.5">{{ $row['student']->student_code }}</div>
                         </td>
                         <td class="px-3 py-3 text-center">
                             @if($row['morning'])
-                                <span class="font-mono font-medium {{ $row['morning_late'] ? 'text-amber-600' : 'text-slate-700' }}">
+                                <span class="font-mono font-medium {{ $row['morning_late'] ? 'text-amber-600' : 'text-text' }}">
                                     {{ $row['morning']->scan_time->format('H:i:s') }}
                                 </span>
                                 @if($row['morning_late'])
@@ -155,7 +155,7 @@
                         </td>
                         <td class="px-3 py-3 text-center">
                             @if($row['afternoon'])
-                                <span class="font-mono font-medium {{ $row['afternoon_late'] ? 'text-amber-600' : 'text-slate-700' }}">
+                                <span class="font-mono font-medium {{ $row['afternoon_late'] ? 'text-amber-600' : 'text-text' }}">
                                     {{ $row['afternoon']->scan_time->format('H:i:s') }}
                                 </span>
                                 @if($row['afternoon_late'])
@@ -168,9 +168,9 @@
                         <td class="px-3 py-3 text-center">
                             @if($row['morning'] && $row['morning']->snapshot_path)
                                 <img src="{{ route('storage.file', ['path' => $row['morning']->snapshot_path]) }}" 
-                                     class="w-20 h-20 object-cover rounded-lg border {{ $row['morning_late'] ? 'border-amber-300' : 'border-slate-200' }} mx-auto" alt="Morning">
+                                     class="w-20 h-20 object-cover rounded-lg border {{ $row['morning_late'] ? 'border-amber-300' : 'border-primary-100' }} mx-auto" alt="Morning">
                             @else
-                                <div class="w-20 h-20 bg-slate-100 rounded-lg border border-slate-200 mx-auto flex items-center justify-center text-slate-300">
+                                <div class="w-20 h-20 bg-slate-100 rounded-lg border border-primary-100 mx-auto flex items-center justify-center text-slate-300">
                                     <i class="fa-solid fa-image text-xl"></i>
                                 </div>
                             @endif
@@ -178,9 +178,9 @@
                         <td class="px-3 py-3 text-center">
                             @if($row['afternoon'] && $row['afternoon']->snapshot_path)
                                 <img src="{{ route('storage.file', ['path' => $row['afternoon']->snapshot_path]) }}" 
-                                     class="w-20 h-20 object-cover rounded-lg border {{ $row['afternoon_late'] ? 'border-amber-300' : 'border-slate-200' }} mx-auto" alt="Afternoon">
+                                     class="w-20 h-20 object-cover rounded-lg border {{ $row['afternoon_late'] ? 'border-amber-300' : 'border-primary-100' }} mx-auto" alt="Afternoon">
                             @else
-                                <div class="w-20 h-20 bg-slate-100 rounded-lg border border-slate-200 mx-auto flex items-center justify-center text-slate-300">
+                                <div class="w-20 h-20 bg-slate-100 rounded-lg border border-primary-100 mx-auto flex items-center justify-center text-slate-300">
                                     <i class="fa-solid fa-image text-xl"></i>
                                 </div>
                             @endif
@@ -206,8 +206,8 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="px-6 py-16 text-center text-slate-400 italic">
-                            <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <td colspan="7" class="px-6 py-16 text-center text-primary-400 italic">
+                            <div class="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i class="fa-solid fa-clipboard-list text-2xl text-slate-300"></i>
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลการลงเวลาในวันนี้</p>
@@ -220,7 +220,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="bg-slate-50 border-t border-slate-200 p-6 text-center text-xs text-slate-400 print:bg-white">
+        <div class="bg-background border-t border-primary-100 p-6 text-center text-xs text-primary-400 print:bg-card">
             <p>&copy; {{ date('Y') }} ระบบสแกนหน้าเข้าเรียน. All rights reserved.</p>
         </div>
     </div>

@@ -7,8 +7,8 @@
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-            <h2 class="text-2xl font-bold text-slate-800">รายงานการลงเวลา</h2>
-            <p class="text-slate-500 text-sm">ดูข้อมูลสรุปและส่งออกรายงานเป็นไฟล์ Excel</p>
+            <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">รายงานการลงเวลา</h2>
+            <p class="text-primary-600/70 text-sm">ดูข้อมูลสรุปและส่งออกรายงานเป็นไฟล์ Excel</p>
         </div>
         <div class="flex gap-2">
             <!-- PDF Export Form -->
@@ -53,32 +53,32 @@
     </div>
 
     <!-- Filters -->
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+    <div class="bg-card rounded-2xl shadow-sm border border-primary-50 p-6">
         <form action="{{ route('reports.index') }}" method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
             
             <!-- Date Range -->
             <div>
-                <label class="block text-xs font-medium text-slate-700 mb-1">ตั้งแต่วันที่</label>
+                <label class="block text-xs font-medium text-text mb-1">ตั้งแต่วันที่</label>
                 <input type="date" name="start_date" value="{{ request('start_date', \Carbon\Carbon::now()->format('Y-m-d')) }}" 
-                       class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
+                       class="w-full bg-background border border-primary-100 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
             </div>
             <div>
-                <label class="block text-xs font-medium text-slate-700 mb-1">ถึงวันที่</label>
+                <label class="block text-xs font-medium text-text mb-1">ถึงวันที่</label>
                 <input type="date" name="end_date" value="{{ request('end_date', \Carbon\Carbon::now()->format('Y-m-d')) }}" 
-                       class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
+                       class="w-full bg-background border border-primary-100 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
             </div>
 
             <!-- Search -->
             <div>
-                <label class="block text-xs font-medium text-slate-700 mb-1">ค้นหา</label>
+                <label class="block text-xs font-medium text-text mb-1">ค้นหา</label>
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="ชื่อ หรือ รหัสพนักงาน..."
-                       class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
+                       class="w-full bg-background border border-primary-100 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
             </div>
 
             <!-- Employee -->
             <div>
-                <label class="block text-xs font-medium text-slate-700 mb-1">พนักงาน</label>
-                <select name="employee_id" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
+                <label class="block text-xs font-medium text-text mb-1">พนักงาน</label>
+                <select name="employee_id" class="w-full bg-background border border-primary-100 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
                     <option value="">ทั้งหมด</option>
                     @foreach($employees as $emp)
                         <option value="{{ $emp->id }}" {{ request('employee_id') == $emp->id ? 'selected' : '' }}>
@@ -90,8 +90,8 @@
 
             <!-- Department -->
             <div>
-                <label class="block text-xs font-medium text-slate-700 mb-1">แผนก</label>
-                <select name="department" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
+                <label class="block text-xs font-medium text-text mb-1">แผนก</label>
+                <select name="department" class="w-full bg-background border border-primary-100 rounded-lg text-sm px-3 py-2 focus:ring-primary-500 focus:border-primary-500">
                     <option value="">ทั้งหมด</option>
                     @foreach($departments as $dept)
                         <option value="{{ $dept }}" {{ request('department') == $dept ? 'selected' : '' }}>
@@ -103,7 +103,7 @@
 
             <!-- Submit -->
             <div class="md:col-span-4 flex justify-end mt-2">
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors">
+                <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors">
                     <i class="fa-solid fa-filter mr-1"></i> กรองข้อมูล
                 </button>
             </div>
@@ -111,10 +111,10 @@
     </div>
 
     <!-- Data Table -->
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+    <div class="bg-card rounded-2xl shadow-sm border border-primary-50 overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm text-slate-600">
-                <thead class="bg-slate-50/50 text-slate-500 font-semibold border-b border-slate-100">
+            <table class="w-full text-left text-sm text-text/80">
+                <thead class="bg-background/50 text-primary-600/70 font-semibold border-b border-primary-50">
                     <tr>
                         <th class="px-6 py-4">วันที่</th>
                         <th class="px-6 py-4">พนักงาน</th>
@@ -126,13 +126,13 @@
                 </thead>
                 <tbody class="divide-y divide-slate-50">
                     @forelse($attendances as $row)
-                    <tr class="hover:bg-slate-50/80 transition-colors">
-                        <td class="px-6 py-4 font-mono text-slate-500">
+                    <tr class="hover:bg-background/80 transition-colors">
+                        <td class="px-6 py-4 font-mono text-primary-600/70">
                             {{ \Carbon\Carbon::parse($row->date)->locale('th')->isoFormat('D MMM YY') }}
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200">
+                                <div class="w-8 h-8 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-primary-100">
                                     @if($row->employee->photo_path)
                                         <img src="{{ route('storage.file', ['path' => $row->employee->photo_path]) }}" class="w-full h-full object-cover">
                                     @else
@@ -142,8 +142,8 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <p class="font-bold text-slate-700">{{ $row->employee->first_name }} {{ $row->employee->last_name }}</p>
-                                    <p class="text-xs text-slate-400">{{ $row->employee->employee_code }}</p>
+                                    <p class="font-bold text-text">{{ $row->employee->first_name }} {{ $row->employee->last_name }}</p>
+                                    <p class="text-xs text-primary-400">{{ $row->employee->employee_code }}</p>
                                 </div>
                             </div>
                         </td>
@@ -153,7 +153,7 @@
                         <td class="px-6 py-4 font-mono text-orange-500 font-medium">
                             {{ $row->check_out_at ? $row->check_out_at->format('H:i') : '-' }}
                         </td>
-                        <td class="px-6 py-4 font-mono text-slate-500">
+                        <td class="px-6 py-4 font-mono text-primary-600/70">
                             {{ $row->total_work_minutes ? floor($row->total_work_minutes / 60) . ' ชม. ' . ($row->total_work_minutes % 60) . ' นาที' : '-' }}
                         </td>
                         <td class="px-6 py-4 text-center">
@@ -166,24 +166,24 @@
                             @elseif($row->status == 'leave')
                                 <span class="inline-flex items-center px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold border border-blue-100">ลางาน</span>
                             @else
-                                <span class="inline-flex items-center px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold border border-slate-200">-</span>
+                                <span class="inline-flex items-center px-2.5 py-1 bg-slate-100 text-text/80 rounded-full text-xs font-bold border border-primary-100">-</span>
                             @endif
                         </td>
                         <td class="px-6 py-4 text-right">
                            <button onclick='openEditModal(@json($row))' 
-                                   class="text-slate-400 hover:text-blue-600 transition-colors p-2 rounded-full hover:bg-blue-50">
+                                   class="text-primary-400 hover:text-blue-600 transition-colors p-2 rounded-full hover:bg-blue-50">
                                <i class="fa-solid fa-pen-to-square"></i>
                            </button>
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="px-6 py-16 text-center text-slate-400">
-                            <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <td colspan="7" class="px-6 py-16 text-center text-primary-400">
+                            <div class="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i class="fa-solid fa-file-circle-xmark text-2xl text-slate-300"></i>
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลการลงเวลา</p>
-                            <p class="text-sm mt-1 text-slate-400">ลองปรับเปลี่ยนเงื่อนไขการค้นหา</p>
+                            <p class="text-sm mt-1 text-primary-400">ลองปรับเปลี่ยนเงื่อนไขการค้นหา</p>
                         </td>
                     </tr>
                     @endforelse
@@ -192,7 +192,7 @@
         </div>
         
         <!-- Pagination -->
-        <div class="px-6 py-4 border-t border-slate-100 bg-slate-50/50">
+        <div class="px-6 py-4 border-t border-primary-50 bg-background/50">
             {{ $attendances->links() }}
         </div>
     </div>
@@ -204,12 +204,12 @@
 
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
       <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-        <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="relative transform overflow-hidden rounded-2xl bg-card text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
           
           <!-- Header -->
-          <div class="bg-slate-50 px-4 py-3 sm:px-6 border-b border-slate-100 flex justify-between items-center">
-            <h3 class="text-base font-semibold leading-6 text-slate-900" id="modal-title">แก้ไขข้อมูลการลงเวลา</h3>
-            <button type="button" onclick="closeEditModal()" class="text-slate-400 hover:text-slate-500 transition-colors">
+          <div class="bg-background px-4 py-3 sm:px-6 border-b border-primary-50 flex justify-between items-center">
+            <h3 class="text-base font-semibold leading-6 text-slate-900 font-mono" id="modal-title">แก้ไขข้อมูลการลงเวลา</h3>
+            <button type="button" onclick="closeEditModal()" class="text-primary-400 hover:text-primary-600/70 transition-colors">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
           </div>
@@ -225,13 +225,13 @@
 
               <div class="px-4 py-5 sm:p-6 space-y-4">
                   <!-- Employee Info -->
-                  <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
-                      <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-400">
+                  <div class="flex items-center gap-3 p-3 bg-background rounded-xl border border-primary-50">
+                      <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-primary-400">
                           <i class="fa-solid fa-user"></i>
                       </div>
                       <div>
-                          <p class="font-bold text-slate-700" id="modalEmployeeName">Loading...</p>
-                          <p class="text-xs text-slate-500" id="modalDateDisplay">Loading...</p>
+                          <p class="font-bold text-text" id="modalEmployeeName">Loading...</p>
+                          <p class="text-xs text-primary-600/70" id="modalDateDisplay">Loading...</p>
                       </div>
                   </div>
 
@@ -251,15 +251,15 @@
                   <div>
                       <label for="remarks" class="block text-sm font-medium leading-6 text-slate-900">หมายเหตุ</label>
                       <div class="mt-2">
-                        <textarea id="remarks" name="remarks" rows="3" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" placeholder="ระบุสาเหตุการลาป่วย, ลากิจ หรือเหตุผลอื่นๆ..."></textarea>
+                        <textarea id="remarks" name="remarks" rows="3" class="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-primary-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" placeholder="ระบุสาเหตุการลาป่วย, ลากิจ หรือเหตุผลอื่นๆ..."></textarea>
                       </div>
                   </div>
               </div>
 
               <!-- Footer -->
-              <div class="bg-slate-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 gap-2">
+              <div class="bg-background px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 gap-2">
                 <button type="submit" class="inline-flex w-full justify-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto transition-all">บันทึกข้อมูล</button>
-                <button type="button" onclick="closeEditModal()" class="mt-3 inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50 sm:mt-0 sm:w-auto transition-all">ยกเลิก</button>
+                <button type="button" onclick="closeEditModal()" class="mt-3 inline-flex w-full justify-center rounded-lg bg-card px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-background sm:mt-0 sm:w-auto transition-all">ยกเลิก</button>
               </div>
           </form>
         </div>

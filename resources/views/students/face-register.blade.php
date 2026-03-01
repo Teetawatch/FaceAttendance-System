@@ -12,8 +12,8 @@
                 <i class="fa-solid fa-user-graduate text-white text-xl"></i>
             </div>
             <div>
-                <h1 class="text-2xl font-bold text-slate-800">ลงทะเบียนใบหน้านักเรียน</h1>
-                <p class="text-slate-500 text-sm">ถ่ายรูปใบหน้านักเรียนจากกล้องโดยตรง เพื่อใช้ในการสแกนลงเวลา</p>
+                <h1 class="text-2xl font-bold text-text font-bold font-mono">ลงทะเบียนใบหน้านักเรียน</h1>
+                <p class="text-primary-600/70 text-sm">ถ่ายรูปใบหน้านักเรียนจากกล้องโดยตรง เพื่อใช้ในการสแกนลงเวลา</p>
             </div>
         </div>
     </div>
@@ -21,17 +21,17 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         <!-- Left: Camera Section -->
-        <div class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
+        <div class="bg-card rounded-3xl shadow-lg border border-primary-50 overflow-hidden">
             
             <!-- Camera Header -->
-            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-slate-50 to-white">
+            <div class="px-6 py-4 border-b border-primary-50 flex items-center justify-between bg-gradient-to-r from-slate-50 to-white">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center">
                         <i class="fa-solid fa-camera text-white"></i>
                     </div>
                     <div>
-                        <h2 class="font-bold text-slate-800">กล้อง</h2>
-                        <p class="text-xs text-slate-400" x-text="cameraStatus"></p>
+                        <h2 class="font-bold text-text font-bold font-mono font-mono">กล้อง</h2>
+                        <p class="text-xs text-primary-400" x-text="cameraStatus"></p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
@@ -52,7 +52,7 @@
                 <!-- Camera Loading -->
                 <div x-show="!isCameraReady" class="absolute inset-0 bg-slate-900 flex flex-col items-center justify-center text-white">
                     <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4 text-emerald-400"></i>
-                    <p class="text-sm text-slate-400">กำลังเปิดกล้อง...</p>
+                    <p class="text-sm text-primary-400">กำลังเปิดกล้อง...</p>
                 </div>
 
                 <!-- Face Guide Overlay -->
@@ -123,16 +123,16 @@
         <div class="space-y-6">
             
             <!-- Course Filter -->
-            <div class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white">
-                    <h2 class="font-bold text-slate-800 flex items-center gap-2">
+            <div class="bg-card rounded-3xl shadow-lg border border-primary-50 overflow-hidden">
+                <div class="px-6 py-4 border-b border-primary-50 bg-gradient-to-r from-slate-50 to-white">
+                    <h2 class="font-bold text-text font-bold font-mono flex items-center gap-2 font-mono">
                         <i class="fa-solid fa-filter text-emerald-500"></i>
                         กรองตามหลักสูตร
                     </h2>
                 </div>
                 <div class="p-6">
                     <select x-model="selectedCourseId" @change="filterByCourse()"
-                            class="w-full bg-slate-50 border-0 text-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-500">
+                            class="w-full bg-background border-0 text-text rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-500">
                         <option value="">-- แสดงนักเรียนทุกหลักสูตร --</option>
                         @foreach($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -142,22 +142,22 @@
             </div>
 
             <!-- Student Selector Card -->
-            <div class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white">
-                    <h2 class="font-bold text-slate-800 flex items-center gap-2">
+            <div class="bg-card rounded-3xl shadow-lg border border-primary-50 overflow-hidden">
+                <div class="px-6 py-4 border-b border-primary-50 bg-gradient-to-r from-slate-50 to-white">
+                    <h2 class="font-bold text-text font-bold font-mono flex items-center gap-2 font-mono">
                         <i class="fa-solid fa-user-graduate text-emerald-500"></i>
                         เลือกนักเรียน
-                        <span class="ml-auto text-sm font-normal text-slate-400" x-text="'(' + filteredStudents.length + ' คน)'"></span>
+                        <span class="ml-auto text-sm font-normal text-primary-400" x-text="'(' + filteredStudents.length + ' คน)'"></span>
                     </h2>
                 </div>
                 <div class="p-6">
                     <!-- Search Input -->
                     <div class="relative mb-4">
-                        <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-primary-400"></i>
                         <input type="text" x-model="searchQuery" 
                                @input="filterStudents()"
                                placeholder="ค้นหานักเรียน..." 
-                               class="w-full bg-slate-50 border-0 text-slate-700 rounded-xl pl-11 pr-4 py-3 focus:ring-2 focus:ring-emerald-500">
+                               class="w-full bg-background border-0 text-text rounded-xl pl-11 pr-4 py-3 focus:ring-2 focus:ring-emerald-500">
                     </div>
 
                     <!-- Student List -->
@@ -166,7 +166,7 @@
                             <div @click="selectStudent(student)" 
                                  :class="selectedStudent?.id === student.id 
                                      ? 'bg-emerald-50 border-emerald-300 ring-2 ring-emerald-500/20' 
-                                     : 'bg-white border-slate-200 hover:border-emerald-200 hover:bg-slate-50'"
+                                     : 'bg-card border-primary-100 hover:border-emerald-200 hover:bg-background'"
                                  class="flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-all">
                                 
                                 <!-- Photo -->
@@ -176,7 +176,7 @@
                                         <img :src="student.photo_url" class="w-full h-full object-cover" alt="">
                                     </template>
                                     <template x-if="!student.has_photo">
-                                        <div class="w-full h-full flex items-center justify-center text-slate-400">
+                                        <div class="w-full h-full flex items-center justify-center text-primary-400">
                                             <i class="fa-solid fa-user-graduate text-xl"></i>
                                         </div>
                                     </template>
@@ -184,8 +184,8 @@
 
                                 <!-- Info -->
                                 <div class="flex-1 min-w-0">
-                                    <p class="font-bold text-slate-700 truncate" x-text="student.name"></p>
-                                    <p class="text-sm text-slate-400" x-text="student.student_code"></p>
+                                    <p class="font-bold text-text truncate" x-text="student.name"></p>
+                                    <p class="text-sm text-primary-400" x-text="student.student_code"></p>
                                     <p class="text-xs text-emerald-600" x-text="student.course_name"></p>
                                 </div>
 
@@ -210,7 +210,7 @@
                         </template>
 
                         <!-- Empty State -->
-                        <div x-show="filteredStudents.length === 0" class="text-center py-8 text-slate-400">
+                        <div x-show="filteredStudents.length === 0" class="text-center py-8 text-primary-400">
                             <i class="fa-solid fa-users-slash text-3xl mb-3"></i>
                             <p class="text-sm">ไม่พบนักเรียน</p>
                         </div>
@@ -226,7 +226,7 @@
                             <img :src="selectedStudent?.photo_url" class="w-full h-full object-cover" alt="">
                         </template>
                         <template x-if="!selectedStudent?.has_photo">
-                            <div class="w-full h-full flex items-center justify-center text-slate-400">
+                            <div class="w-full h-full flex items-center justify-center text-primary-400">
                                 <i class="fa-solid fa-user-graduate text-2xl"></i>
                             </div>
                         </template>
@@ -247,12 +247,12 @@
             </div>
 
             <!-- Instructions -->
-            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                <h3 class="font-bold text-slate-700 mb-4 flex items-center gap-2">
+            <div class="bg-background rounded-2xl p-6 border border-primary-50">
+                <h3 class="font-bold text-text mb-4 flex items-center gap-2 font-mono">
                     <i class="fa-solid fa-lightbulb text-amber-500"></i>
                     คำแนะนำในการถ่ายรูป
                 </h3>
-                <ul class="space-y-3 text-sm text-slate-600">
+                <ul class="space-y-3 text-sm text-text/80">
                     <li class="flex items-start gap-3">
                         <span class="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center text-xs flex-shrink-0 mt-0.5">1</span>
                         <span>เลือกหลักสูตรและนักเรียนจากรายการด้านบน</span>
@@ -284,7 +284,7 @@
          x-transition:leave-end="opacity-0 translate-y-4"
          class="fixed bottom-8 right-8 bg-emerald-600 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 z-50"
          style="display: none;">
-        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+        <div class="w-12 h-12 bg-card/20 rounded-xl flex items-center justify-center">
             <i class="fa-solid fa-check text-2xl"></i>
         </div>
         <div>

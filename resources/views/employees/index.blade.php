@@ -7,15 +7,15 @@
     <!-- Header & Action -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-            <h2 class="text-2xl font-bold text-slate-800">รายชื่อข้าราชการ ลูกจ้าง และพนักงานราชการ</h2>
-            <p class="text-slate-500 text-sm">จัดการข้อมูลพนักงานทั้งหมดในระบบ</p>
+            <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">รายชื่อข้าราชการ ลูกจ้าง และพนักงานราชการ</h2>
+            <p class="text-primary-600/70 text-sm">จัดการข้อมูลพนักงานทั้งหมดในระบบ</p>
         </div>
         <div class="flex items-center gap-3">
             <!-- Search (Optional - Visual for now unless implemented) -->
             <form action="{{ route('employees.index') }}" method="GET" class="relative hidden md:block">
-                <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm"></i>
                 <input type="text" name="search" placeholder="ค้นหาพนักงาน..." value="{{ request('search') }}" 
-                       class="pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent shadow-sm w-64">
+                       class="pl-9 pr-4 py-2 bg-card border border-primary-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent shadow-sm w-64">
             </form>
 
             <!-- Import Excel Button -->
@@ -23,7 +23,7 @@
                 <i class="fa-solid fa-file-import"></i> Import Excel
             </button>
 
-            <a href="{{ route('employees.create') }}" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
+            <a href="{{ route('employees.create') }}" class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
                 <i class="fa-solid fa-plus"></i> เพิ่มพนักงาน
             </a>
         </div>
@@ -58,10 +58,10 @@
     @endif
 
     <!-- Data Table -->
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+    <div class="bg-card rounded-2xl shadow-sm border border-primary-50 overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm text-slate-600">
-                <thead class="bg-slate-50/50 text-slate-500 font-semibold border-b border-slate-100">
+            <table class="w-full text-left text-sm text-text/80">
+                <thead class="bg-background/50 text-primary-600/70 font-semibold border-b border-primary-50">
                     <tr>
                         <th class="px-6 py-4">พนักงาน</th>
                         <th class="px-6 py-4">รหัส</th>
@@ -73,10 +73,10 @@
                 </thead>
                 <tbody class="divide-y divide-slate-50">
                     @forelse($employees as $employee)
-                    <tr class="hover:bg-slate-50/80 transition-colors group">
+                    <tr class="hover:bg-background/80 transition-colors group">
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200 group-hover:border-primary-200 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 border border-primary-100 group-hover:border-primary-200 transition-colors">
                                     @if($employee->photo_path)
                                         <img src="{{ route('storage.file', ['path' => $employee->photo_path]) }}" class="w-full h-full object-cover">
                                     @else
@@ -86,15 +86,15 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <p class="font-bold text-slate-700 group-hover:text-primary-700 transition-colors">{{ $employee->first_name }} {{ $employee->last_name }}</p>
-                                    <p class="text-xs text-slate-400">{{ $employee->email ?? '-' }}</p>
+                                    <p class="font-bold text-text group-hover:text-primary-700 transition-colors">{{ $employee->first_name }} {{ $employee->last_name }}</p>
+                                    <p class="text-xs text-primary-400">{{ $employee->email ?? '-' }}</p>
                                 </div>
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="font-mono text-slate-500 bg-slate-50 px-2 py-1 rounded text-xs border border-slate-100">{{ $employee->employee_code }}</span>
+                            <span class="font-mono text-primary-600/70 bg-background px-2 py-1 rounded text-xs border border-primary-50">{{ $employee->employee_code }}</span>
                         </td>
-                        <td class="px-6 py-4 text-slate-600">{{ $employee->position ?? '-' }}</td>
+                        <td class="px-6 py-4 text-text/80">{{ $employee->position ?? '-' }}</td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
                                 {{ $employee->department ?? '-' }}
@@ -106,20 +106,20 @@
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> ปกติ
                                 </span>
                             @else
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold border border-slate-200">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 text-text/80 rounded-full text-xs font-bold border border-primary-100">
                                     <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> ระงับ
                                 </span>
                             @endif
                         </td>
                         <td class="px-6 py-4 text-right">
                             <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <a href="{{ route('employees.edit', $employee) }}" class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-primary-600 hover:bg-primary-50 transition-all" title="แก้ไข">
+                                <a href="{{ route('employees.edit', $employee) }}" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-primary-600 hover:bg-primary-50 transition-all" title="แก้ไข">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <form action="{{ route('employees.destroy', $employee) }}" method="POST" onsubmit="return confirm('ยืนยันการลบข้อมูลพนักงาน?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-all" title="ลบ">
+                                    <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-rose-600 hover:bg-rose-50 transition-all" title="ลบ">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
@@ -128,12 +128,12 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="px-6 py-16 text-center text-slate-400">
-                            <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <td colspan="6" class="px-6 py-16 text-center text-primary-400">
+                            <div class="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i class="fa-solid fa-users-slash text-2xl text-slate-300"></i>
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลพนักงาน</p>
-                            <p class="text-sm mt-1 text-slate-400">ลองเพิ่มพนักงานใหม่ หรือค้นหาด้วยคำอื่น</p>
+                            <p class="text-sm mt-1 text-primary-400">ลองเพิ่มพนักงานใหม่ หรือค้นหาด้วยคำอื่น</p>
                         </td>
                     </tr>
                     @endforelse
@@ -142,7 +142,7 @@
         </div>
         
         <!-- Pagination -->
-        <div class="px-6 py-4 border-t border-slate-100 bg-slate-50/50">
+        <div class="px-6 py-4 border-t border-primary-50 bg-background/50">
             {{ $employees->links() }}
         </div>
     </div>
@@ -166,12 +166,12 @@
              x-transition:leave="transition ease-in duration-200"
              x-transition:leave-start="opacity-100 scale-100"
              x-transition:leave-end="opacity-0 scale-95"
-             class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+             class="bg-card rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
             
             <!-- Modal Header -->
             <div class="bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-4">
                 <div class="flex items-center justify-between">
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2 font-mono">
                         <i class="fa-solid fa-file-import"></i>
                         Import ข้อมูลพนักงานจาก Excel
                     </h3>
@@ -187,17 +187,17 @@
                 
                 <!-- File Upload -->
                 <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-2">เลือกไฟล์ Excel</label>
-                    <div class="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:border-emerald-400 transition-colors">
+                    <label class="block text-sm font-medium text-text mb-2">เลือกไฟล์ Excel</label>
+                    <div class="border-2 border-dashed border-primary-100 rounded-xl p-6 text-center hover:border-emerald-400 transition-colors">
                         <input type="file" name="file" accept=".xlsx,.xls,.csv" required
-                               class="block w-full text-sm text-slate-500
+                               class="block w-full text-sm text-primary-600/70
                                       file:mr-4 file:py-2 file:px-4
                                       file:rounded-full file:border-0
                                       file:text-sm file:font-semibold
                                       file:bg-emerald-50 file:text-emerald-700
                                       hover:file:bg-emerald-100
                                       cursor-pointer">
-                        <p class="text-xs text-slate-400 mt-2">รองรับไฟล์ .xlsx, .xls, .csv (ไม่เกิน 2MB)</p>
+                        <p class="text-xs text-primary-400 mt-2">รองรับไฟล์ .xlsx, .xls, .csv (ไม่เกิน 2MB)</p>
                     </div>
                     @error('file')
                         <p class="mt-1 text-sm text-rose-600">{{ $message }}</p>
@@ -205,12 +205,12 @@
                 </div>
                 
                 <!-- Format Info -->
-                <div class="bg-slate-50 rounded-xl p-4 text-sm">
-                    <h4 class="font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <div class="bg-background rounded-xl p-4 text-sm">
+                    <h4 class="font-semibold text-text mb-2 flex items-center gap-2">
                         <i class="fa-solid fa-info-circle text-blue-500"></i>
                         รูปแบบไฟล์ที่รองรับ
                     </h4>
-                    <ul class="text-slate-600 space-y-1 text-xs">
+                    <ul class="text-text/80 space-y-1 text-xs">
                         <li><strong>คอลัมน์ A:</strong> รหัสพนักงาน (จำเป็น)</li>
                         <li><strong>คอลัมน์ B:</strong> ชื่อจริง (จำเป็น)</li>
                         <li><strong>คอลัมน์ C:</strong> นามสกุล (จำเป็น)</li>
@@ -232,7 +232,7 @@
                 <!-- Actions -->
                 <div class="flex gap-3 pt-2">
                     <button type="button" @click="showImportModal = false" 
-                            class="flex-1 px-4 py-2.5 border border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 transition-colors font-medium">
+                            class="flex-1 px-4 py-2.5 border border-primary-100 text-text/80 rounded-xl hover:bg-background transition-colors font-medium">
                         ยกเลิก
                     </button>
                     <button type="submit" 
