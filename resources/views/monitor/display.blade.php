@@ -115,7 +115,7 @@
                  <!-- Empty State -->
                  <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-slate-50/30">
                      <div class="w-24 h-24 bg-card rounded-full shadow-sm flex items-center justify-center mb-4">
-                        <x-heroicon-o-star class="text-4xl text-slate-200 w-5"/>
+                        <x-heroicon-o-signal class="text-4xl text-slate-200 w-5"/>
                      </div>
                      <p class="font-medium text-primary-400">กำลังรอรับข้อมูล...</p>
                      <p class="text-sm text-slate-300 mt-1">ข้อมูลการสแกนจะปรากฏที่นี่ทันที</p>

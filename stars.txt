@@ -1,0 +1,26 @@
+L225: -                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm"></i>  --->  +                <x-heroicon-o-star class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm w-5"/>
+L352: -                <i class="fa-solid fa-hourglass-half"></i>  --->  +                <x-heroicon-o-star class="w-5"/>
+L368: -                <i class="fa-solid fa-person-running"></i>  --->  +                <x-heroicon-o-star class="w-5"/>
+L405: -                                    <i class="fa-solid fa-arrow-right-to-bracket text-green-500"></i>  --->  +                                    <x-heroicon-o-star class="text-green-500 w-5"/>
+L414: -                                    <i class="fa-solid fa-arrow-right-from-bracket text-orange-500"></i>  --->  +                                    <x-heroicon-o-star class="text-orange-500 w-5"/>
+L454: -                    <i class="fa-solid fa-face-smile-wink text-6xl text-indigo-600"></i>  --->  +                    <x-heroicon-o-star class="text-6xl text-indigo-600 w-5"/>
+L467: -                    <i class="fa-solid fa-face-smile-wink text-3xl"></i>  --->  +                    <x-heroicon-o-star class="text-3xl w-5"/>
+L509: -                            <i class="fa-solid fa-lock text-primary-400 group-focus-within:text-indigo-500 transition-colors"></i>  --->  +                            <x-heroicon-o-star class="text-primary-400 group-focus-within:text-indigo-500 transition-colors w-5"/>
+L530: -                    <i class="fa-solid fa-arrow-right-long"></i>  --->  +                    <x-heroicon-o-star class="w-5"/>
+L1119: -                                <i class="fa-solid fa-tablet-button text-2xl text-slate-300"></i>  --->  +                                <x-heroicon-o-star class="text-2xl text-slate-300 w-5"/>
+L1180: -                        <i class="fa-solid fa-briefcase"></i>  --->  +                        <x-heroicon-o-star class="w-5"/>
+L1238: -                                <i class="fa-solid fa-cloud-arrow-up text-slate-300 text-4xl mb-3 group-hover:text-primary-500 transition-colors"></i>  --->  +                                <x-heroicon-o-star class="text-slate-300 text-4xl mb-3 group-hover:text-primary-500 transition-colors w-5"/>
+L1327: -                        <i class="fa-solid fa-briefcase"></i>  --->  +                        <x-heroicon-o-star class="w-5"/>
+L1401: -                                <i class="fa-solid fa-cloud-arrow-up text-slate-300 text-4xl mb-3 group-hover:text-primary-500 transition-colors"></i>  --->  +                                <x-heroicon-o-star class="text-slate-300 text-4xl mb-3 group-hover:text-primary-500 transition-colors w-5"/>
+L1941: -                                <i class="fa-solid fa-sliders w-5 text-center"></i> α╕òα╕▒α╣ëα╕çα╕äα╣êα╕▓  --->  +                                <x-heroicon-o-star class="w-5 text-center" /> α╕òα╕▒α╣ëα╕çα╕äα╣êα╕▓
+L2094: -                        <i class="fa-solid fa-satellite-dish text-4xl text-slate-200"></i>  --->  +                        <x-heroicon-o-star class="text-4xl text-slate-200 w-5"/>
+L2414: -                            <span x-show="isLoading"><i class="fa-solid fa-spinner fa-spin"></i></span>  --->  +                            <span x-show="isLoading"><x-heroicon-o-star class="w-5"/></span>
+L2502: -                        <i class="fa-solid fa-satellite-dish text-4xl text-slate-200"></i>  --->  +                        <x-heroicon-o-star class="text-4xl text-slate-200 w-5"/>
+L2551: -                            <span x-show="isLoading"><i class="fa-solid fa-spinner fa-spin"></i></span>  --->  +                            <span x-show="isLoading"><x-heroicon-o-star class="w-5"/></span>
+L2621: -                        <i class="fa-solid fa-satellite-dish text-2xl text-slate-200"></i>  --->  +                        <x-heroicon-o-star class="text-2xl text-slate-200 w-5"/>
+L2650: -                            <i class="fa-solid fa-file-signature"></i>  --->  +                            <x-heroicon-o-star class="w-5"/>
+L2676: -                            <i class="fa-solid fa-key"></i>  --->  +                            <x-heroicon-o-star class="w-5"/>
+L2685: -                        <i class="fa-solid fa-triangle-exclamation text-8xl text-red-600 transform rotate-12"></i>  --->  +                        <x-heroicon-o-star class="text-8xl text-red-600 transform rotate-12 w-5"/>
+L2862: -                                <i class="fa-solid fa-file-circle-xmark text-2xl text-slate-300"></i>  --->  +                                <x-heroicon-o-star class="text-2xl text-slate-300 w-5"/>
+L2927: -                            <i class="fa-solid fa-file-signature text-rose-600"></i>  --->  +                            <x-heroicon-o-star class="text-rose-600 w-5"/>
+L3362: -                        <i class="fa-solid fa-paper-plane"></i>  --->  +                        <x-heroicon-o-star class="w-5"/>

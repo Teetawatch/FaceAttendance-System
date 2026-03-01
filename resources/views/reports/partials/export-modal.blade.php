@@ -9,7 +9,7 @@
                 <div class="bg-card px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                     <div class="sm:flex sm:items-start">
                         <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-rose-100 sm:mx-0 sm:h-10 sm:w-10">
-                            <x-heroicon-o-star class="text-rose-600 w-5"/>
+                            <x-heroicon-o-pencil-square class="text-rose-600 w-5"/>
                         </div>
                         <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
                             <h3 class="text-base font-semibold leading-6 text-slate-900 font-mono" id="modal-title">ตัวเลือกการพิมพ์รายงาน</h3>

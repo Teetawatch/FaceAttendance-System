@@ -29,7 +29,7 @@
             <div class="h-20 flex items-center px-8 border-b border-slate-50">
                 <div class="flex items-center gap-3 font-bold text-xl tracking-wide text-indigo-600">
                     <div class="w-10 h-10 bg-indigo-50/50 rounded-xl flex items-center justify-center text-indigo-600">
-                        <x-heroicon-o-viewfinder-circle class="text-xl w-5" />
+                        <x-heroicon-o-viewfinder-circle class="text-xl w-5"/>
                     </div>
                     <span class="text-text font-bold font-mono">FaceSystem</span>
                 </div>
@@ -41,8 +41,7 @@
                 <!-- Dashboard -->
                 <a href="{{ route('dashboard') }}"
                     class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('dashboard') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <x-heroicon-o-chart-pie
-                        class="w-5 text-center {{ request()->routeIs('dashboard') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                    <x-heroicon-o-chart-pie class="w-5 text-center {{ request()->routeIs('dashboard') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                     <span>แดชบอร์ด</span>
                 </a>
 
@@ -53,29 +52,25 @@
 
                     <a href="{{ route('employees.index') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('employees.*') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-users
-                            class="w-5 text-center {{ request()->routeIs('employees.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-users class="w-5 text-center {{ request()->routeIs('employees.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>พนักงาน</span>
                     </a>
 
                     <a href="{{ route('devices.index') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('devices.*') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-device-tablet
-                            class="w-5 text-center {{ request()->routeIs('devices.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-device-tablet class="w-5 text-center {{ request()->routeIs('devices.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>อุปกรณ์</span>
                     </a>
 
                     <a href="{{ route('users.index') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('users.*') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-cog-8-tooth
-                            class="w-5 text-center {{ request()->routeIs('users.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-cog-8-tooth class="w-5 text-center {{ request()->routeIs('users.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>ผู้ใช้งานระบบ</span>
                     </a>
 
                     <a href="{{ route('face.register') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('face.register') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-identification
-                            class="w-5 text-center {{ request()->routeIs('face.register') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-identification class="w-5 text-center {{ request()->routeIs('face.register') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>ลงทะเบียนใบหน้า</span>
                     </a>
 
@@ -85,29 +80,25 @@
 
                     <a href="{{ route('courses.index') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('courses.*') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-book-open
-                            class="w-5 text-center {{ request()->routeIs('courses.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-book-open class="w-5 text-center {{ request()->routeIs('courses.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>หลักสูตร</span>
                     </a>
 
                     <a href="{{ route('students.index') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('students.*') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-academic-cap
-                            class="w-5 text-center {{ request()->routeIs('students.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-academic-cap class="w-5 text-center {{ request()->routeIs('students.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>นักเรียน</span>
                     </a>
 
                     <a href="{{ route('student-reports.index') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('student-reports.*') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-chart-bar
-                            class="w-5 text-center {{ request()->routeIs('student-reports.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-chart-bar class="w-5 text-center {{ request()->routeIs('student-reports.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>รายงานนักเรียน</span>
                     </a>
 
                     <a href="{{ route('student.face.register') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('student.face.*') ? 'bg-emerald-50 text-emerald-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-camera
-                            class="w-5 text-center {{ request()->routeIs('student.face.*') ? 'text-emerald-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-camera class="w-5 text-center {{ request()->routeIs('student.face.*') ? 'text-emerald-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>ลงทะเบียนใบหน้านักเรียน</span>
                     </a>
                 @endif
@@ -120,8 +111,7 @@
                     <a href="{{ route('monitor.display') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('monitor.display') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
                         <span class="relative flex items-center justify-center w-5">
-                            <x-heroicon-o-computer-desktop
-                                class="{{ request()->routeIs('monitor.display') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }} w-5" />
+                            <x-heroicon-o-computer-desktop class="{{ request()->routeIs('monitor.display') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }} w-5"/>
                         </span>
                         <span>จอภาพเรียลไทม์</span>
                     </a>
@@ -129,8 +119,7 @@
                     <a href="{{ route('monitor.scan') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('monitor.scan') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
                         <span class="relative flex items-center justify-center w-5">
-                            <x-heroicon-o-camera
-                                class="{{ request()->routeIs('monitor.scan') ? 'text-amber-500' : 'text-primary-400 group-hover:text-amber-500' }} w-5" />
+                            <x-heroicon-o-camera class="{{ request()->routeIs('monitor.scan') ? 'text-amber-500' : 'text-primary-400 group-hover:text-amber-500' }} w-5"/>
                             <span class="absolute top-0 right-0 -mt-1 -mr-1 flex h-2 w-2">
                                 <span
                                     class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
@@ -142,15 +131,13 @@
 
                     <a href="{{ route('attendance.index') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('attendance.index') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-clock
-                            class="w-5 text-center {{ request()->routeIs('attendance.index') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-clock class="w-5 text-center {{ request()->routeIs('attendance.index') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>ประวัติการเข้างาน</span>
                     </a>
 
                     <a href="{{ route('reports.index') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('reports.*') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <x-heroicon-o-chart-pie
-                            class="w-5 text-center {{ request()->routeIs('reports.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                        <x-heroicon-o-chart-pie class="w-5 text-center {{ request()->routeIs('reports.*') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                         <span>รายงาน</span>
                     </a>
                 @endif
@@ -161,14 +148,13 @@
 
                 <a href="{{ route('attendance.my') }}"
                     class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group {{ request()->routeIs('attendance.my') ? 'bg-indigo-50/50 text-primary-700 font-medium shadow-sm' : 'text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <x-heroicon-o-calendar-days
-                        class="w-5 text-center {{ request()->routeIs('attendance.my') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}" />
+                    <x-heroicon-o-calendar-days class="w-5 text-center {{ request()->routeIs('attendance.my') ? 'text-indigo-600' : 'text-primary-400 group-hover:text-text/80' }}"/>
                     <span>ประวัติของฉัน</span>
                 </a>
 
                 <a href="#"
                     class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group text-indigo-600/70 hover:bg-slate-50 hover:text-slate-900">
-                    <x-heroicon-o-cog-6-tooth class="w-5 text-center text-primary-400 group-hover:text-text/80" />
+                    <x-heroicon-o-cog-6-tooth class="w-5 text-center text-primary-400 group-hover:text-text/80"/>
                     <span>ตั้งค่า</span>
                 </a>
             </nav>
@@ -179,7 +165,7 @@
                     @csrf
                     <button type="submit"
                         class="flex items-center gap-3 w-full px-4 py-3 text-indigo-600/70 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all group">
-                        <x-heroicon-o-arrow-right-on-rectangle class="w-5 text-center group-hover:text-rose-600" />
+                        <x-heroicon-o-arrow-right-on-rectangle class="w-5 text-center group-hover:text-rose-600"/>
                         <span>ออกจากระบบ</span>
                     </button>
                 </form>
@@ -202,7 +188,7 @@
                 <!-- Mobile Toggle -->
                 <button @click="sidebarOpen = !sidebarOpen"
                     class="text-indigo-600/70 hover:text-text focus:outline-none md:hidden">
-                    <x-heroicon-o-bars-3 class="text-xl w-5" />
+                    <x-heroicon-o-bars-3 class="text-xl w-5"/>
                 </button>
 
                 <!-- Page Title -->
@@ -213,7 +199,7 @@
                 <div class="flex items-center gap-6">
                     <!-- Notification -->
                     <button class="relative p-2 text-primary-400 hover:text-indigo-600 transition-colors">
-                        <x-heroicon-o-bell class="text-xl w-5" />
+                        <x-heroicon-o-bell class="text-xl w-5"/>
                         <span
                             class="absolute top-1.5 right-1.5 h-2.5 w-2.5 rounded-full bg-rose-500 border-2 border-white"></span>
                     </button>
@@ -231,8 +217,7 @@
                                 <span
                                     class="block text-xs text-primary-400 capitalize leading-tight">{{ Auth::user()->role }}</span>
                             </div>
-                            <x-heroicon-o-chevron-down
-                                class="text-xs text-slate-300 group-hover:text-indigo-600/70 transition-colors w-5" />
+                            <x-heroicon-o-chevron-down class="text-xs text-slate-300 group-hover:text-indigo-600/70 transition-colors w-5"/>
                         </button>
 
                         <!-- Dropdown Menu -->
@@ -252,11 +237,11 @@
 
                             <a href="{{ route('profile.edit') }}"
                                 class="flex items-center gap-2 px-4 py-2.5 text-sm text-text/80 hover:bg-slate-50 hover:text-indigo-600 transition-colors">
-                                <x-heroicon-o-user class="w-5 text-center" /> โปรไฟล์
+                                <x-heroicon-o-user class="w-5 text-center"/> โปรไฟล์
                             </a>
                             <a href="#"
                                 class="flex items-center gap-2 px-4 py-2.5 text-sm text-text/80 hover:bg-slate-50 hover:text-indigo-600 transition-colors">
-                                <x-heroicon-o-star class="w-5 text-center" /> ตั้งค่า
+                                <x-heroicon-o-cog-6-tooth class="w-5 text-center"/> ตั้งค่า
                             </a>
 
                             <div class="border-t border-slate-50 mt-1 pt-1">
@@ -264,7 +249,7 @@
                                     @csrf
                                     <button type="submit"
                                         class="flex items-center gap-2 w-full text-left px-4 py-2.5 text-sm text-rose-600 hover:bg-rose-50 transition-colors">
-                                        <x-heroicon-o-arrow-right-on-rectangle class="w-5 text-center" /> ออกจากระบบ
+                                        <x-heroicon-o-arrow-right-on-rectangle class="w-5 text-center"/> ออกจากระบบ
                                     </button>
                                 </form>
                             </div>

@@ -144,7 +144,7 @@
                     <p class="text-sm text-amber-600">{{ $lateStudents->unique('student_id')->count() }} คน</p>
                 </div>
             </div>
-            <x-heroicon-o-chevron-down class="w-5 text-amber-600 transition-transform" :class="{ 'rotate-180': open }"/>
+            <i class="fa-solid fa-chevron-down text-amber-600 transition-transform" :class="{ 'rotate-180': open }"></i>
         </button>
         <div x-show="open" x-collapse>
             <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -186,7 +186,7 @@
                     <p class="text-sm text-rose-600">{{ $absentStudents->count() }} คน</p>
                 </div>
             </div>
-            <x-heroicon-o-chevron-down class="w-5 text-rose-600 transition-transform" :class="{ 'rotate-180': open }"/>
+            <i class="fa-solid fa-chevron-down text-rose-600 transition-transform" :class="{ 'rotate-180': open }"></i>
         </button>
         <div x-show="open" x-collapse>
             <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -361,7 +361,7 @@
                     </button>
                     <button type="submit" 
                             class="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium flex items-center justify-center gap-2">
-                        <x-heroicon-o-star class="w-5"/>
+                        <x-heroicon-o-paper-airplane class="w-5"/>
                         ส่งอีเมล
                     </button>
                 </div>

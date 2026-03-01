@@ -76,7 +76,7 @@
                                 :disabled="isLoading || !kiosk.employee_code"
                                 class="bg-primary-600 hover:bg-indigo-50/500 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-lg shadow-primary-900/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none">
                             <span x-show="!isLoading"><x-heroicon-o-camera class="mr-2 w-5"/>สแกน</span>
-                            <span x-show="isLoading"><x-heroicon-o-star class="w-5"/></span>
+                            <span x-show="isLoading"><x-heroicon-o-arrow-path class="w-5"/></span>
                         </button>
                     </div>
                     
@@ -161,7 +161,7 @@
                  <!-- Empty State -->
                  <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-slate-50/30">
                      <div class="w-16 h-16 bg-card rounded-full shadow-sm flex items-center justify-center mb-3">
-                        <x-heroicon-o-star class="text-2xl text-slate-200 w-5"/>
+                        <x-heroicon-o-signal class="text-2xl text-slate-200 w-5"/>
                      </div>
                      <p class="text-xs text-primary-400">รอรับข้อมูล...</p>
                  </div>

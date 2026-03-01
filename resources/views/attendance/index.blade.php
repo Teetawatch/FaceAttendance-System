@@ -14,7 +14,7 @@
         <form method="GET" class="flex flex-col sm:flex-row gap-3">
             <!-- Search -->
             <div class="relative">
-                <x-heroicon-o-star class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm w-5"/>
+                <x-heroicon-o-magnifying-glass class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm w-5"/>
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาชื่อ หรือ รหัสพนักงาน..." 
                        class="pl-9 w-full sm:w-64 rounded-xl border-slate-200 focus:ring-primary-500 focus:border-slate-200/600 text-sm shadow-sm">
             </div>

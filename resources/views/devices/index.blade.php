@@ -88,7 +88,7 @@
                     <tr>
                         <td colspan="6" class="px-6 py-16 text-center text-primary-400">
                             <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <x-heroicon-o-star class="text-2xl text-slate-300 w-5"/>
+                                <x-heroicon-o-device-tablet class="text-2xl text-slate-300 w-5"/>
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลอุปกรณ์</p>
                             <p class="text-sm mt-1 text-primary-400">เริ่มต้นด้วยการลงทะเบียนอุปกรณ์ใหม่</p>

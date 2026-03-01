@@ -19,7 +19,7 @@
 
         <div class="bg-card p-6 rounded-xl shadow-sm border border-slate-200/60 flex items-center gap-4">
             <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
-                <x-heroicon-o-star class="w-5"/>
+                <x-heroicon-o-clock class="w-5"/>
             </div>
             <div>
                 <p class="text-sm text-indigo-600/70 font-medium">Total Hours</p>
@@ -32,7 +32,7 @@
         
         <div class="bg-card p-6 rounded-xl shadow-sm border border-slate-200/60 flex items-center gap-4">
             <div class="w-12 h-12 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center text-xl">
-                <x-heroicon-o-star class="w-5"/>
+                <x-heroicon-o-bolt class="w-5"/>
             </div>
             <div>
                 <p class="text-sm text-indigo-600/70 font-medium">Late Arrivals</p>
@@ -66,7 +66,7 @@
                         <td class="px-6 py-4">
                             @if($row->check_in_at)
                                 <div class="flex items-center gap-2">
-                                    <x-heroicon-o-star class="text-green-500 w-5"/>
+                                    <x-heroicon-o-arrow-right-on-rectangle class="text-green-500 w-5"/>
                                     {{ $row->check_in_at->format('H:i') }}
                                 </div>
                             @else
@@ -76,7 +76,7 @@
                         <td class="px-6 py-4">
                             @if($row->check_out_at)
                                 <div class="flex items-center gap-2">
-                                    <x-heroicon-o-star class="text-orange-500 w-5"/>
+                                    <x-heroicon-o-arrow-left-on-rectangle class="text-orange-500 w-5"/>
                                     {{ $row->check_out_at->format('H:i') }}
                                 </div>
                             @else

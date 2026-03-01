@@ -15,7 +15,7 @@
 
             <div class="relative z-10 text-center">
                 <div class="w-28 h-28 bg-card rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-xl shadow-blue-100 transform rotate-3 hover:rotate-6 transition-all duration-500">
-                    <x-heroicon-o-star class="text-6xl text-indigo-600 w-5"/>
+                    <x-heroicon-o-face-smile class="text-6xl text-indigo-600 w-5"/>
                 </div>
                 <h2 class="text-3xl font-bold text-text font-bold font-mono mb-4 tracking-tight font-mono">ระบบบันทึกเวลาด้วยใบหน้า</h2>
                 <p class="text-indigo-600/70 text-lg leading-relaxed font-light">
@@ -31,7 +31,7 @@
             <!-- Mobile Header -->
             <div class="lg:hidden text-center mb-8">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-indigo-50 text-indigo-600 mb-4">
-                    <x-heroicon-o-star class="text-3xl w-5"/>
+                    <x-heroicon-o-face-smile class="text-3xl w-5"/>
                 </div>
                 <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">Face Attendance</h2>
             </div>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <x-heroicon-o-star class="text-primary-400 group-focus-within:text-indigo-500 transition-colors w-5"/>
+                            <x-heroicon-o-lock-closed class="text-primary-400 group-focus-within:text-indigo-500 transition-colors w-5"/>
                         </div>
                         <input id="password" type="password" name="password" required autocomplete="current-password"
                             class="pl-11 block w-full rounded-xl border-slate-200 bg-slate-50 focus:bg-card focus:border-indigo-500 focus:ring-indigo-500 py-3 transition-all text-sm placeholder:text-primary-400"
@@ -103,7 +103,7 @@
                 <!-- Submit Button -->
                 <button type="submit" class="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white shadow-md shadow-primary-500/20 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
                     <span>เข้าสู่ระบบ</span>
-                    <x-heroicon-o-star class="w-5"/>
+                    <x-heroicon-o-arrow-right class="w-5"/>
                 </button>
             </form>
 

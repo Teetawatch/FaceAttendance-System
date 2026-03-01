@@ -53,7 +53,7 @@
             <div>
                 <h3 class="text-lg font-bold text-text mb-4 flex items-center gap-2 font-mono">
                     <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm">
-                        <x-heroicon-o-star class="w-5"/>
+                        <x-heroicon-o-briefcase class="w-5"/>
                     </div>
                     ข้อมูลการทำงาน
                 </h3>
@@ -113,7 +113,7 @@
 
                             <!-- Default Icon -->
                             <template x-if="!filePreview">
-                                <x-heroicon-o-star class="text-slate-300 text-4xl mb-3 group-hover:text-primary-500 transition-colors w-5"/>
+                                <x-heroicon-o-arrow-up-tray class="text-slate-300 text-4xl mb-3 group-hover:text-primary-500 transition-colors w-5"/>
                             </template>
 
                             <div class="space-y-1 text-center">
