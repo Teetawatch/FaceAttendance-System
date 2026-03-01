@@ -33,7 +33,7 @@
                     -->
                     <button type="button" onclick="document.getElementById('exportModal').classList.remove('hidden')" 
                             class="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                        <x-heroicon-o-document-text class="w-5"/> Export PDF
+                         Export PDF
                     </button>
                 </div>
             </form>
@@ -46,7 +46,7 @@
                 <input type="hidden" name="department" value="{{ request('department') }}">
                 
                 <button type="submit" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                    <x-heroicon-o-table-cells class="w-5"/> Export Excel
+                     Export Excel
                 </button>
             </form>
         </div>
@@ -104,7 +104,7 @@
             <!-- Submit -->
             <div class="md:col-span-4 flex justify-end mt-2">
                 <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors">
-                    <x-heroicon-o-funnel class="mr-1 w-5"/> กรองข้อมูล
+                     กรองข้อมูล
                 </button>
             </div>
         </form>
@@ -137,7 +137,7 @@
                                         <img src="{{ route('storage.file', ['path' => $row->employee->photo_path]) }}" class="w-full h-full object-cover">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center text-slate-300">
-                                            <x-heroicon-o-user class="text-xs w-5"/>
+                                            
                                         </div>
                                     @endif
                                 </div>
@@ -172,7 +172,7 @@
                         <td class="px-6 py-4 text-right">
                            <button onclick='openEditModal(@json($row))' 
                                    class="text-primary-400 hover:text-blue-600 transition-colors p-2 rounded-full hover:bg-blue-50">
-                               <x-heroicon-o-pencil-square class="w-5"/>
+                               
                            </button>
                         </td>
                     </tr>
@@ -180,7 +180,7 @@
                     <tr>
                         <td colspan="7" class="px-6 py-16 text-center text-primary-400">
                             <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <x-heroicon-o-document-minus class="text-2xl text-slate-300 w-5"/>
+                                
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลการลงเวลา</p>
                             <p class="text-sm mt-1 text-primary-400">ลองปรับเปลี่ยนเงื่อนไขการค้นหา</p>
@@ -210,7 +210,7 @@
           <div class="bg-slate-50 px-4 py-3 sm:px-6 border-b border-slate-200/60 flex justify-between items-center">
             <h3 class="text-base font-semibold leading-6 text-slate-900 font-mono" id="modal-title">แก้ไขข้อมูลการลงเวลา</h3>
             <button type="button" onclick="closeEditModal()" class="text-primary-400 hover:text-indigo-600/70 transition-colors">
-                <x-heroicon-o-x-mark class="text-lg w-5"/>
+                
             </button>
           </div>
 
@@ -227,7 +227,7 @@
                   <!-- Employee Info -->
                   <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200/60">
                       <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-primary-400">
-                          <x-heroicon-o-user class="w-5"/>
+                          
                       </div>
                       <div>
                           <p class="font-bold text-text" id="modalEmployeeName">Loading...</p>
@@ -308,3 +308,7 @@
 </script>
 @include('reports.partials.export-modal')
 @endsection
+
+
+
+

@@ -9,7 +9,7 @@
     <div class="mb-8">
         <div class="flex items-center gap-4">
             <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/25">
-                <x-heroicon-o-academic-cap class="text-white text-xl w-5"/>
+                
             </div>
             <div>
                 <h1 class="text-2xl font-bold text-text font-bold font-mono">ลงทะเบียนใบหน้านักเรียน</h1>
@@ -27,7 +27,7 @@
             <div class="px-6 py-4 border-b border-slate-200/60 flex items-center justify-between bg-gradient-to-r from-slate-50 to-white">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center">
-                        <x-heroicon-o-camera class="text-white w-5"/>
+                        
                     </div>
                     <div>
                         <h2 class="font-bold text-text font-bold font-mono font-mono">กล้อง</h2>
@@ -51,7 +51,7 @@
                 
                 <!-- Camera Loading -->
                 <div x-show="!isCameraReady" class="absolute inset-0 bg-slate-900 flex flex-col items-center justify-center text-white">
-                    <x-heroicon-o-arrow-path class="text-4xl mb-4 text-emerald-400 w-5"/>
+                    
                     <p class="text-sm text-primary-400">กำลังเปิดกล้อง...</p>
                 </div>
 
@@ -59,7 +59,7 @@
                 <div x-show="isCameraReady && !capturedImage" class="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div class="w-56 h-72 border-4 border-dashed border-white/40 rounded-[4rem] relative">
                         <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-xs whitespace-nowrap">
-                            <x-heroicon-o-viewfinder-circle class="mr-1.5 w-5"/>วางใบหน้าให้อยู่ในกรอบ
+                            วางใบหน้าให้อยู่ในกรอบ
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <img :src="capturedImage" class="w-full h-full object-cover transform -scale-x-100" alt="Captured">
                     <div class="absolute inset-0 bg-black/20"></div>
                     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-white px-6 py-2 rounded-full text-sm font-medium shadow-lg">
-                        <x-heroicon-o-check class="mr-2 w-5"/>ถ่ายรูปแล้ว
+                        ถ่ายรูปแล้ว
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                         <button @click="capturePhoto()" 
                                 :disabled="!isCameraReady || !selectedStudent"
                                 class="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white py-4 rounded-2xl font-bold shadow-lg shadow-emerald-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none flex items-center justify-center gap-2 text-lg">
-                            <x-heroicon-o-camera class="text-xl w-5"/>
+                            
                             <span>ถ่ายรูป</span>
                         </button>
                     </template>
@@ -89,17 +89,17 @@
                         <div class="flex-1 flex gap-3">
                             <button @click="retakePhoto()" 
                                     class="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 border border-slate-500 text-lg">
-                                <x-heroicon-o-arrow-uturn-left class="w-5"/>
+                                
                                 <span>ถ่ายใหม่</span>
                             </button>
                             <button @click="savePhoto()" 
                                     :disabled="isLoading"
                                     class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white py-4 rounded-2xl font-bold shadow-lg shadow-emerald-500/30 transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-lg">
                                 <template x-if="!isLoading">
-                                    <span class="flex items-center gap-2"><x-heroicon-o-document-check class="w-5"/> บันทึก</span>
+                                    <span class="flex items-center gap-2"> บันทึก</span>
                                 </template>
                                 <template x-if="isLoading">
-                                    <x-heroicon-o-arrow-path class="w-5"/>
+                                    
                                 </template>
                             </button>
                         </div>
@@ -126,7 +126,7 @@
             <div class="bg-card rounded-3xl shadow-lg border border-slate-200/60 overflow-hidden">
                 <div class="px-6 py-4 border-b border-slate-200/60 bg-gradient-to-r from-slate-50 to-white">
                     <h2 class="font-bold text-text font-bold font-mono flex items-center gap-2 font-mono">
-                        <x-heroicon-o-funnel class="text-emerald-500 w-5"/>
+                        
                         กรองตามหลักสูตร
                     </h2>
                 </div>
@@ -145,7 +145,7 @@
             <div class="bg-card rounded-3xl shadow-lg border border-slate-200/60 overflow-hidden">
                 <div class="px-6 py-4 border-b border-slate-200/60 bg-gradient-to-r from-slate-50 to-white">
                     <h2 class="font-bold text-text font-bold font-mono flex items-center gap-2 font-mono">
-                        <x-heroicon-o-academic-cap class="text-emerald-500 w-5"/>
+                        
                         เลือกนักเรียน
                         <span class="ml-auto text-sm font-normal text-primary-400" x-text="'(' + filteredStudents.length + ' คน)'"></span>
                     </h2>
@@ -153,7 +153,7 @@
                 <div class="p-6">
                     <!-- Search Input -->
                     <div class="relative mb-4">
-                        <x-heroicon-o-magnifying-glass class="absolute left-4 top-1/2 -translate-y-1/2 text-primary-400 w-5"/>
+                        
                         <input type="text" x-model="searchQuery" 
                                @input="filterStudents()"
                                placeholder="ค้นหานักเรียน..." 
@@ -177,7 +177,7 @@
                                     </template>
                                     <template x-if="!student.has_photo">
                                         <div class="w-full h-full flex items-center justify-center text-primary-400">
-                                            <x-heroicon-o-academic-cap class="text-xl w-5"/>
+                                            
                                         </div>
                                     </template>
                                 </div>
@@ -193,25 +193,25 @@
                                 <div class="flex-shrink-0">
                                     <span x-show="student.has_photo" 
                                           class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-100 text-emerald-700">
-                                        <x-heroicon-o-check class="mr-1 w-5"/>มีรูป
+                                        มีรูป
                                     </span>
                                     <span x-show="!student.has_photo" 
                                           class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-amber-100 text-amber-700">
-                                        <x-heroicon-o-exclamation-triangle class="mr-1 w-5"/>ไม่มีรูป
+                                        ไม่มีรูป
                                     </span>
                                 </div>
 
                                 <!-- Selection Indicator -->
                                 <div x-show="selectedStudent?.id === student.id" 
                                      class="w-6 h-6 bg-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <x-heroicon-o-check class="text-white text-xs w-5"/>
+                                    
                                 </div>
                             </div>
                         </template>
 
                         <!-- Empty State -->
                         <div x-show="filteredStudents.length === 0" class="text-center py-8 text-primary-400">
-                            <x-heroicon-o-users class="text-3xl mb-3 w-5"/>
+                            
                             <p class="text-sm">ไม่พบนักเรียน</p>
                         </div>
                     </div>
@@ -227,7 +227,7 @@
                         </template>
                         <template x-if="!selectedStudent?.has_photo">
                             <div class="w-full h-full flex items-center justify-center text-primary-400">
-                                <x-heroicon-o-academic-cap class="text-2xl w-5"/>
+                                
                             </div>
                         </template>
                     </div>
@@ -239,7 +239,7 @@
                 </div>
                 <div class="bg-slate-800 rounded-xl p-4 border border-slate-700">
                     <p class="text-white text-sm font-medium">
-                        <x-heroicon-o-information-circle class="mr-2 text-emerald-400 w-5"/>
+                        
                         <span x-show="selectedStudent?.has_photo">รูปใบหน้าปัจจุบันจะถูกแทนที่ด้วยรูปใหม่</span>
                         <span x-show="!selectedStudent?.has_photo">นักเรียนคนนี้ยังไม่มีรูปใบหน้าในระบบ</span>
                     </p>
@@ -249,7 +249,7 @@
             <!-- Instructions -->
             <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/60">
                 <h3 class="font-bold text-text mb-4 flex items-center gap-2 font-mono">
-                    <x-heroicon-o-light-bulb class="text-amber-500 w-5"/>
+                    
                     คำแนะนำในการถ่ายรูป
                 </h3>
                 <ul class="space-y-3 text-sm text-text/80">
@@ -285,7 +285,7 @@
          class="fixed bottom-8 right-8 bg-emerald-600 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 z-50"
          style="display: none;">
         <div class="w-12 h-12 bg-card/20 rounded-xl flex items-center justify-center">
-            <x-heroicon-o-check class="text-2xl w-5"/>
+            
         </div>
         <div>
             <p class="font-bold">บันทึกสำเร็จ!</p>
@@ -484,3 +484,7 @@ function studentFaceRegisterApp() {
 }
 </style>
 @endsection
+
+
+
+

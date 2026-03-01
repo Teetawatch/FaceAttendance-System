@@ -13,18 +13,18 @@
         <div class="flex items-center gap-3">
             <!-- Search (Optional - Visual for now unless implemented) -->
             <form action="{{ route('employees.index') }}" method="GET" class="relative hidden md:block">
-                <x-heroicon-o-magnifying-glass class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm w-5"/>
+                
                 <input type="text" name="search" placeholder="ค้นหาพนักงาน..." value="{{ request('search') }}" 
                        class="pl-9 pr-4 py-2 bg-card border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent shadow-sm w-64">
             </form>
 
             <!-- Import Excel Button -->
             <button @click="showImportModal = true" type="button" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                <x-heroicon-o-document-arrow-up class="w-5"/> Import Excel
+                 Import Excel
             </button>
 
             <a href="{{ route('employees.create') }}" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                <x-heroicon-o-plus class="w-5"/> เพิ่มพนักงาน
+                 เพิ่มพนักงาน
             </a>
         </div>
     </div>
@@ -32,7 +32,7 @@
     <!-- Alert Success -->
     @if(session('success'))
         <div class="bg-emerald-50 text-emerald-700 px-4 py-3 rounded-xl border border-emerald-100 flex items-center gap-3 shadow-sm">
-            <x-heroicon-o-check-circle class="text-lg w-5"/>
+            
             <span class="font-medium">{{ session('success') }}</span>
         </div>
     @endif
@@ -40,14 +40,14 @@
     <!-- Alert Error -->
     @if(session('error'))
         <div class="bg-rose-50 text-rose-700 px-4 py-3 rounded-xl border border-rose-100 flex items-start gap-3 shadow-sm">
-            <x-heroicon-o-x-circle class="text-lg mt-0.5 w-5"/>
+            
             <div>
                 <span class="font-medium">{{ session('error') }}</span>
                 @if(session('import_errors'))
                     <ul class="mt-2 text-sm space-y-1 max-h-32 overflow-y-auto">
                         @foreach(session('import_errors') as $importError)
                             <li class="flex items-start gap-1">
-                                <x-heroicon-o-chevron-right class="text-xs mt-1.5 w-5"/>
+                                
                                 {{ $importError }}
                             </li>
                         @endforeach
@@ -81,7 +81,7 @@
                                         <img src="{{ route('storage.file', ['path' => $employee->photo_path]) }}" class="w-full h-full object-cover">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center text-slate-300">
-                                            <x-heroicon-o-user class="w-5"/>
+                                            
                                         </div>
                                     @endif
                                 </div>
@@ -114,13 +114,13 @@
                         <td class="px-6 py-4 text-right">
                             <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <a href="{{ route('employees.edit', $employee) }}" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all" title="แก้ไข">
-                                    <x-heroicon-o-pencil-square class="w-5"/>
+                                    
                                 </a>
                                 <form action="{{ route('employees.destroy', $employee) }}" method="POST" onsubmit="return confirm('ยืนยันการลบข้อมูลพนักงาน?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-rose-600 hover:bg-rose-50 transition-all" title="ลบ">
-                                        <x-heroicon-o-trash class="w-5"/>
+                                        
                                     </button>
                                 </form>
                             </div>
@@ -130,7 +130,7 @@
                     <tr>
                         <td colspan="6" class="px-6 py-16 text-center text-primary-400">
                             <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <x-heroicon-o-users class="text-2xl text-slate-300 w-5"/>
+                                
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลพนักงาน</p>
                             <p class="text-sm mt-1 text-primary-400">ลองเพิ่มพนักงานใหม่ หรือค้นหาด้วยคำอื่น</p>
@@ -172,11 +172,11 @@
             <div class="bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-4">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-bold text-white flex items-center gap-2 font-mono">
-                        <x-heroicon-o-document-arrow-up class="w-5"/>
+                        
                         Import ข้อมูลพนักงานจาก Excel
                     </h3>
                     <button @click="showImportModal = false" class="text-white/80 hover:text-white transition-colors">
-                        <x-heroicon-o-x-mark class="text-xl w-5"/>
+                        
                     </button>
                 </div>
             </div>
@@ -207,7 +207,7 @@
                 <!-- Format Info -->
                 <div class="bg-slate-50 rounded-xl p-4 text-sm">
                     <h4 class="font-semibold text-text mb-2 flex items-center gap-2">
-                        <x-heroicon-o-information-circle class="text-blue-500 w-5"/>
+                        
                         รูปแบบไฟล์ที่รองรับ
                     </h4>
                     <ul class="text-text/80 space-y-1 text-xs">
@@ -218,14 +218,14 @@
                         <li><strong>คอลัมน์ E:</strong> ตำแหน่ง</li>
                     </ul>
                     <p class="text-xs text-amber-600 mt-2">
-                        <x-heroicon-o-exclamation-triangle class="mr-1 w-5"/>
+                        
                         หากรหัสพนักงานซ้ำ ระบบจะอัพเดตข้อมูลพนักงานคนนั้นอัตโนมัติ
                     </p>
                 </div>
                 
                 <!-- Download Template -->
                 <a href="{{ route('employees.template') }}" class="flex items-center justify-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 font-medium">
-                    <x-heroicon-o-arrow-down-tray class="w-5"/>
+                    
                     ดาวน์โหลด Template ตัวอย่าง
                 </a>
                 
@@ -237,7 +237,7 @@
                     </button>
                     <button type="submit" 
                             class="flex-1 px-4 py-2.5 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-medium flex items-center justify-center gap-2">
-                        <x-heroicon-o-arrow-up-tray class="w-5"/>
+                        
                         นำเข้าข้อมูล
                     </button>
                 </div>
@@ -246,3 +246,6 @@
     </div>
 </div>
 @endsection
+
+
+

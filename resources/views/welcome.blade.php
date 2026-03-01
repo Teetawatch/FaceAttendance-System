@@ -13,7 +13,7 @@
         </div>
         <div class="flex items-center gap-3">
             <span class="text-sm font-medium text-indigo-600/70 bg-card px-4 py-2 rounded-full shadow-sm border border-slate-200/60">
-                <x-heroicon-o-calendar class="mr-2 w-5"/> {{ \Carbon\Carbon::now()->locale('th')->isoFormat('D MMMM YYYY') }}
+                 {{ \Carbon\Carbon::now()->locale('th')->isoFormat('D MMMM YYYY') }}
             </span>
         </div>
     </div>
@@ -28,7 +28,7 @@
                     <h3 class="text-3xl font-bold text-text font-bold font-mono mt-2 font-mono">{{ $totalEmployees }}</h3>
                 </div>
                 <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-lg group-hover:scale-110 transition-transform duration-300">
-                    <x-heroicon-o-users class="w-5"/>
+                    
                 </div>
             </div>
             <div class="mt-4 flex items-center text-xs text-primary-400">
@@ -44,7 +44,7 @@
                     <h3 class="text-3xl font-bold text-text font-bold font-mono mt-2 font-mono">{{ $presentToday }}</h3>
                 </div>
                 <div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg group-hover:scale-110 transition-transform duration-300">
-                    <x-heroicon-o-user-circle class="w-5"/>
+                    
                 </div>
             </div>
             <div class="mt-4 flex items-center gap-2">
@@ -63,7 +63,7 @@
                     <h3 class="text-3xl font-bold text-text font-bold font-mono mt-2 font-mono">{{ $lateToday }}</h3>
                 </div>
                 <div class="w-10 h-10 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-lg group-hover:scale-110 transition-transform duration-300">
-                    <x-heroicon-o-clock class="w-5"/>
+                    
                 </div>
             </div>
             <div class="mt-4 flex items-center text-xs text-primary-400">
@@ -79,7 +79,7 @@
                     <h3 class="text-3xl font-bold text-text font-bold font-mono mt-2 font-mono">{{ $activeDevices }}<span class="text-lg text-slate-300 font-normal">/{{ $totalDevices }}</span></h3>
                 </div>
                 <div class="w-10 h-10 rounded-full bg-violet-50 text-violet-600 flex items-center justify-center text-lg group-hover:scale-110 transition-transform duration-300">
-                    <x-heroicon-o-server class="w-5"/>
+                    
                 </div>
             </div>
             <div class="mt-4 flex items-center text-xs text-primary-400">
@@ -104,7 +104,7 @@
                              @if($scan->employee && $scan->employee->photo_path)
                                 <img src="{{ route('storage.file', ['path' => $scan->employee->photo_path]) }}" class="w-full h-full object-cover">
                              @else
-                                <x-heroicon-o-user class="text-slate-300 w-5"/>
+                                
                              @endif
                         </div>
                         <div>
@@ -116,7 +116,7 @@
                                     {{ $scan->employee ? $scan->employee->employee_code : '-' }}
                                 </span>
                                 <span class="text-xs text-primary-400 flex items-center">
-                                    <x-heroicon-o-map-pin class="text-[10px] mr-1 w-5"/> {{ $scan->device ? $scan->device->location : 'Unknown' }}
+                                     {{ $scan->device ? $scan->device->location : 'Unknown' }}
                                 </span>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                 @empty
                 <div class="px-6 py-12 text-center">
                     <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <x-heroicon-o-clock class="text-slate-300 text-2xl w-5"/>
+                        
                     </div>
                     <p class="text-indigo-600/70 font-medium">ยังไม่มีข้อมูลการสแกน</p>
                     <p class="text-primary-400 text-sm mt-1">ข้อมูลการเข้างานวันนี้จะแสดงที่นี่</p>
@@ -151,13 +151,13 @@
                 <div class="grid grid-cols-2 gap-4">
                     <a href="{{ route('monitor') }}" class="bg-card p-4 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center group">
                         <div class="w-12 h-12 mx-auto bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
-                            <x-heroicon-o-computer-desktop class="w-5"/>
+                            
                         </div>
                         <span class="text-sm font-bold text-text">จอภาพ</span>
                     </a>
                     <a href="{{ route('employees.index') }}" class="bg-card p-4 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center group">
                         <div class="w-12 h-12 mx-auto bg-pink-50 text-pink-600 rounded-xl flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
-                            <x-heroicon-o-user-plus class="w-5"/>
+                            
                         </div>
                         <span class="text-sm font-bold text-text">เพิ่มพนักงาน</span>
                     </a>
@@ -171,7 +171,7 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-primary-400">
-                                <x-heroicon-o-circle-stack class="w-5"/>
+                                
                             </div>
                             <span class="text-sm font-medium text-text/80">Database</span>
                         </div>
@@ -183,7 +183,7 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-primary-400">
-                                <x-heroicon-o-globe-alt class="w-5"/>
+                                
                             </div>
                             <span class="text-sm font-medium text-text/80">WebSocket</span>
                         </div>
@@ -199,3 +199,6 @@
     </div>
 </div>
 @endsection
+
+
+

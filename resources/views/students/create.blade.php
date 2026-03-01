@@ -7,7 +7,7 @@
     <!-- Header -->
     <div class="flex items-center gap-4">
         <a href="{{ route('students.index') }}" class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 text-text/80 transition-colors">
-            <x-heroicon-o-arrow-left class="w-5"/>
+            
         </a>
         <div>
             <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">เพิ่มนักเรียนใหม่</h2>
@@ -100,7 +100,7 @@
                 </a>
                 <button type="submit" 
                         class="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium flex items-center justify-center gap-2">
-                    <x-heroicon-o-document-check class="w-5"/>
+                    
                     บันทึกนักเรียน
                 </button>
             </div>
@@ -108,3 +108,7 @@
     </div>
 </div>
 @endsection
+
+
+
+

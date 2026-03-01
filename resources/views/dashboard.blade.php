@@ -17,11 +17,11 @@
                 <div class="flex items-center gap-3">
                     <button
                         class="btn border border-primary-200 bg-card hover:bg-indigo-50/50 text-indigo-600 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-sm flex items-center gap-2">
-                        <x-heroicon-o-calendar class="w-5"/> Today
+                         Today
                     </button>
                     <button
                         class="btn bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-md shadow-primary-500/20 flex items-center gap-2">
-                        <x-heroicon-o-arrow-down-tray class="w-5"/> Export Report
+                         Export Report
                     </button>
                 </div>
             </div>
@@ -34,11 +34,11 @@
                     <div class="flex items-center justify-between mb-4">
                         <div
                             class="w-12 h-12 bg-indigo-50/50 rounded-xl flex items-center justify-center text-indigo-600 group-hover:scale-110 transition-transform">
-                            <x-heroicon-o-users class="text-xl w-5"/>
+                            
                         </div>
                         <span
                             class="inline-flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg text-xs font-bold font-mono">
-                            <x-heroicon-o-arrow-trending-up class="w-5"/> +12%
+                             +12%
                         </span>
                     </div>
                     <div>
@@ -53,11 +53,11 @@
                     <div class="flex items-center justify-between mb-4">
                         <div
                             class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform">
-                            <x-heroicon-o-user-circle class="text-xl w-5"/>
+                            
                         </div>
                         <span
                             class="inline-flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg text-xs font-bold font-mono">
-                            <x-heroicon-o-arrow-trending-up class="w-5"/> +4.5%
+                             +4.5%
                         </span>
                     </div>
                     <div>
@@ -72,11 +72,11 @@
                     <div class="flex items-center justify-between mb-4">
                         <div
                             class="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center text-rose-600 group-hover:scale-110 transition-transform">
-                            <x-heroicon-o-x-circle class="text-xl w-5"/>
+                            
                         </div>
                         <span
                             class="inline-flex items-center gap-1 text-rose-600 bg-rose-50 px-2 py-1 rounded-lg text-xs font-bold font-mono">
-                            <x-heroicon-o-arrow-trending-down class="w-5"/> -1.2%
+                             -1.2%
                         </span>
                     </div>
                     <div>
@@ -91,7 +91,7 @@
                     <div class="flex items-center justify-between mb-4">
                         <div
                             class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
-                            <x-heroicon-o-clock class="text-xl w-5"/>
+                            
                         </div>
                         <span
                             class="inline-flex items-center gap-1 text-slate-500 bg-slate-50 px-2 py-1 rounded-lg text-xs font-bold font-mono">
@@ -185,3 +185,6 @@
         </div>
     </div>
 </x-app-layout>
+
+
+

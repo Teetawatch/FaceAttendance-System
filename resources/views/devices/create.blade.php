@@ -4,7 +4,7 @@
 <div class="max-w-xl mx-auto">
     <div class="mb-6 flex justify-between">
         <h2 class="text-xl font-bold text-text font-bold font-mono font-mono">Register New Device</h2>
-        <a href="{{ route('devices.index') }}" class="text-indigo-600/70 hover:text-text text-sm"><x-heroicon-o-arrow-left class="w-5"/> Back</a>
+        <a href="{{ route('devices.index') }}" class="text-indigo-600/70 hover:text-text text-sm"> Back</a>
     </div>
     <div class="bg-card rounded-xl shadow-sm border border-slate-200/60 p-6">
         <form action="{{ route('devices.store') }}" method="POST" class="space-y-4">
@@ -28,3 +28,6 @@
     </div>
 </div>
 @endsection
+
+
+

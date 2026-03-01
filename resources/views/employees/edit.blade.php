@@ -11,7 +11,7 @@
             <p class="text-indigo-600/70 text-sm mt-1">ปรับปรุงข้อมูลส่วนตัวหรือสถานะการทำงาน</p>
         </div>
         <a href="{{ route('employees.index') }}" class="inline-flex items-center gap-2 text-indigo-600/70 hover:text-text bg-card hover:bg-slate-50 px-4 py-2 rounded-xl border border-slate-200 transition-all text-sm font-medium shadow-sm">
-            <x-heroicon-o-arrow-left class="w-5"/> ย้อนกลับ
+             ย้อนกลับ
         </a>
     </div>
 
@@ -25,7 +25,7 @@
             <div>
                 <h3 class="text-lg font-bold text-text mb-4 flex items-center gap-2 font-mono">
                     <div class="w-8 h-8 rounded-lg bg-indigo-50/50 text-indigo-600 flex items-center justify-center text-sm">
-                        <x-heroicon-o-user class="w-5"/>
+                        
                     </div>
                     ข้อมูลส่วนตัว
                 </h3>
@@ -54,7 +54,7 @@
             <div>
                 <h3 class="text-lg font-bold text-text mb-4 flex items-center gap-2 font-mono">
                     <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm">
-                        <x-heroicon-o-briefcase class="w-5"/>
+                        
                     </div>
                     ข้อมูลการทำงาน
                 </h3>
@@ -63,7 +63,7 @@
                     <div>
                         <label class="block text-sm font-medium text-text mb-1.5">รหัสพนักงาน <span class="text-rose-500">*</span></label>
                         <div class="relative">
-                            <x-heroicon-o-identification class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm w-5"/>
+                            
                             <input type="text" name="employee_code" value="{{ old('employee_code', $employee->employee_code) }}" placeholder="เช่น EMP001" 
                                    class="w-full pl-9 rounded-xl border-slate-200 focus:border-slate-200/600 focus:ring-primary-500 text-sm shadow-sm placeholder-slate-400 font-mono" required>
                         </div>
@@ -101,7 +101,7 @@
             <div x-data="{ fileName: null, filePreview: null }">
                 <h3 class="text-lg font-bold text-text mb-4 flex items-center gap-2 font-mono">
                     <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
-                        <x-heroicon-o-camera class="w-5"/>
+                        
                     </div>
                     รูปถ่ายพนักงาน
                 </h3>
@@ -133,7 +133,7 @@
 
                             <!-- Default Icon -->
                             <template x-if="!filePreview">
-                                <x-heroicon-o-arrow-up-tray class="text-slate-300 text-4xl mb-3 group-hover:text-primary-500 transition-colors w-5"/>
+                                
                             </template>
 
                             <div class="space-y-1 text-center">
@@ -164,10 +164,13 @@
             <div class="pt-6 border-t border-slate-200/60 flex items-center justify-end gap-3">
                 <a href="{{ route('employees.index') }}" class="px-5 py-2.5 rounded-xl border border-slate-200 text-text/80 hover:bg-slate-50 font-medium transition-colors text-sm">ยกเลิก</a>
                 <button type="submit" class="px-6 py-2.5 rounded-xl bg-primary-600 text-white hover:bg-primary-700 font-medium transition-all shadow-lg shadow-primary-600/20 text-sm flex items-center gap-2">
-                    <x-heroicon-o-document-check class="w-5"/> บันทึกการแก้ไข
+                     บันทึกการแก้ไข
                 </button>
             </div>
         </form>
     </div>
 </div>
 @endsection
+
+
+

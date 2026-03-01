@@ -33,7 +33,7 @@
     <!-- Print Controls -->
     <div class="no-print fixed top-6 right-6 flex gap-3 z-50">
         <button onclick="window.print()" class="bg-blue-600 text-white px-5 py-2.5 rounded-full shadow-lg hover:bg-blue-700 font-semibold flex items-center gap-2 transition-all hover:scale-105">
-            <x-heroicon-o-printer class="w-5"/>
+            
             พิมพ์รายงาน
         </button>
         <button onclick="window.close()" class="bg-card text-text/80 px-5 py-2.5 rounded-full shadow-lg hover:bg-slate-50 font-semibold transition-all">
@@ -61,7 +61,7 @@
                        class="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
             </div>
             <button type="submit" class="px-6 py-2.5 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800 transition-colors">
-                <x-heroicon-o-magnifying-glass class="mr-1 w-5"/> แสดงรายงาน
+                 แสดงรายงาน
             </button>
         </form>
     </div>
@@ -171,7 +171,7 @@
                                      class="w-20 h-20 object-cover rounded-lg border {{ $row['morning_late'] ? 'border-amber-300' : 'border-slate-200' }} mx-auto" alt="Morning">
                             @else
                                 <div class="w-20 h-20 bg-slate-100 rounded-lg border border-slate-200 mx-auto flex items-center justify-center text-slate-300">
-                                    <x-heroicon-o-photo class="text-xl w-5"/>
+                                    
                                 </div>
                             @endif
                         </td>
@@ -181,7 +181,7 @@
                                      class="w-20 h-20 object-cover rounded-lg border {{ $row['afternoon_late'] ? 'border-amber-300' : 'border-slate-200' }} mx-auto" alt="Afternoon">
                             @else
                                 <div class="w-20 h-20 bg-slate-100 rounded-lg border border-slate-200 mx-auto flex items-center justify-center text-slate-300">
-                                    <x-heroicon-o-photo class="text-xl w-5"/>
+                                    
                                 </div>
                             @endif
                         </td>
@@ -208,7 +208,7 @@
                     <tr>
                         <td colspan="7" class="px-6 py-16 text-center text-primary-400 italic">
                             <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <x-heroicon-o-clipboard-document-list class="text-2xl text-slate-300 w-5"/>
+                                
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลการลงเวลาในวันนี้</p>
                             <p class="text-sm mt-1">ลองเปลี่ยนวันที่หรือหลักสูตร</p>
@@ -227,3 +227,7 @@
 
 </body>
 </html>
+
+
+
+

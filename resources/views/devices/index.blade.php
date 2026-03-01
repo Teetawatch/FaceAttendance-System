@@ -11,14 +11,14 @@
             <p class="text-indigo-600/70 text-sm">จัดการจุดลงเวลาและอุปกรณ์ Kiosk ทั้งหมด</p>
         </div>
         <a href="{{ route('devices.create') }}" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-            <x-heroicon-o-plus class="w-5"/> ลงทะเบียนอุปกรณ์
+             ลงทะเบียนอุปกรณ์
         </a>
     </div>
 
     <!-- Alert Success -->
     @if(session('success'))
         <div class="bg-emerald-50 text-emerald-700 px-4 py-3 rounded-xl border border-emerald-100 flex items-center gap-3 shadow-sm">
-            <x-heroicon-o-check-circle class="text-lg w-5"/>
+            
             <span class="font-medium">{{ session('success') }}</span>
         </div>
     @endif
@@ -43,7 +43,7 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg shadow-sm border border-indigo-100">
-                                    <x-heroicon-o-device-tablet class="w-5"/>
+                                    
                                 </div>
                                 <span class="font-bold text-text group-hover:text-primary-700 transition-colors">{{ $device->name }}</span>
                             </div>
@@ -53,7 +53,7 @@
                         </td>
                         <td class="px-6 py-4 text-text/80">
                             <div class="flex items-center gap-2">
-                                <x-heroicon-o-map-pin class="text-slate-300 w-5"/>
+                                
                                 {{ $device->location ?? '-' }}
                             </div>
                         </td>
@@ -72,13 +72,13 @@
                         <td class="px-6 py-4 text-right">
                             <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <a href="{{ route('devices.edit', $device) }}" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all" title="แก้ไข">
-                                    <x-heroicon-o-pencil-square class="w-5"/>
+                                    
                                 </a>
                                 <form action="{{ route('devices.destroy', $device) }}" method="POST" onsubmit="return confirm('ยืนยันการลบอุปกรณ์นี้?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg text-primary-400 hover:text-rose-600 hover:bg-rose-50 transition-all" title="ลบ">
-                                        <x-heroicon-o-trash class="w-5"/>
+                                        
                                     </button>
                                 </form>
                             </div>
@@ -88,7 +88,7 @@
                     <tr>
                         <td colspan="6" class="px-6 py-16 text-center text-primary-400">
                             <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <x-heroicon-o-device-tablet class="text-2xl text-slate-300 w-5"/>
+                                
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลอุปกรณ์</p>
                             <p class="text-sm mt-1 text-primary-400">เริ่มต้นด้วยการลงทะเบียนอุปกรณ์ใหม่</p>
@@ -101,3 +101,6 @@
     </div>
 </div>
 @endsection
+
+
+

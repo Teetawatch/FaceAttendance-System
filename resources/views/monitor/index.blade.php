@@ -20,12 +20,12 @@
                     <button @click="toggleMode('monitor')" 
                             :class="mode === 'monitor' ? 'bg-card shadow-sm text-indigo-600' : 'text-primary-400 hover:text-text/80'"
                             class="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2">
-                        <x-heroicon-o-computer-desktop class="w-5"/> จอภาพ
+                         จอภาพ
                     </button>
                     <button @click="toggleMode('kiosk')" 
                             :class="mode === 'kiosk' ? 'bg-card shadow-sm text-indigo-600' : 'text-primary-400 hover:text-text/80'"
                             class="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2">
-                        <x-heroicon-o-camera class="w-5"/> จุดลงเวลา
+                         จุดลงเวลา
                     </button>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                                 <img :src="latestScan.snapshot_url || latestScan.photo_url" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             </template>
                             <template x-if="!latestScan.snapshot_url && !latestScan.photo_url">
-                                <x-heroicon-o-user class="text-7xl text-slate-200 w-5"/>
+                                
                             </template>
                         </div>
                         <!-- Decorative Ring -->
@@ -64,7 +64,7 @@
                     <div class="space-y-2 mb-8">
                         <h2 class="text-3xl font-bold text-text font-bold font-mono font-mono" x-text="latestScan.name || 'รอรับข้อมูล...'"></h2>
                         <p class="text-indigo-600/70 text-lg flex items-center justify-center gap-2">
-                            <x-heroicon-o-map-pin class="text-slate-300 w-5"/>
+                            
                             <span x-text="latestScan.device || 'ระบบพร้อมใช้งาน'"></span>
                         </p>
                     </div>
@@ -99,7 +99,7 @@
                          x-transition:enter-end="opacity-100 scale-100"
                          class="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none">
                         <div class="bg-black/70 backdrop-blur-md text-white px-8 py-6 rounded-3xl border border-white/20 shadow-2xl flex flex-col items-center animate-pulse">
-                            <x-heroicon-o-eye class="text-5xl mb-4 text-emerald-400 w-5"/>
+                            
                             <h3 class="text-2xl font-bold font-mono">กรุณากระพริบตา</h3>
                             <p class="text-slate-300 text-sm mt-2">เพื่อยืนยันตัวตน</p>
                         </div>
@@ -107,7 +107,7 @@
 
                     <!-- Loading Models Indicator -->
                     <div x-show="isModelsLoading" class="absolute inset-0 bg-black/80 flex flex-col items-center justify-center z-20 text-white">
-                        <x-heroicon-o-arrow-path class="text-4xl mb-3 text-primary-500 w-5"/>
+                        
                         <p>กำลังโหลดโมเดล AI...</p>
                     </div>
                 </div>
@@ -123,8 +123,8 @@
                         <button @click="submitScan()" 
                                 :disabled="isLoading || !kiosk.employee_code"
                                 class="bg-primary-600 hover:bg-indigo-50/500 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-lg shadow-primary-900/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none">
-                            <span x-show="!isLoading"><x-heroicon-o-camera class="mr-2 w-5"/>สแกน</span>
-                            <span x-show="isLoading"><x-heroicon-o-arrow-path class="w-5"/></span>
+                            <span x-show="!isLoading">สแกน</span>
+                            <span x-show="isLoading"></span>
                         </button>
                     </div>
                     
@@ -132,7 +132,7 @@
                     <div class="flex justify-between items-center text-xs text-indigo-600/70 pt-2">
                         <span>ระบบจดจำใบหน้าอัตโนมัติ</span>
                         <button @click="showConfig = !showConfig" class="hover:text-slate-300 transition-colors flex items-center gap-1">
-                            <x-heroicon-o-cog-6-tooth class="w-5"/> ตั้งค่าอุปกรณ์
+                             ตั้งค่าอุปกรณ์
                         </button>
                     </div>
 
@@ -190,14 +190,14 @@
                                         <img :src="scan.snapshot_url || scan.photo_url" class="w-full h-full object-cover">
                                     </template>
                                     <template x-if="!scan.snapshot_url && !scan.photo_url">
-                                        <x-heroicon-o-user class="text-slate-300 text-xl w-5"/>
+                                        
                                     </template>
                                 </div>
                                 <div>
                                     <p class="font-bold text-text text-lg group-hover:text-primary-700 transition-colors" x-text="scan.name"></p>
                                     <div class="flex items-center gap-2 mt-1">
                                         <span class="text-xs text-primary-400 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 flex items-center gap-1">
-                                            <x-heroicon-o-map-pin class="text-[10px] w-5"/>
+                                            
                                             <span x-text="scan.device"></span>
                                         </span>
                                     </div>
@@ -218,7 +218,7 @@
                  <!-- Empty State -->
                  <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-slate-50/30">
                      <div class="w-24 h-24 bg-card rounded-full shadow-sm flex items-center justify-center mb-4">
-                        <x-heroicon-o-signal class="text-4xl text-slate-200 w-5"/>
+                        
                      </div>
                      <p class="font-medium text-primary-400">กำลังรอรับข้อมูล...</p>
                      <p class="text-sm text-slate-300 mt-1">ข้อมูลการสแกนจะปรากฏที่นี่ทันที</p>
@@ -586,3 +586,6 @@
     }
 </style>
 @endsection
+
+
+

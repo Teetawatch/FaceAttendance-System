@@ -15,7 +15,7 @@
 
             <div class="relative z-10 text-center">
                 <div class="w-28 h-28 bg-card rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-xl shadow-blue-100 transform rotate-3 hover:rotate-6 transition-all duration-500">
-                    <x-heroicon-o-face-smile class="text-6xl text-indigo-600 w-5"/>
+                    
                 </div>
                 <h2 class="text-3xl font-bold text-text font-bold font-mono mb-4 tracking-tight font-mono">ระบบบันทึกเวลาด้วยใบหน้า</h2>
                 <p class="text-indigo-600/70 text-lg leading-relaxed font-light">
@@ -31,7 +31,7 @@
             <!-- Mobile Header -->
             <div class="lg:hidden text-center mb-8">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-indigo-50 text-indigo-600 mb-4">
-                    <x-heroicon-o-face-smile class="text-3xl w-5"/>
+                    
                 </div>
                 <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">Face Attendance</h2>
             </div>
@@ -44,7 +44,7 @@
             <!-- Session Status -->
             @if (session('status'))
                 <div class="mb-6 p-4 rounded-xl bg-green-50 border border-green-100 flex items-center gap-3 text-green-700 text-sm font-medium">
-                    <x-heroicon-o-check-circle class="w-5"/>
+                    
                     {{ session('status') }}
                 </div>
             @endif
@@ -57,14 +57,14 @@
                     <label for="email" class="text-sm font-medium text-text">อีเมล</label>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <x-heroicon-o-envelope class="text-primary-400 group-focus-within:text-indigo-500 transition-colors w-5"/>
+                            
                         </div>
                         <input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username"
                             class="pl-11 block w-full rounded-xl border-slate-200 bg-slate-50 focus:bg-card focus:border-indigo-500 focus:ring-indigo-500 py-3 transition-all text-sm placeholder:text-primary-400" 
                             placeholder="name@company.com">
                     </div>
                     @error('email')
-                        <p class="text-red-500 text-xs mt-1 flex items-center gap-1"><x-heroicon-o-exclamation-circle class="w-5"/> {{ $message }}</p>
+                        <p class="text-red-500 text-xs mt-1 flex items-center gap-1"> {{ $message }}</p>
                     @enderror
                 </div>
 
@@ -75,14 +75,14 @@
                     </div>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <x-heroicon-o-lock-closed class="text-primary-400 group-focus-within:text-indigo-500 transition-colors w-5"/>
+                            
                         </div>
                         <input id="password" type="password" name="password" required autocomplete="current-password"
                             class="pl-11 block w-full rounded-xl border-slate-200 bg-slate-50 focus:bg-card focus:border-indigo-500 focus:ring-indigo-500 py-3 transition-all text-sm placeholder:text-primary-400"
                             placeholder="••••••••">
                     </div>
                     @error('password')
-                        <p class="text-red-500 text-xs mt-1 flex items-center gap-1"><x-heroicon-o-exclamation-circle class="w-5"/> {{ $message }}</p>
+                        <p class="text-red-500 text-xs mt-1 flex items-center gap-1"> {{ $message }}</p>
                     @enderror
                 </div>
 
@@ -103,7 +103,7 @@
                 <!-- Submit Button -->
                 <button type="submit" class="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white shadow-md shadow-primary-500/20 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
                     <span>เข้าสู่ระบบ</span>
-                    <x-heroicon-o-arrow-right class="w-5"/>
+                    
                 </button>
             </form>
 
@@ -135,3 +135,6 @@
     }
 </style>
 @endsection
+
+
+

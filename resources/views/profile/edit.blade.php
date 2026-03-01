@@ -38,7 +38,7 @@
                 <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 p-6">
                     <div class="flex items-center gap-3 mb-4 text-text font-bold font-mono font-semibold border-b border-slate-50 pb-3">
                         <div class="w-8 h-8 rounded-lg bg-rose-50 flex items-center justify-center text-rose-600">
-                            <x-heroicon-o-pencil-square class="w-5"/>
+                            
                         </div>
                         ลายเซ็นดิจิทัล
                     </div>
@@ -53,7 +53,7 @@
                 <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 p-8">
                     <div class="flex items-center gap-3 mb-6 text-text font-bold font-mono font-semibold border-b border-slate-50 pb-4">
                         <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
-                            <x-heroicon-o-identification class="w-5"/>
+                            
                         </div>
                         แก้ไขข้อมูลพื้นฐาน
                     </div>
@@ -64,7 +64,7 @@
                 <div class="bg-card rounded-2xl shadow-sm border border-slate-200/60 p-8">
                     <div class="flex items-center gap-3 mb-6 text-text font-bold font-mono font-semibold border-b border-slate-50 pb-4">
                         <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
-                            <x-heroicon-o-key class="w-5"/>
+                            
                         </div>
                         เปลี่ยนรหัสผ่าน
                     </div>
@@ -74,12 +74,12 @@
                 <!-- Delete Account -->
                 <div class="bg-card rounded-2xl shadow-sm border border-red-100 p-8 relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-4 opacity-10">
-                        <x-heroicon-o-exclamation-triangle class="text-8xl text-red-600 transform rotate-12 w-5"/>
+                        
                     </div>
                     <div class="relative z-10">
                         <div class="flex items-center gap-3 mb-6 text-red-700 font-semibold border-b border-red-50 pb-4">
                             <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
-                                <x-heroicon-o-x-circle class="w-5"/>
+                                
                             </div>
                             ลบบัญชีผู้ใช้
                         </div>
@@ -91,3 +91,7 @@
         </div>
     </div>
 @endsection
+
+
+
+

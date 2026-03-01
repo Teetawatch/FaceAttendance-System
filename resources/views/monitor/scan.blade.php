@@ -38,7 +38,7 @@
                          x-transition:enter-end="opacity-100 scale-100"
                          class="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none">
                         <div class="bg-black/70 backdrop-blur-md text-white px-8 py-6 rounded-3xl border border-amber-500/50 shadow-2xl flex flex-col items-center">
-                            <x-heroicon-o-eye class="text-5xl mb-4 text-amber-400 animate-pulse w-5"/>
+                            
                             <h3 class="text-2xl font-bold font-mono">กรุณากระพริบตา</h3>
                             <p class="text-slate-300 text-sm mt-2">เพื่อยืนยันว่าคุณเป็นคนจริง</p>
                         </div>
@@ -51,7 +51,7 @@
                          x-transition:enter-end="opacity-100 scale-100"
                          class="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none">
                         <div class="bg-black/70 backdrop-blur-md text-white px-8 py-6 rounded-3xl border border-emerald-500/50 shadow-2xl flex flex-col items-center">
-                            <x-heroicon-o-check-circle class="text-5xl mb-4 text-emerald-400 w-5"/>
+                            
                             <h3 class="text-2xl font-bold font-mono">ยืนยันตัวตนสำเร็จ!</h3>
                             <p class="text-slate-300 text-sm mt-2">กำลังบันทึก...</p>
                         </div>
@@ -59,7 +59,7 @@
 
                     <!-- Loading Models Indicator -->
                     <div x-show="isModelsLoading" class="absolute inset-0 bg-black/80 flex flex-col items-center justify-center z-20 text-white">
-                        <x-heroicon-o-arrow-path class="text-4xl mb-3 text-primary-500 w-5"/>
+                        
                         <p>กำลังโหลดโมเดล AI...</p>
                     </div>
                 </div>
@@ -75,8 +75,8 @@
                         <button @click="submitScan()" 
                                 :disabled="isLoading || !kiosk.employee_code"
                                 class="bg-primary-600 hover:bg-indigo-50/500 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-lg shadow-primary-900/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none">
-                            <span x-show="!isLoading"><x-heroicon-o-camera class="mr-2 w-5"/>สแกน</span>
-                            <span x-show="isLoading"><x-heroicon-o-arrow-path class="w-5"/></span>
+                            <span x-show="!isLoading">สแกน</span>
+                            <span x-show="isLoading"></span>
                         </button>
                     </div>
                     
@@ -84,7 +84,7 @@
                     <div class="flex justify-between items-center text-xs text-indigo-600/70 pt-2">
                         <span>ระบบจดจำใบหน้าอัตโนมัติ</span>
                         <button @click="showConfig = !showConfig" class="hover:text-slate-300 transition-colors flex items-center gap-1">
-                            <x-heroicon-o-cog-6-tooth class="w-5"/> ตั้งค่าอุปกรณ์
+                             ตั้งค่าอุปกรณ์
                         </button>
                     </div>
 
@@ -141,7 +141,7 @@
                                         <img :src="scan.snapshot_url || scan.photo_url" class="w-full h-full object-cover">
                                     </template>
                                     <template x-if="!scan.snapshot_url && !scan.photo_url">
-                                        <x-heroicon-o-user class="text-slate-300 text-sm w-5"/>
+                                        
                                     </template>
                                 </div>
                                 <div>
@@ -161,7 +161,7 @@
                  <!-- Empty State -->
                  <div x-show="history.length === 0" class="absolute inset-0 flex flex-col items-center justify-center text-slate-300 bg-slate-50/30">
                      <div class="w-16 h-16 bg-card rounded-full shadow-sm flex items-center justify-center mb-3">
-                        <x-heroicon-o-signal class="text-2xl text-slate-200 w-5"/>
+                        
                      </div>
                      <p class="text-xs text-primary-400">รอรับข้อมูล...</p>
                  </div>
@@ -518,3 +518,7 @@
     }
 </style>
 @endsection
+
+
+
+

@@ -64,11 +64,11 @@
                         <div class="flex -space-x-2">
                             <div
                                 class="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-xs">
-                                <i class="fa-solid fa-user-tie"></i>
+                                
                             </div>
                             <div
                                 class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xs">
-                                <i class="fa-solid fa-user-graduate"></i>
+                                
                             </div>
                         </div>
                         <span class="text-slate-300 text-sm font-medium">จุดสแกนรวม</span>
@@ -155,7 +155,7 @@
                                 class="text-center p-8 bg-slate-900/90 border border-amber-500/30 rounded-3xl shadow-2xl animate-float">
                                 <div
                                     class="w-20 h-20 mx-auto bg-amber-500/20 rounded-2xl flex items-center justify-center mb-6 ring-1 ring-amber-500/40">
-                                    <i class="fa-solid fa-eye text-4xl text-amber-400 animate-pulse"></i>
+                                    
                                 </div>
                                 <h3 class="text-2xl font-bold text-white">กรุณากระพริบตา</h3>
                                 <p class="text-slate-400 mt-2">เพื่อยืนยันตัวตน</p>
@@ -179,7 +179,7 @@
                             </div>
                             <div class="relative flex items-center bg-slate-900 rounded-2xl p-1">
                                 <div class="pl-4 pr-3 text-slate-500">
-                                    <i class="fa-solid fa-keyboard text-lg"></i>
+                                    
                                 </div>
                                 <input type="text" x-model="employeeCode" @keyup.enter="submitScan()"
                                     placeholder="กรอกรหัสพนักงาน..."
@@ -193,16 +193,15 @@
                             </div>
                             <span class="relative flex items-center gap-2">
                                 <span x-show="!isLoading">ตกลง</span>
-                                <i x-show="!isLoading"
-                                    class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                                <i x-show="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+                                
+                                
                             </span>
                         </button>
 
                         <!-- Settings Toggle -->
                         <button @click="showConfig = !showConfig"
                             class="w-14 h-14 rounded-2xl bg-slate-800/50 hover:bg-slate-700/80 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all cursor-pointer">
-                            <i class="fa-solid fa-sliders text-xl" :class="showConfig ? 'text-indigo-400' : ''"></i>
+                            
                         </button>
                     </div>
 
@@ -260,7 +259,7 @@
                                 <img :src="lastScan.snapshot_url || lastScan.photo_url" class="w-full h-full object-cover">
                             </template>
                             <template x-if="!lastScan">
-                                <i class="fa-solid fa-face-viewfinder text-5xl text-indigo-400 group-hover:text-indigo-300 transition-colors"></i>
+                                
                             </template>
                         </div>
 
@@ -274,11 +273,11 @@
                         <!-- Indicators -->
                         <div class="mt-12 grid grid-cols-2 gap-4 w-full max-w-xs">
                             <div class="bg-slate-800/50 rounded-2xl p-4 border border-white/5 flex flex-col items-center">
-                                <i class="fa-solid fa-shield-halved text-emerald-400 text-2xl mb-2"></i>
+                                
                                 <span class="text-xs text-slate-400 font-medium tracking-wide">ปลอดภัย</span>
                             </div>
                             <div class="bg-slate-800/50 rounded-2xl p-4 border border-white/5 flex flex-col items-center">
-                                <i class="fa-solid fa-bolt text-amber-400 text-2xl mb-2"></i>
+                                
                                 <span class="text-xs text-slate-400 font-medium tracking-wide">รวดเร็ว</span>
                             </div>
                         </div>
@@ -305,7 +304,7 @@
                                 <div class="absolute inset-0 bg-emerald-500/30 rounded-full blur-xl animate-pulse"></div>
                                 <div
                                     class="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/40 relative z-10">
-                                    <i class="fa-solid fa-check text-4xl text-white"></i>
+                                    
                                 </div>
                             </div>
 
@@ -323,7 +322,7 @@
                                     </template>
                                     <template x-if="!lastScan?.photo_url && !lastScan?.snapshot_url">
                                         <div class="w-full h-full flex items-center justify-center bg-slate-700">
-                                            <i class="fa-solid fa-user text-5xl text-slate-500"></i>
+                                            
                                         </div>
                                     </template>
                                 </div>
@@ -879,3 +878,6 @@
         }
     </style>
 @endsection
+
+
+

@@ -7,7 +7,7 @@
     <!-- Header -->
     <div class="flex items-center gap-4">
         <a href="{{ route('users.index') }}" class="w-10 h-10 flex items-center justify-center rounded-xl bg-card border border-slate-200 text-indigo-600/70 hover:text-text font-bold font-mono hover:border-slate-300 transition-all shadow-sm">
-            <x-heroicon-o-arrow-left class="w-5"/>
+            
         </a>
         <h2 class="text-2xl font-bold text-text font-bold font-mono font-mono">เพิ่มผู้ใช้งานใหม่</h2>
     </div>
@@ -75,3 +75,7 @@
     </div>
 </div>
 @endsection
+
+
+
+

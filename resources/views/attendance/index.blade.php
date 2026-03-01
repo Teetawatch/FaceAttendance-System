@@ -14,7 +14,7 @@
         <form method="GET" class="flex flex-col sm:flex-row gap-3">
             <!-- Search -->
             <div class="relative">
-                <x-heroicon-o-magnifying-glass class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400 text-sm w-5"/>
+                
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="ค้นหาชื่อ หรือ รหัสพนักงาน..." 
                        class="pl-9 w-full sm:w-64 rounded-xl border-slate-200 focus:ring-primary-500 focus:border-slate-200/600 text-sm shadow-sm">
             </div>
@@ -24,7 +24,7 @@
                    class="rounded-xl border-slate-200 focus:ring-primary-500 focus:border-slate-200/600 text-sm text-text/80 shadow-sm">
             
             <button type="submit" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all text-white px-4 py-2 rounded-xl transition-all shadow-sm hover:shadow-md text-sm font-medium">
-                <x-heroicon-o-funnel class="mr-1 w-5"/> กรองข้อมูล
+                 กรองข้อมูล
             </button>
             
             @if(request()->has('date') || request()->has('search'))
@@ -59,7 +59,7 @@
                                         <img src="{{ route('storage.file', ['path' => $row->employee->photo_path]) }}" class="w-full h-full object-cover">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center text-slate-300">
-                                            <x-heroicon-o-user class="w-5"/>
+                                            
                                         </div>
                                     @endif
                                 </div>
@@ -116,7 +116,7 @@
                     <tr>
                         <td colspan="6" class="px-6 py-16 text-center text-primary-400">
                             <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <x-heroicon-o-clipboard-document-list class="text-2xl text-slate-300 w-5"/>
+                                
                             </div>
                             <p class="font-medium">ไม่พบข้อมูลการลงเวลา</p>
                             <p class="text-sm mt-1 text-primary-400">ลองเปลี่ยนวันที่ หรือคำค้นหา</p>
@@ -134,3 +134,6 @@
     </div>
 </div>
 @endsection
+
+
+
