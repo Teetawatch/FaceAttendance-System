@@ -2,10 +2,131 @@
 
 @section('title', 'จุดลงเวลาอัจฉริยะ (AI Kiosk)')
 
-@section('content')
-    <!-- Load face-api.js -->
-    <script src="{{ asset('js/face-api.min.js') }}"></script>
+@push('styles')
+    <style>
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
 
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 10s ease-in-out infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        @keyframes scan-line {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            50% {
+                transform: translateY(100%);
+            }
+
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+        .animate-scan-line {
+            animation: scan-line 4s ease-in-out infinite;
+            background: linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.15), transparent);
+            height: 100%;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 12s linear infinite;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Input autofill fix */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #020617 inset !important;
+            -webkit-text-fill-color: white !important;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            .animate-blob,
+            .animate-scan-line,
+            .animate-float,
+            .animate-spin-slow,
+            .animate-pulse,
+            .animate-ping {
+                animation: none !important;
+            }
+        }
+    </style>
+@endpush
+
+@section('content')
     <div x-data="kioskApp()" x-init="initKiosk()"
         class="relative min-h-screen flex flex-col overflow-hidden bg-[#020617] selection:bg-indigo-500/30 text-slate-200"
         style="font-family: 'Kanit', sans-serif;">
@@ -200,8 +321,8 @@
                                 <button @click="switchCamera(camera.deviceId)"
                                     class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 cursor-pointer text-left"
                                     :class="selectedCamera === camera.deviceId
-                                                ? 'bg-indigo-600/20 border-indigo-500/50 text-white'
-                                                : 'bg-[#020617] border-slate-700 text-slate-300 hover:border-slate-500 hover:bg-slate-800/50'">
+                                                    ? 'bg-indigo-600/20 border-indigo-500/50 text-white'
+                                                    : 'bg-[#020617] border-slate-700 text-slate-300 hover:border-slate-500 hover:bg-slate-800/50'">
                                     <svg class="w-5 h-5 shrink-0"
                                         :class="selectedCamera === camera.deviceId ? 'text-indigo-400' : 'text-slate-500'"
                                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -366,7 +487,10 @@
             <p>&copy; {{ date('Y') }} ลงเวลาปฏิบัติราชการด้วยใบหน้า</p>
         </footer>
     </div>
+@endsection
 
+@push('scripts')
+    <script src="{{ asset('js/face-api.min.js') }}"></script>
     <script>
         function kioskApp() {
             return {
@@ -421,7 +545,7 @@
                         await Promise.all([
                             faceapi.loadTinyFaceDetectorModel(modelPath),
                             faceapi.loadFaceLandmarkModel(modelPath),
-                            faceapi.loadFaceRecognitionModel(modelPath)
+                            faceapi.loadFaceRecognitionModel(modelPath),
                         ]);
                         this.isModelsLoading = false;
                         this.statusMessage = 'ระบบพร้อมใช้งาน';
@@ -436,7 +560,7 @@
                         // Enumerate cameras after stream is acquired to get labels
                         await this.getCameras();
                     } catch (err) {
-                        console.error("Camera init failed:", err);
+                        console.error('Camera init failed:', err);
                         this.statusMessage = 'ไม่สามารถเปิดกล้องได้';
                     }
                 },
@@ -455,7 +579,7 @@
 
                         const [staffResponse, studentResponse] = await Promise.all([
                             axios.get(staffFacesUrl),
-                            axios.get(studentFacesUrl)
+                            axios.get(studentFacesUrl),
                         ]);
 
                         const staffMembers = staffResponse.data.data || [];
@@ -469,7 +593,10 @@
                                         photoUrl = photoUrl.replace('http:', 'https:');
                                     }
                                     const img = await faceapi.fetchImage(photoUrl);
-                                    const detections = await faceapi.detectSingleFace(img, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptor();
+                                    const detections = await faceapi
+                                        .detectSingleFace(img, new faceapi.TinyFaceDetectorOptions())
+                                        .withFaceLandmarks()
+                                        .withFaceDescriptor();
                                     if (!detections) return null;
                                     return new faceapi.LabeledFaceDescriptors('STAFF_' + employee.employee_code, [detections.descriptor]);
                                 } catch (err) { return null; }
@@ -484,7 +611,10 @@
                                         photoUrl = photoUrl.replace('http:', 'https:');
                                     }
                                     const img = await faceapi.fetchImage(photoUrl);
-                                    const detections = await faceapi.detectSingleFace(img, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptor();
+                                    const detections = await faceapi
+                                        .detectSingleFace(img, new faceapi.TinyFaceDetectorOptions())
+                                        .withFaceLandmarks()
+                                        .withFaceDescriptor();
                                     if (!detections) return null;
                                     return new faceapi.LabeledFaceDescriptors('STUDENT_' + student.student_code, [detections.descriptor]);
                                 } catch (err) { return null; }
@@ -516,7 +646,7 @@
                         video.onloadedmetadata = () => { video.play(); this.startFaceDetection(); };
                         await this.getCameras();
                     } catch (err) {
-                        console.error("Error accessing camera:", err);
+                        console.error('Error accessing camera:', err);
                         this.statusMessage = 'ไม่สามารถเข้าถึงกล้องได้';
                     }
                 },
@@ -528,14 +658,20 @@
 
                     this.detectionInterval = setInterval(async () => {
                         if (!video.videoWidth) return;
+
                         const displaySize = { width: video.videoWidth, height: video.videoHeight };
                         faceapi.matchDimensions(canvas, displaySize);
-                        const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptors();
+
+                        const detections = await faceapi
+                            .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+                            .withFaceLandmarks()
+                            .withFaceDescriptors();
                         const resizedDetections = faceapi.resizeResults(detections, displaySize);
                         canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
 
                         if (this.faceMatcher) {
                             const results = resizedDetections.map(d => this.faceMatcher.findBestMatch(d.descriptor));
+
                             if (results.length === 0) {
                                 if (this.livenessStatus === 'waiting_for_blink') {
                                     this.livenessStatus = 'idle';
@@ -548,13 +684,19 @@
                                 const box = resizedDetections[i].detection.box;
                                 const ctx = canvas.getContext('2d');
                                 const { x, y, width, height } = box;
-                                const lineLen = 20, lineWidth = 4;
+                                const lineLen = 20;
+                                const lineWidth = 4;
+
                                 ctx.strokeStyle = '#6366f1';
                                 ctx.lineWidth = lineWidth;
                                 ctx.beginPath();
+                                // Top-left corner
                                 ctx.moveTo(x, y + lineLen); ctx.lineTo(x, y); ctx.lineTo(x + lineLen, y);
+                                // Top-right corner
                                 ctx.moveTo(x + width - lineLen, y); ctx.lineTo(x + width, y); ctx.lineTo(x + width, y + lineLen);
+                                // Bottom-right corner
                                 ctx.moveTo(x + width, y + height - lineLen); ctx.lineTo(x + width, y + height); ctx.lineTo(x + width - lineLen, y + height);
+                                // Bottom-left corner
                                 ctx.moveTo(x + lineLen, y + height); ctx.lineTo(x, y + height); ctx.lineTo(x, y + height - lineLen);
                                 ctx.stroke();
 
@@ -567,7 +709,10 @@
                                         this.employeeCode = result.label;
                                         this.submitScan();
                                         this.lastScanTime = now;
-                                        setTimeout(() => { this.livenessStatus = 'idle'; this.showFaceDetected = false; }, 2000);
+                                        setTimeout(() => {
+                                            this.livenessStatus = 'idle';
+                                            this.showFaceDetected = false;
+                                        }, 2000);
                                     }
                                 }
                             });
@@ -578,33 +723,33 @@
                 async getCameras() {
                     try {
                         if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-                            console.error("enumerateDevices() not supported.");
+                            console.error('enumerateDevices() not supported.');
                             return;
                         }
-
                         const devices = await navigator.mediaDevices.enumerateDevices();
                         const videoDevices = devices.filter(device => device.kind === 'videoinput');
-
-                        // Force update cameras list
                         this.cameras = videoDevices.map((d, i) => ({
                             deviceId: d.deviceId,
-                            label: d.label || `กล้องที่ ${i + 1} (${d.deviceId.slice(0, 5)}...)`
+                            label: d.label || `กล้องที่ ${i + 1} (${d.deviceId.slice(0, 5)}...)`,
                         }));
-
-                        console.log("Found cameras:", this.cameras);
-
                         if (this.cameras.length > 0 && !this.selectedCamera) {
                             const videoTrack = this.stream?.getVideoTracks()[0];
                             this.selectedCamera = videoTrack?.getSettings().deviceId || this.cameras[0].deviceId;
                         }
                     } catch (err) {
-                        console.error("Error listing cameras:", err);
+                        console.error('Error listing cameras:', err);
                     }
                 },
 
                 stopCamera() {
-                    if (this.stream) { this.stream.getTracks().forEach(track => track.stop()); this.stream = null; }
-                    if (this.detectionInterval) { clearInterval(this.detectionInterval); this.detectionInterval = null; }
+                    if (this.stream) {
+                        this.stream.getTracks().forEach(track => track.stop());
+                        this.stream = null;
+                    }
+                    if (this.detectionInterval) {
+                        clearInterval(this.detectionInterval);
+                        this.detectionInterval = null;
+                    }
                 },
 
                 saveConfig() {
@@ -632,8 +777,14 @@
                         const isStudent = this.employeeCode.startsWith('STUDENT_');
                         const isStaff = this.employeeCode.startsWith('STAFF_');
                         let actualCode = this.employeeCode;
-                        if (isStudent) { actualCode = this.employeeCode.replace('STUDENT_', ''); this.detectedType = 'student'; }
-                        else if (isStaff) { actualCode = this.employeeCode.replace('STAFF_', ''); this.detectedType = 'staff'; }
+
+                        if (isStudent) {
+                            actualCode = this.employeeCode.replace('STUDENT_', '');
+                            this.detectedType = 'student';
+                        } else if (isStaff) {
+                            actualCode = this.employeeCode.replace('STAFF_', '');
+                            this.detectedType = 'staff';
+                        }
 
                         const scanUrl = isStudent
                             ? "{{ route('api.kiosk.student.scan.store') }}".replace(/^http:/, location.protocol)
@@ -666,130 +817,8 @@
                     if (this.popupTimer) clearTimeout(this.popupTimer);
                     this.showSuccessPopup = true;
                     this.popupTimer = setTimeout(() => { this.showSuccessPopup = false; }, 5000);
-                }
-            }
+                },
+            };
         }
     </script>
-
-    <style>
-        @keyframes blob {
-            0% {
-                transform: translate(0px, 0px) scale(1);
-            }
-
-            33% {
-                transform: translate(30px, -50px) scale(1.1);
-            }
-
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
-            }
-
-            100% {
-                transform: translate(0px, 0px) scale(1);
-            }
-        }
-
-        .animate-blob {
-            animation: blob 10s ease-in-out infinite;
-        }
-
-        .animation-delay-2000 {
-            animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-            animation-delay: 4s;
-        }
-
-        @keyframes scan-line {
-            0% {
-                transform: translateY(-100%);
-            }
-
-            50% {
-                transform: translateY(100%);
-            }
-
-            100% {
-                transform: translateY(-100%);
-            }
-        }
-
-        .animate-scan-line {
-            animation: scan-line 4s ease-in-out infinite;
-            background: linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.15), transparent);
-            height: 100%;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes spin-slow {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .animate-spin-slow {
-            animation: spin-slow 12s linear infinite;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Input autofill fix */
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus,
-        input:-webkit-autofill:active {
-            -webkit-box-shadow: 0 0 0 30px #020617 inset !important;
-            -webkit-text-fill-color: white !important;
-        }
-
-        /* Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-
-            .animate-blob,
-            .animate-scan-line,
-            .animate-float,
-            .animate-spin-slow,
-            .animate-pulse,
-            .animate-ping {
-                animation: none !important;
-            }
-        }
-    </style>
-@endsection
+@endpush

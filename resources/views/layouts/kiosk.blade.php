@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="ระบบลงเวลาปฏิบัติราชการด้วยใบหน้า - Face Attendance Kiosk">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'จุดลงเวลา') - {{ config('app.name', 'Face Attendance') }}</title>
 
     <!-- Google Fonts: Kanit -->
@@ -24,10 +25,14 @@
             background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #020617 100%);
         }
     </style>
+
+    @stack('styles')
 </head>
 
 <body class="kiosk-gradient min-h-screen text-white antialiased">
     @yield('content')
+
+    @stack('scripts')
 </body>
 
 </html>
