@@ -7,15 +7,24 @@
     <script src="{{ asset('js/face-api.min.js') }}"></script>
 
     <div x-data="kioskApp()" x-init="initKiosk()"
-        class="relative min-h-screen flex flex-col overflow-hidden bg-[#020617] font-sans selection:bg-indigo-500/30 text-slate-200">
+        class="relative min-h-screen flex flex-col overflow-hidden bg-[#020617] selection:bg-indigo-500/30 text-slate-200"
+        style="font-family: 'Kanit', sans-serif;">
 
         <!-- Dynamic Aurora Background -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-500/15 rounded-full blur-[120px] mix-blend-screen animate-blob"></div>
-            <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000"></div>
-            <div class="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-4000"></div>
+            <div
+                class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-500/15 rounded-full blur-[120px] mix-blend-screen animate-blob">
+            </div>
+            <div
+                class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-4000">
+            </div>
             <!-- Grid Pattern -->
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBWMGg0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
+            <div
+                class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBWMGg0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30">
+            </div>
         </div>
 
         <!-- Header -->
@@ -24,14 +33,19 @@
                 <!-- Logo -->
                 <div class="flex items-center gap-5 group cursor-default">
                     <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-2xl blur-lg opacity-40 group-hover:opacity-70 transition-opacity duration-500"></div>
-                        <div class="relative w-14 h-14 bg-[#0F172A]/90 backdrop-blur-md rounded-2xl border border-white/10 flex items-center justify-center shadow-2xl ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-500">
-                            <img src="{{ asset('images/logonavy.png') }}" alt="Logo" class="w-9 h-9 object-contain drop-shadow-lg">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-2xl blur-lg opacity-40 group-hover:opacity-70 transition-opacity duration-500">
+                        </div>
+                        <div
+                            class="relative w-14 h-14 bg-[#0F172A]/90 backdrop-blur-md rounded-2xl border border-white/10 flex items-center justify-center shadow-2xl ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-500">
+                            <img src="{{ asset('images/logonavy.png') }}" alt="Logo"
+                                class="w-9 h-9 object-contain drop-shadow-lg">
                         </div>
                     </div>
                     <div>
                         <h1 class="text-2xl lg:text-3xl font-bold text-white tracking-tight">
-                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-slate-400">ระบบลงเวลาด้วยใบหน้า</span>
+                            <span
+                                class="bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-slate-400">ระบบลงเวลาด้วยใบหน้า</span>
                         </h1>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -43,13 +57,24 @@
                 <!-- Right: Stats + Clock -->
                 <div class="flex items-center gap-4">
                     <!-- Unified Badge -->
-                    <div class="hidden md:flex items-center gap-3 px-5 py-2.5 bg-[#0F172A]/60 backdrop-blur-md rounded-full border border-white/5 hover:bg-slate-800/40 transition-colors duration-200 cursor-default">
+                    <div
+                        class="hidden md:flex items-center gap-3 px-5 py-2.5 bg-[#0F172A]/60 backdrop-blur-md rounded-full border border-white/5 hover:bg-slate-800/40 transition-colors duration-200 cursor-default">
                         <div class="flex -space-x-2">
-                            <div class="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
-                                <svg class="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
+                            <div
+                                class="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                </svg>
                             </div>
-                            <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                                <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
+                            <div
+                                class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                                </svg>
                             </div>
                         </div>
                         <span class="text-slate-300 text-sm font-medium">จุดสแกนรวม</span>
@@ -57,10 +82,15 @@
 
                     <!-- Clock -->
                     <div class="group relative">
-                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div class="relative px-6 py-3 bg-[#0F172A]/70 backdrop-blur-xl rounded-2xl border border-white/10 text-center min-w-[140px]">
-                            <div class="text-3xl font-bold font-mono text-white tracking-widest tabular-nums" x-text="currentTime">--:--</div>
-                            <div class="text-indigo-300/80 text-xs font-semibold uppercase tracking-wider mt-0.5" x-text="currentDate">-- --- ----</div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div
+                            class="relative px-6 py-3 bg-[#0F172A]/70 backdrop-blur-xl rounded-2xl border border-white/10 text-center min-w-[140px]">
+                            <div class="text-3xl font-bold font-mono text-white tracking-widest tabular-nums"
+                                x-text="currentTime">--:--</div>
+                            <div class="text-indigo-300/80 text-xs font-semibold uppercase tracking-wider mt-0.5"
+                                x-text="currentDate">-- --- ----</div>
                         </div>
                     </div>
                 </div>
@@ -73,13 +103,22 @@
 
                 <!-- Left: Camera Feed (Span 7) -->
                 <div class="lg:col-span-7 flex flex-col h-full">
-                    <div class="relative flex-1 rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-[#0F172A]/80 group">
+                    <div
+                        class="relative flex-1 rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-[#0F172A]/80 group">
 
                         <!-- Corner Accents -->
-                        <div class="absolute top-5 left-5 w-14 h-14 border-t-2 border-l-2 border-indigo-500/40 rounded-tl-xl z-20"></div>
-                        <div class="absolute top-5 right-5 w-14 h-14 border-t-2 border-r-2 border-indigo-500/40 rounded-tr-xl z-20"></div>
-                        <div class="absolute bottom-5 left-5 w-14 h-14 border-b-2 border-l-2 border-indigo-500/40 rounded-bl-xl z-20"></div>
-                        <div class="absolute bottom-5 right-5 w-14 h-14 border-b-2 border-r-2 border-indigo-500/40 rounded-br-xl z-20"></div>
+                        <div
+                            class="absolute top-5 left-5 w-14 h-14 border-t-2 border-l-2 border-indigo-500/40 rounded-tl-xl z-20">
+                        </div>
+                        <div
+                            class="absolute top-5 right-5 w-14 h-14 border-t-2 border-r-2 border-indigo-500/40 rounded-tr-xl z-20">
+                        </div>
+                        <div
+                            class="absolute bottom-5 left-5 w-14 h-14 border-b-2 border-l-2 border-indigo-500/40 rounded-bl-xl z-20">
+                        </div>
+                        <div
+                            class="absolute bottom-5 right-5 w-14 h-14 border-b-2 border-r-2 border-indigo-500/40 rounded-br-xl z-20">
+                        </div>
 
                         <!-- Video Feed -->
                         <div class="absolute inset-2 rounded-[1.5rem] overflow-hidden bg-black relative">
@@ -93,14 +132,16 @@
 
                         <!-- Status Pill -->
                         <div class="absolute top-7 left-1/2 -translate-x-1/2 z-30">
-                            <div class="px-5 py-2.5 bg-[#020617]/80 backdrop-blur-md rounded-full border border-white/10 shadow-lg flex items-center gap-3">
+                            <div
+                                class="px-5 py-2.5 bg-[#020617]/80 backdrop-blur-md rounded-full border border-white/10 shadow-lg flex items-center gap-3">
                                 <span class="relative flex h-3 w-3">
                                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
                                         :class="isModelsLoading ? 'bg-amber-400' : 'bg-emerald-500'"></span>
                                     <span class="relative inline-flex rounded-full h-3 w-3"
                                         :class="isModelsLoading ? 'bg-amber-400' : 'bg-emerald-500'"></span>
                                 </span>
-                                <span class="text-sm font-medium text-white tracking-wide" x-text="statusMessage">กำลังโหลดระบบ...</span>
+                                <span class="text-sm font-medium text-white tracking-wide"
+                                    x-text="statusMessage">กำลังโหลดระบบ...</span>
                             </div>
                         </div>
 
@@ -109,9 +150,17 @@
                             x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
                             class="absolute inset-0 flex items-center justify-center z-40 bg-[#020617]/70 backdrop-blur-sm">
-                            <div class="text-center p-8 bg-[#0F172A]/90 border border-amber-500/30 rounded-3xl shadow-2xl animate-float">
-                                <div class="w-20 h-20 mx-auto bg-amber-500/20 rounded-2xl flex items-center justify-center mb-6 ring-1 ring-amber-500/40">
-                                    <svg class="w-10 h-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+                            <div
+                                class="text-center p-8 bg-[#0F172A]/90 border border-amber-500/30 rounded-3xl shadow-2xl animate-float">
+                                <div
+                                    class="w-20 h-20 mx-auto bg-amber-500/20 rounded-2xl flex items-center justify-center mb-6 ring-1 ring-amber-500/40">
+                                    <svg class="w-10 h-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    </svg>
                                 </div>
                                 <h3 class="text-2xl font-bold text-white">กรุณากระพริบตา</h3>
                                 <p class="text-slate-400 mt-2">เพื่อยืนยันตัวตน</p>
@@ -122,17 +171,24 @@
                         <div x-show="showFaceDetected" x-transition:enter="transition ease-out duration-500"
                             x-transition:enter-start="opacity-0 scale-110" x-transition:enter-end="opacity-100 scale-100"
                             class="absolute inset-0 flex items-center justify-center z-40 bg-emerald-950/40 backdrop-blur-sm">
-                            <div class="absolute inset-0 border-[6px] border-emerald-500/50 rounded-[2rem] animate-pulse"></div>
+                            <div class="absolute inset-0 border-[6px] border-emerald-500/50 rounded-[2rem] animate-pulse">
+                            </div>
                         </div>
                     </div>
 
                     <!-- Manual Input Bar -->
                     <div class="mt-5 flex gap-3">
                         <div class="flex-1 relative group">
-                            <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl opacity-40 group-hover:opacity-80 transition duration-300 blur"></div>
+                            <div
+                                class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl opacity-40 group-hover:opacity-80 transition duration-300 blur">
+                            </div>
                             <div class="relative flex items-center bg-[#0F172A] rounded-2xl p-1">
                                 <div class="pl-4 pr-3 text-slate-500">
-                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                    </svg>
                                 </div>
                                 <input type="text" x-model="employeeCode" @keyup.enter="submitScan()"
                                     placeholder="กรอกรหัสพนักงาน / รหัสนักเรียน..."
@@ -141,17 +197,29 @@
                         </div>
                         <button @click="submitScan()" :disabled="isLoading || !employeeCode"
                             class="relative px-8 rounded-2xl font-bold text-white shadow-lg overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
-                            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600 group-hover:from-indigo-500 group-hover:to-violet-500 transition-all duration-200"></div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600 group-hover:from-indigo-500 group-hover:to-violet-500 transition-all duration-200">
+                            </div>
                             <span class="relative flex items-center gap-2">
                                 <span x-show="!isLoading">ตกลง</span>
-                                <svg x-show="isLoading" class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                                <svg x-show="isLoading" class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                                </svg>
                             </span>
                         </button>
 
                         <!-- Settings Toggle -->
                         <button @click="showConfig = !showConfig"
                             class="w-14 h-14 rounded-2xl bg-[#1E293B]/60 hover:bg-slate-700/80 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all duration-200 cursor-pointer">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
                         </button>
                     </div>
 
@@ -160,7 +228,8 @@
                         class="mt-4 p-6 bg-[#0F172A]/90 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-indigo-400 uppercase tracking-wider">รหัสอุปกรณ์ (Device ID)</label>
+                                <label class="text-xs font-bold text-indigo-400 uppercase tracking-wider">รหัสอุปกรณ์
+                                    (Device ID)</label>
                                 <input type="text" x-model="deviceCode"
                                     class="w-full bg-[#020617] border border-slate-700 rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:ring-indigo-500/20 transition-all duration-200">
                             </div>
@@ -173,8 +242,9 @@
                                 <label class="text-xs font-bold text-indigo-400 uppercase tracking-wider">เลือกกล้อง</label>
                                 <select x-model="selectedCamera" @change="startCamera()"
                                     class="w-full bg-[#020617] border border-slate-700 rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:ring-indigo-500/20 transition-all duration-200 cursor-pointer">
-                                    <template x-for="camera in cameras" :key="camera.deviceId">
-                                        <option :value="camera.deviceId" x-text="camera.label || 'Camera ' + ($index + 1)"></option>
+                                    <template x-for="(camera, index) in cameras" :key="camera.deviceId">
+                                        <option :value="camera.deviceId" x-text="camera.label || 'Camera ' + (index + 1)">
+                                        </option>
                                     </template>
                                 </select>
                             </div>
@@ -195,14 +265,22 @@
                         x-transition:enter-end="opacity-100 translate-y-0"
                         class="h-full bg-[#0F172A]/50 backdrop-blur-xl rounded-[2rem] border border-white/5 p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group">
 
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 group-hover:from-indigo-500/10 group-hover:to-purple-500/10 transition-colors duration-700"></div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 group-hover:from-indigo-500/10 group-hover:to-purple-500/10 transition-colors duration-700">
+                        </div>
 
-                        <div class="relative z-10 w-24 h-24 mb-8 rounded-3xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] shadow-2xl flex items-center justify-center ring-1 ring-white/10 group-hover:scale-110 transition-transform duration-500 overflow-hidden">
+                        <div
+                            class="relative z-10 w-24 h-24 mb-8 rounded-3xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] shadow-2xl flex items-center justify-center ring-1 ring-white/10 group-hover:scale-110 transition-transform duration-500 overflow-hidden">
                             <template x-if="lastScan">
-                                <img :src="lastScan.snapshot_url || lastScan.photo_url" class="w-full h-full object-cover" alt="Last scan">
+                                <img :src="lastScan.snapshot_url || lastScan.photo_url" class="w-full h-full object-cover"
+                                    alt="Last scan">
                             </template>
                             <template x-if="!lastScan">
-                                <svg class="w-12 h-12 text-indigo-400/60" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                                <svg class="w-12 h-12 text-indigo-400/60" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                </svg>
                             </template>
                         </div>
 
@@ -214,12 +292,22 @@
 
                         <!-- Indicators -->
                         <div class="mt-10 grid grid-cols-2 gap-4 w-full max-w-xs relative z-10">
-                            <div class="bg-[#1E293B]/50 rounded-2xl p-4 border border-white/5 flex flex-col items-center gap-2">
-                                <svg class="w-6 h-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+                            <div
+                                class="bg-[#1E293B]/50 rounded-2xl p-4 border border-white/5 flex flex-col items-center gap-2">
+                                <svg class="w-6 h-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                                </svg>
                                 <span class="text-xs text-slate-400 font-medium tracking-wide">ปลอดภัย</span>
                             </div>
-                            <div class="bg-[#1E293B]/50 rounded-2xl p-4 border border-white/5 flex flex-col items-center gap-2">
-                                <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/></svg>
+                            <div
+                                class="bg-[#1E293B]/50 rounded-2xl p-4 border border-white/5 flex flex-col items-center gap-2">
+                                <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                                </svg>
                                 <span class="text-xs text-slate-400 font-medium tracking-wide">รวดเร็ว</span>
                             </div>
                         </div>
@@ -235,41 +323,58 @@
                         class="absolute inset-0 h-full w-full bg-[#0F172A]/90 backdrop-blur-2xl rounded-[2rem] border border-emerald-500/30 overflow-hidden flex flex-col shadow-2xl shadow-emerald-500/10">
 
                         <!-- Glow Header -->
-                        <div class="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-emerald-500/20 to-transparent pointer-events-none"></div>
+                        <div
+                            class="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-emerald-500/20 to-transparent pointer-events-none">
+                        </div>
 
                         <div class="flex-1 flex flex-col items-center justify-center p-8 relative z-10">
                             <!-- Success Check -->
                             <div class="relative mb-6">
                                 <div class="absolute inset-0 bg-emerald-500/30 rounded-full blur-xl animate-pulse"></div>
-                                <div class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/40 relative z-10">
-                                    <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                <div
+                                    class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/40 relative z-10">
+                                    <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                    </svg>
                                 </div>
                             </div>
 
                             <!-- Profile Photo -->
                             <div class="relative w-36 h-36 mb-5 group">
-                                <div class="absolute inset-0 -m-1.5 rounded-full border-2 border-emerald-500/50 border-dashed animate-spin-slow"></div>
-                                <div class="w-full h-full rounded-full overflow-hidden border-4 border-[#0F172A] bg-[#1E293B] shadow-2xl relative">
+                                <div
+                                    class="absolute inset-0 -m-1.5 rounded-full border-2 border-emerald-500/50 border-dashed animate-spin-slow">
+                                </div>
+                                <div
+                                    class="w-full h-full rounded-full overflow-hidden border-4 border-[#0F172A] bg-[#1E293B] shadow-2xl relative">
                                     <template x-if="lastScan?.photo_url || lastScan?.snapshot_url">
-                                        <img :src="lastScan?.snapshot_url || lastScan?.photo_url" class="w-full h-full object-cover" alt="Profile">
+                                        <img :src="lastScan?.snapshot_url || lastScan?.photo_url"
+                                            class="w-full h-full object-cover" alt="Profile">
                                     </template>
                                     <template x-if="!lastScan?.photo_url && !lastScan?.snapshot_url">
                                         <div class="w-full h-full flex items-center justify-center bg-[#1E293B]">
-                                            <svg class="w-16 h-16 text-slate-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                                            <svg class="w-16 h-16 text-slate-500" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                            </svg>
                                         </div>
                                     </template>
                                 </div>
                             </div>
 
                             <!-- User Info -->
-                            <h2 class="text-3xl font-bold text-white text-center mb-1 leading-tight" x-text="lastScan?.name || 'ไม่รู้จัก'"></h2>
-                            <p class="text-slate-400 font-medium text-lg mb-6" x-text="lastScan?.employee_code || lastScan?.student_code || '-'"></p>
+                            <h2 class="text-3xl font-bold text-white text-center mb-1 leading-tight"
+                                x-text="lastScan?.name || 'ไม่รู้จัก'"></h2>
+                            <p class="text-slate-400 font-medium text-lg mb-6"
+                                x-text="lastScan?.employee_code || lastScan?.student_code || '-'"></p>
 
                             <!-- Stats Grid -->
                             <div class="grid grid-cols-2 gap-4 w-full">
                                 <div class="bg-[#1E293B]/80 rounded-2xl p-4 text-center border border-white/5">
                                     <div class="text-slate-400 text-xs font-bold uppercase mb-1">เวลาที่สแกน</div>
-                                    <div class="text-xl font-mono font-bold text-white" x-text="lastScan?.time || '--:--'">--:--</div>
+                                    <div class="text-xl font-mono font-bold text-white" x-text="lastScan?.time || '--:--'">
+                                        --:--</div>
                                 </div>
                                 <div class="bg-[#1E293B]/80 rounded-2xl p-4 text-center border border-white/5">
                                     <div class="text-slate-400 text-xs font-bold uppercase mb-1">สถานะ</div>
@@ -549,14 +654,14 @@
                             this.employeeCode = '';
                             const typeLabel = isStudent ? 'นักเรียน' : 'บุคลากร';
                             this.statusMessage = `บันทึกสำเร็จ! (${typeLabel})`;
-                            this.successAudio.play().catch(() => {});
+                            this.successAudio.play().catch(() => { });
                             if (response.data.data) this.handleNewScan(response.data.data);
                             setTimeout(() => { this.statusMessage = 'ระบบพร้อมใช้งาน'; }, 2000);
                         }
                     } catch (error) {
                         console.error(error);
                         this.statusMessage = 'เกิดข้อผิดพลาด';
-                        this.errorAudio.play().catch(() => {});
+                        this.errorAudio.play().catch(() => { });
                     } finally {
                         this.isLoading = false;
                     }
@@ -574,20 +679,49 @@
 
     <style>
         @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
         }
-        .animate-blob { animation: blob 10s ease-in-out infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
+
+        .animate-blob {
+            animation: blob 10s ease-in-out infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
 
         @keyframes scan-line {
-            0% { transform: translateY(-100%); }
-            50% { transform: translateY(100%); }
-            100% { transform: translateY(-100%); }
+            0% {
+                transform: translateY(-100%);
+            }
+
+            50% {
+                transform: translateY(100%);
+            }
+
+            100% {
+                transform: translateY(-100%);
+            }
         }
+
         .animate-scan-line {
             animation: scan-line 4s ease-in-out infinite;
             background: linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.15), transparent);
@@ -595,22 +729,52 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
-        .animate-float { animation: float 3s ease-in-out infinite; }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
 
         @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
-        .animate-spin-slow { animation: spin-slow 12s linear infinite; }
+
+        .animate-spin-slow {
+            animation: spin-slow 12s linear infinite;
+        }
 
         /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
 
         /* Input autofill fix */
         input:-webkit-autofill,
@@ -623,7 +787,13 @@
 
         /* Reduced motion */
         @media (prefers-reduced-motion: reduce) {
-            .animate-blob, .animate-scan-line, .animate-float, .animate-spin-slow, .animate-pulse, .animate-ping {
+
+            .animate-blob,
+            .animate-scan-line,
+            .animate-float,
+            .animate-spin-slow,
+            .animate-pulse,
+            .animate-ping {
                 animation: none !important;
             }
         }
