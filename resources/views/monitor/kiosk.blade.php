@@ -225,15 +225,35 @@
                     <!-- Camera Selection Panel -->
                     <div x-show="showConfig" x-collapse
                         class="mt-4 p-5 bg-[#0F172A]/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl">
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold text-indigo-400 uppercase tracking-wider">เลือกกล้อง</label>
-                            <select x-model="selectedCamera" @change="startCamera()"
-                                class="w-full bg-[#020617] border border-slate-700 rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:ring-indigo-500/20 transition-all duration-200 cursor-pointer">
-                                <template x-for="(camera, index) in cameras" :key="camera.deviceId">
-                                    <option :value="camera.deviceId" x-text="camera.label || 'Camera ' + (index + 1)"></option>
-                                </template>
-                            </select>
+                        <label
+                            class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-3 block">เลือกกล้อง</label>
+                        <div class="space-y-2" x-show="cameras.length > 0">
+                            <template x-for="(camera, index) in cameras" :key="camera.deviceId">
+                                <button @click="switchCamera(camera.deviceId)"
+                                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 cursor-pointer text-left"
+                                    :class="selectedCamera === camera.deviceId
+                                                ? 'bg-indigo-600/20 border-indigo-500/50 text-white'
+                                                : 'bg-[#020617] border-slate-700 text-slate-300 hover:border-slate-500 hover:bg-slate-800/50'">
+                                    <svg class="w-5 h-5 shrink-0"
+                                        :class="selectedCamera === camera.deviceId ? 'text-indigo-400' : 'text-slate-500'"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                    </svg>
+                                    <span class="text-sm font-medium truncate"
+                                        x-text="camera.label || 'Camera ' + (index + 1)"></span>
+                                    <span x-show="selectedCamera === camera.deviceId" class="ml-auto shrink-0">
+                                        <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m4.5 12.75 6 6 9-13.5" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </template>
                         </div>
+                        <p x-show="cameras.length === 0" class="text-slate-500 text-sm text-center py-3">ไม่พบกล้อง
+                            กรุณาอนุญาตการเข้าถึงกล้อง</p>
                     </div>
                 </div>
 
@@ -591,6 +611,11 @@
 
                 saveConfig() {
                     this.showConfig = false;
+                },
+
+                switchCamera(deviceId) {
+                    this.selectedCamera = deviceId;
+                    this.startCamera();
                 },
 
                 async submitScan() {
