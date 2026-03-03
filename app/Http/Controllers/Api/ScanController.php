@@ -194,4 +194,30 @@ class ScanController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * Kiosk scan - ไม่ต้องใช้ device_code/api_token
+     * ระบบจะใช้ Default Kiosk Device อัตโนมัติ
+     */
+    public function kioskStore(Request $request)
+    {
+        // หา device "KIOSK" หรือสร้างใหม่อัตโนมัติ
+        $device = Device::firstOrCreate(
+            ['device_code' => 'KIOSK'],
+            [
+                'name' => 'Default Kiosk',
+                'api_token' => 'kiosk-auto-token',
+                'is_active' => true,
+                'location' => 'Kiosk',
+            ]
+        );
+
+        // Inject device credentials เข้าไปใน request แล้วเรียก store เดิม
+        $request->merge([
+            'device_code' => $device->device_code,
+            'api_token' => $device->api_token,
+        ]);
+
+        return $this->store($request);
+    }
 }

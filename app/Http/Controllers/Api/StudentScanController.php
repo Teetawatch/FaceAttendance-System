@@ -219,4 +219,27 @@ class StudentScanController extends Controller
             'data' => $data
         ]);
     }
+
+    /**
+     * Kiosk scan for students - ไม่ต้องใช้ device_code/api_token
+     */
+    public function kioskStore(Request $request)
+    {
+        $device = Device::firstOrCreate(
+            ['device_code' => 'KIOSK'],
+            [
+                'name' => 'Default Kiosk',
+                'api_token' => 'kiosk-auto-token',
+                'is_active' => true,
+                'location' => 'Kiosk',
+            ]
+        );
+
+        $request->merge([
+            'device_code' => $device->device_code,
+            'api_token' => $device->api_token,
+        ]);
+
+        return $this->store($request);
+    }
 }

@@ -24,10 +24,14 @@ Route::prefix('v1')->group(function () {
     // Employee (Staff) Endpoints
     Route::post('/scan', [App\Http\Controllers\Api\ScanController::class, 'store'])->name('api.scan.store');
     Route::get('/employees/faces', [App\Http\Controllers\Api\EmployeeController::class, 'getFaces'])->name('api.employees.faces');
-    
+
     // Student Endpoints
     Route::post('/student/scan', [App\Http\Controllers\Api\StudentScanController::class, 'store'])->name('api.student.scan.store');
     Route::get('/students/faces', [App\Http\Controllers\Api\StudentScanController::class, 'getFaces'])->name('api.students.faces');
+
+    // Kiosk Endpoints (ไม่ต้องใช้ device_code/api_token)
+    Route::post('/kiosk/scan', [App\Http\Controllers\Api\ScanController::class, 'kioskStore'])->name('api.kiosk.scan.store');
+    Route::post('/kiosk/student/scan', [App\Http\Controllers\Api\StudentScanController::class, 'kioskStore'])->name('api.kiosk.student.scan.store');
 });
 
 // ============================================
