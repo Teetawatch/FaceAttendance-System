@@ -45,7 +45,8 @@
                     <div>
                         <h1 class="text-2xl lg:text-3xl font-bold text-white tracking-tight">
                             <span
-                                class="bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-slate-400">ระบบลงเวลาด้วยใบหน้า</span>
+                                class="bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-slate-400">ระบบลงเวลาด้วยไบโอเมตริก
+                                (Biometric Attendance System)</span>
                         </h1>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -176,64 +177,31 @@
                         </div>
                     </div>
 
-                    <!-- Manual Input Bar -->
-                    <div class="mt-5 flex gap-3">
-                        <div class="flex-1 relative group">
-                            <div
-                                class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl opacity-40 group-hover:opacity-80 transition duration-300 blur">
-                            </div>
-                            <div class="relative flex items-center bg-[#0F172A] rounded-2xl p-1">
-                                <div class="pl-4 pr-3 text-slate-500">
-                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                    </svg>
-                                </div>
-                                <input type="text" x-model="employeeCode" @keyup.enter="submitScan()"
-                                    placeholder="กรอกรหัสพนักงาน / รหัสนักเรียน..."
-                                    class="w-full bg-transparent border-none text-white placeholder-slate-500 focus:ring-0 text-lg font-medium h-12">
-                            </div>
-                        </div>
-                        <button @click="submitScan()" :disabled="isLoading || !employeeCode"
-                            class="relative px-8 rounded-2xl font-bold text-white shadow-lg overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600 group-hover:from-indigo-500 group-hover:to-violet-500 transition-all duration-200">
-                            </div>
-                            <span class="relative flex items-center gap-2">
-                                <span x-show="!isLoading">ตกลง</span>
-                                <svg x-show="isLoading" class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-                                </svg>
-                            </span>
-                        </button>
-
-                        <!-- Camera Toggle -->
-                        <button @click="showConfig = !showConfig"
-                            class="w-14 h-14 rounded-2xl bg-[#1E293B]/60 hover:bg-slate-700/80 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all duration-200 cursor-pointer"
+                    <!-- Camera Toggle -->
+                    <div class="mt-5 flex justify-end">
+                        <button @click="showConfig = !showConfig; if(showConfig) getCameras()"
+                            class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-[#1E293B]/60 hover:bg-slate-700/80 border border-white/10 text-slate-400 hover:text-white transition-all duration-200 cursor-pointer"
                             title="เลือกกล้อง">
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
                             </svg>
+                            <span class="text-sm font-medium">เลือกกล้อง</span>
                         </button>
                     </div>
 
                     <!-- Camera Selection Panel -->
                     <div x-show="showConfig" x-collapse
-                        class="mt-4 p-5 bg-[#0F172A]/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl">
+                        class="mt-3 p-5 bg-[#0F172A]/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl">
                         <label
                             class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-3 block">เลือกกล้อง</label>
-                        <div class="space-y-2" x-show="cameras.length > 0">
+                        <div class="space-y-2">
                             <template x-for="(camera, index) in cameras" :key="camera.deviceId">
                                 <button @click="switchCamera(camera.deviceId)"
                                     class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 cursor-pointer text-left"
                                     :class="selectedCamera === camera.deviceId
-                                                ? 'bg-indigo-600/20 border-indigo-500/50 text-white'
-                                                : 'bg-[#020617] border-slate-700 text-slate-300 hover:border-slate-500 hover:bg-slate-800/50'">
+                                            ? 'bg-indigo-600/20 border-indigo-500/50 text-white'
+                                            : 'bg-[#020617] border-slate-700 text-slate-300 hover:border-slate-500 hover:bg-slate-800/50'">
                                     <svg class="w-5 h-5 shrink-0"
                                         :class="selectedCamera === camera.deviceId ? 'text-indigo-400' : 'text-slate-500'"
                                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -251,9 +219,9 @@
                                     </span>
                                 </button>
                             </template>
+                            <p x-show="cameras.length === 0" class="text-slate-500 text-sm text-center py-3">
+                                กำลังโหลดรายการกล้อง...</p>
                         </div>
-                        <p x-show="cameras.length === 0" class="text-slate-500 text-sm text-center py-3">ไม่พบกล้อง
-                            กรุณาอนุญาตการเข้าถึงกล้อง</p>
                     </div>
                 </div>
 
@@ -456,7 +424,9 @@
                         console.error('Error loading models:', error);
                         this.statusMessage = 'โหลดโมเดลไม่สำเร็จ';
                     }
-                    this.startCamera();
+                    await this.startCamera();
+                    // Enumerate cameras after stream is acquired
+                    await this.getCameras();
                 },
 
                 updateClock() {
