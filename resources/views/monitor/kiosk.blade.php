@@ -200,8 +200,8 @@
                                 <button @click="switchCamera(camera.deviceId)"
                                     class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 cursor-pointer text-left"
                                     :class="selectedCamera === camera.deviceId
-                                            ? 'bg-indigo-600/20 border-indigo-500/50 text-white'
-                                            : 'bg-[#020617] border-slate-700 text-slate-300 hover:border-slate-500 hover:bg-slate-800/50'">
+                                                ? 'bg-indigo-600/20 border-indigo-500/50 text-white'
+                                                : 'bg-[#020617] border-slate-700 text-slate-300 hover:border-slate-500 hover:bg-slate-800/50'">
                                     <svg class="w-5 h-5 shrink-0"
                                         :class="selectedCamera === camera.deviceId ? 'text-indigo-400' : 'text-slate-500'"
                                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -400,6 +400,12 @@
                     this.updateClock();
                     setInterval(() => this.updateClock(), 1000);
 
+                    // Check for secure context
+                    if (!window.isSecureContext && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+                        this.statusMessage = 'กรุณาใช้งานผ่าน HTTPS เพื่อเข้าถึงกล้อง';
+                        alert('ระบบต้องการการเชื่อมต่อแบบปลอดภัย (HTTPS) เพื่อใช้งานกล้องและ AI');
+                    }
+
                     if (typeof window.Echo !== 'undefined') {
                         window.Echo.channel('scans')
                             .listen('.new-scan', (e) => {
@@ -424,9 +430,15 @@
                         console.error('Error loading models:', error);
                         this.statusMessage = 'โหลดโมเดลไม่สำเร็จ';
                     }
-                    await this.startCamera();
-                    // Enumerate cameras after stream is acquired
-                    await this.getCameras();
+
+                    try {
+                        await this.startCamera();
+                        // Enumerate cameras after stream is acquired to get labels
+                        await this.getCameras();
+                    } catch (err) {
+                        console.error("Camera init failed:", err);
+                        this.statusMessage = 'ไม่สามารถเปิดกล้องได้';
+                    }
                 },
 
                 updateClock() {
@@ -565,13 +577,29 @@
 
                 async getCameras() {
                     try {
+                        if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+                            console.error("enumerateDevices() not supported.");
+                            return;
+                        }
+
                         const devices = await navigator.mediaDevices.enumerateDevices();
-                        this.cameras = devices.filter(device => device.kind === 'videoinput');
+                        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+
+                        // Force update cameras list
+                        this.cameras = videoDevices.map((d, i) => ({
+                            deviceId: d.deviceId,
+                            label: d.label || `กล้องที่ ${i + 1} (${d.deviceId.slice(0, 5)}...)`
+                        }));
+
+                        console.log("Found cameras:", this.cameras);
+
                         if (this.cameras.length > 0 && !this.selectedCamera) {
                             const videoTrack = this.stream?.getVideoTracks()[0];
                             this.selectedCamera = videoTrack?.getSettings().deviceId || this.cameras[0].deviceId;
                         }
-                    } catch (err) { console.error("Error listing cameras:", err); }
+                    } catch (err) {
+                        console.error("Error listing cameras:", err);
+                    }
                 },
 
                 stopCamera() {
